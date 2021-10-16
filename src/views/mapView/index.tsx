@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import GoogleMapReact from 'google-map-react';
+import MainCard from "../../components/mainCard";
 
 const AnyReactComponent = (text: string) => <div>{text}</div>;
 
@@ -12,6 +13,7 @@ const MapView = (): ReactElement => {
     zoom: 11
   };
 
+
   return (
     <div style={{ height: '100vh', width: '100%' }}>
       <GoogleMapReact
@@ -19,7 +21,7 @@ const MapView = (): ReactElement => {
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       >
-        <p>Marker</p>
+        <MainCard />
       </GoogleMapReact>
     </div>
   );
