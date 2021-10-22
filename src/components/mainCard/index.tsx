@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Typography, Box } from '@mui/material';
+import { Box } from '@mui/material';
 
 const MainCard = () => (
   <Box
@@ -9,16 +9,14 @@ const MainCard = () => (
       background: '#F0F0F0',
       border: 0,
       borderRadius: 10,
+      zIndex: 10,
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      margin: 5,
     }}
   >
-    <Typography variant="h3" component="h2">
-      Bienvenue,
-    </Typography>
-    <Paper>
-      <Typography variant="h6" component="p">
-        Bienvenue,
-      </Typography>
-    </Paper>
+    <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'bold' }}>Sessions</Box>
   </Box>
 );
 
