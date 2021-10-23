@@ -3,6 +3,7 @@ import './App.css';
 import { ThemeProvider } from '@mui/system';
 import MapView from './views/mapView';
 import { lightTheme } from './styles/theme';
+import './locales/i18n';
 
 function App() {
   return (
