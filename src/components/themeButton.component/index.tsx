@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Box, IconButton } from '@mui/material';
 import { MdOutlineBrightness4 } from 'react-icons/md';
 
-const ThemeButton = () => (
+const ThemeButton = (): ReactElement => (
   <Box sx={{
     bgcolor: 'background.default',
     height: 50,
