@@ -1,17 +1,37 @@
-import { createTheme } from '@mui/system';
+/* eslint-disable no-unused-vars */
+import { createTheme } from '@mui/material/styles';
+
+declare module '@mui/material/styles' {
+  interface Theme {
+    status: {
+      danger: string;
+    };
+  }
+  // allow configuration using `createTheme`
+  interface ThemeOptions {
+    status?: {
+      danger?: string;
+    };
+  }
+}
 
 export const lightTheme = createTheme({
   palette: {
     text: {
       primary: '#565656',
     },
-    background: 'white',
+  },
+  shape: {
+    borderRadius: 5,
   },
 });
 
 export const darkTheme = createTheme({
   palette: {
+    mode: 'dark',
     text: { primary: 'white' },
-    background: '#333333',
+  },
+  shape: {
+    borderRadius: 10,
   },
 });

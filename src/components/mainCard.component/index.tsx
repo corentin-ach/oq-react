@@ -6,12 +6,12 @@ const MainCard = () => {
   const { t } = useTranslation(['translation']);
   return (
     <Box
-      width="400px"
+      width="300px"
       height="300px"
       sx={{
-        background: '#F0F0F0',
+        bgcolor: 'background.default',
         border: 0,
-        borderRadius: 10,
+        borderRadius: 5,
         zIndex: 10,
         position: 'absolute',
         top: 0,
