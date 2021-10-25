@@ -2,7 +2,8 @@ import React, { ReactElement } from 'react';
 import {
   MapContainer, TileLayer, Marker, ZoomControl,
 } from 'react-leaflet';
-import MainCard from '../../components/mainCard';
+import MainCard from '../../components/mainCard.component';
+import ThemeButton from '../../components/themeButton.component';
 
 const MapView = (): ReactElement => (
   <div>
@@ -24,6 +25,7 @@ const MapView = (): ReactElement => (
       <ZoomControl position="bottomright" />
     </MapContainer>
     <MainCard />
+    <ThemeButton />
   </div>
 );
 
