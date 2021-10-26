@@ -8,11 +8,11 @@ const MainCard = (): ReactElement => {
   return (
     <Box
       width="300px"
-      height="300px"
+      height="250px"
       sx={{
         bgcolor: 'background.default',
         border: 0,
-        borderRadius: 3,
+        borderRadius: 5,
         zIndex: 10,
         position: 'absolute',
         top: 0,
@@ -24,7 +24,7 @@ const MainCard = (): ReactElement => {
         flexDirection: 'column',
       }}
     >
-      <WiRaindrop color="#5DADEC" size={60} />
+      <WiRaindrop color="#5DADEC" size={80} />
       <Box sx={{
         color: 'text.primary', fontSize: 25, fontWeight: 'bold', textAlign: 'left',
       }}
