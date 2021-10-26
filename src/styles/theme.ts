@@ -41,6 +41,9 @@ export const darkTheme = createTheme({
     },
   },
   shape: {
-    borderRadius: 10,
+    borderRadius: 5,
   },
 });
+
+export const lightMap = 'ckuvkg7qn260718qpfel4clh8';
+export const darkMap = 'ckv71ygqg861e14l9rkusoxlc';
