@@ -12,7 +12,7 @@ function App() {
   return (
     <ThemeProvider theme={theme ? darkTheme : lightTheme}>
       <div className="App">
-        <MapView isDark={theme} />
+        <MapView />
       </div>
     </ThemeProvider>
   );
