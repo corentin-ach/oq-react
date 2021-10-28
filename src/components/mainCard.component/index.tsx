@@ -1,35 +1,32 @@
 import React, { ReactElement } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { WiRaindrop } from 'react-icons/wi';
+import { RiDropFill } from 'react-icons/ri';
+import styles from './styles';
 
 const MainCard = (): ReactElement => {
   const { t } = useTranslation(['translation']);
   return (
     <Box
       width="300px"
-      height="250px"
-      sx={{
-        bgcolor: 'background.default',
-        border: 0,
-        borderRadius: 5,
-        zIndex: 10,
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        margin: 5,
-        paddingLeft: 5,
-        alignContent: 'flex-start',
-        display: 'flex',
-        flexDirection: 'column',
-      }}
+      height="230px"
+      sx={styles.mainCard}
     >
-      <WiRaindrop color="#5DADEC" size={80} />
-      <Box sx={{
-        color: 'text.primary', fontSize: 25, fontWeight: 'bold', textAlign: 'left',
-      }}
-      >
+      <RiDropFill color="#5DADEC" size={60} />
+      <Typography sx={styles.welcomeTitle}>
         {t('translation:mapView.welcomeCard.welcomeTitle')}
+      </Typography>
+      <Box
+        width="100%"
+        height="110px"
+        sx={styles.infoCard}
+      >
+        <Typography sx={styles.name}>
+          EndlessO
+        </Typography>
+        <Typography sx={styles.description}>
+          {t('translation:mapView.welcomeCard.description')}
+        </Typography>
       </Box>
     </Box>
   );
