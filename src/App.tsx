@@ -9,6 +9,7 @@ import { RootState } from './app/store';
 
 function App() {
   const theme = useSelector((state: RootState) => state.theme.dark);
+
   return (
     <ThemeProvider theme={theme ? darkTheme : lightTheme}>
       <div className="App">

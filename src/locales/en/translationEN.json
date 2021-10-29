@@ -2,7 +2,8 @@
     "mapView": {
         "welcomeCard": {
             "welcomeTitle": "Bienvenue,",
-            "description": "EndlessO est un projet open source qui a pour but d’informer sur la qualité des eaux côtières et de signaler des pollutions."
+            "description": "EndlessO est un projet open source qui a pour but d’informer sur la qualité des eaux côtières et de signaler des pollutions.",
+            "signal": "Signaler une polution"
         }
     }
 }
