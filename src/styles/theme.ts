@@ -42,7 +42,7 @@ export const darkTheme = createTheme({
     },
     background: {
       default: '#3B3B3B',
-      paper: '#626262',
+      paper: '#4A4A4A',
     },
   },
   shape: {
