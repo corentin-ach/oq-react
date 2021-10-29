@@ -15,7 +15,7 @@ const styles = {
     textAlign: 'left',
   },
   infoCard: {
-    bgcolor: '#F4F4F4',
+    bgcolor: 'background.paper',
     border: 0,
     borderRadius: 3,
     marginTop: 2,

@@ -23,6 +23,10 @@ export const lightTheme = createTheme({
     primary: {
       main: '#5DADEC',
     },
+    background: {
+      default: '#F9F9F9',
+      paper: '#FFFFFF',
+    },
   },
   shape: {
     borderRadius: 5,
@@ -32,12 +36,13 @@ export const lightTheme = createTheme({
 export const darkTheme = createTheme({
   palette: {
     mode: 'dark',
-    text: { primary: 'white' },
+    text: { primary: '#FFFFFF' },
     primary: {
       main: '#5DADEC',
     },
     background: {
       default: '#3B3B3B',
+      paper: '#626262',
     },
   },
   shape: {

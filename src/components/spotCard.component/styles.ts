@@ -8,6 +8,16 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
   },
+  spotTitle: {
+    color: 'text.primary',
+    fontSize: 25,
+    fontWeight: 'bold',
+    textAlign: 'left',
+  },
+  signalTitle: {
+    fontSize: 15,
+    color: 'red',
+  },
 } as const;
 
 export default styles;
