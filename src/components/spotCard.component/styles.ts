@@ -7,6 +7,7 @@ const styles = {
     alignContent: 'flex-start',
     display: 'flex',
     flexDirection: 'column',
+    marginTop: 10,
   },
   spotTitle: {
     color: 'text.primary',

@@ -6,6 +6,7 @@ import ThemeButton from '../../components/themeButton.component';
 import { darkMap } from '../../styles/theme';
 import DropMarker from '../../components/dropMarker.component';
 import DataCards from '../../components/dataCards.component';
+import SearchBar from '../../components/searchBar.component';
 
 interface Props {
   isDark: boolean
@@ -32,16 +33,12 @@ const MapView = (props: Props): ReactElement => {
         <Marker
           position={[43.446782, -1.589371]}
           icon={DropMarker}
-          eventHandlers={{
-            click: () => {
-              console.log('marker clicked');
-            },
-          }}
         />
         <ZoomControl position="bottomright" />
       </MapContainer>
       <DataCards />
       <ThemeButton isDark={isDark} />
+      <SearchBar />
     </div>
   );
 };

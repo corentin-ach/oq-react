@@ -8,7 +8,6 @@ const styles = {
     top: 0,
     left: 0,
     margin: 5,
-    justifyContent: 'space-between',
   },
 } as const;
 

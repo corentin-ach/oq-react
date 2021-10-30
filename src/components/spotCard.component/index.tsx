@@ -46,7 +46,7 @@ const SpotCard = (): ReactElement => {
             <Box
               key={data.id}
               sx={{
-                bgcolor: 'background.paper', borderRadius: 2, height: 80, width: 90,
+                bgcolor: 'background.paper', borderRadius: 2, height: 70, width: 90, paddingTop: 1.5,
               }}
             >
               <Box>{data.icon}</Box>
