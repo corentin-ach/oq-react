@@ -2,11 +2,12 @@ import React, { ReactElement } from 'react';
 import {
   MapContainer, TileLayer, Marker, ZoomControl,
 } from 'react-leaflet';
-import ThemeButton from '../../components/themeButton.component';
+import ThemeButton from '../../components/buttons.component/themeButton.button';
 import { darkMap } from '../../styles/theme';
 import DropMarker from '../../components/dropMarker.component';
 import DataCards from '../../components/dataCards.component';
 import SearchBar from '../../components/searchBar.component';
+import LocationButton from '../../components/buttons.component/locationButton.button';
 
 interface Props {
   isDark: boolean
@@ -38,6 +39,7 @@ const MapView = (props: Props): ReactElement => {
       </MapContainer>
       <DataCards />
       <ThemeButton isDark={isDark} />
+      <LocationButton />
       <SearchBar />
     </div>
   );
