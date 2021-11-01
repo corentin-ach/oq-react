@@ -10,7 +10,7 @@ const surfSpots = [
 
 const SearchBar = () => (
   <Box sx={{
-    borderRadius: 20, bgcolor: 'background.paper', zIndex: 10, position: 'absolute', top: 0, right: '20%', margin: 5,
+    bgcolor: 'background.paper', zIndex: 10, position: 'absolute', top: 0, right: '20%', margin: 5,
   }}
   >
     <Autocomplete
