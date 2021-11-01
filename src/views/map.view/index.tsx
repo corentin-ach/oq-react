@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import {
-  MapContainer, TileLayer, Marker, ZoomControl,
+  MapContainer, TileLayer, Marker,
 } from 'react-leaflet';
 import ThemeButton from '../../components/buttons.component/themeButton.button';
 import { darkMap } from '../../styles/theme';
@@ -15,6 +15,7 @@ interface Props {
 
 const MapView = (props: Props): ReactElement => {
   const { isDark } = props;
+
   return (
     <div>
       <MapContainer
@@ -35,7 +36,6 @@ const MapView = (props: Props): ReactElement => {
           position={[43.446782, -1.589371]}
           icon={DropMarker}
         />
-        <ZoomControl position="bottomright" />
       </MapContainer>
       <DataCards />
       <ThemeButton isDark={isDark} />

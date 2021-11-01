@@ -2,12 +2,12 @@ const styles = {
   mainCard: {
     bgcolor: 'background.default',
     border: 0,
-    borderRadius: 5,
+    borderRadius: 2,
     padding: 2,
     alignContent: 'flex-start',
     display: 'flex',
     flexDirection: 'column',
-    marginTop: 10,
+    marginTop: 5,
   },
   spotTitle: {
     color: 'text.primary',

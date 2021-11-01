@@ -1,8 +1,7 @@
 const styles = {
   mainCard: {
     bgcolor: 'background.default',
-    border: 0,
-    borderRadius: 5,
+    borderRadius: 2,
     padding: 2,
     alignContent: 'flex-start',
     display: 'flex',
@@ -17,7 +16,7 @@ const styles = {
   infoCard: {
     bgcolor: 'background.paper',
     border: 0,
-    borderRadius: 3,
+    borderRadius: 1,
     marginTop: 2,
   },
   name: {
