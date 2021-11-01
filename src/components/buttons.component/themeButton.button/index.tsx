@@ -2,8 +2,8 @@ import React, { ReactElement } from 'react';
 import { Box, IconButton } from '@mui/material';
 import { MdOutlineBrightness4, MdOutlineWbSunny } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
-import { toggleTheme } from '../../features/themeSlice';
-import styles from './styles';
+import { toggleTheme } from '../../../features/themeSlice';
+import styles from '../styles';
 
 interface Props {
   isDark: boolean
@@ -15,7 +15,7 @@ const ThemeButton = (props: Props): ReactElement => {
   return (
     <Box sx={styles.toggleButton}>
       <IconButton onClick={() => dispatch(toggleTheme())} sx={{ bgcolor: 'background.default' }}>
-        {isDark ? <MdOutlineWbSunny size={30} color="text.default" /> : <MdOutlineBrightness4 size={30} color="text.default" />}
+        {isDark ? <MdOutlineWbSunny size={35} color="#FAD826" /> : <MdOutlineBrightness4 size={35} color="text.default" />}
       </IconButton>
     </Box>
   );
