@@ -1,14 +1,14 @@
 import React, { ReactElement } from 'react';
 import {
-  MapContainer, TileLayer, Marker,
+  MapContainer, TileLayer,
 } from 'react-leaflet';
 import { LatLngTuple } from 'leaflet';
 import ThemeButton from '../../components/buttons.component/themeButton.button';
 import { darkMap } from '../../styles/theme';
-import DropMarker from '../../components/dropMarker.component';
 import DataCards from '../../components/dataCards.component';
 import SearchBar from '../../components/searchBar.component';
 import LocationButton from '../../components/buttons.component/locationButton.button';
+import MarkersCluster from '../../components/markersCluster.component';
 
 interface Props {
   isDark: boolean
@@ -40,12 +40,7 @@ const MapView = (props: Props): ReactElement => {
         <TileLayer
           url={`https://api.mapbox.com/styles/v1/corentin29/${darkMap}/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY29yZW50aW4yOSIsImEiOiJja3V3dmgxOG0wMTdpMnZsOGs2OGU4eDQzIn0.p3UORX0_zEWs7XpxBBWMHA`}
         />
-        {markers.map((marker) => (
-          <Marker
-            position={marker}
-            icon={DropMarker}
-          />
-        ))}
+        <MarkersCluster markers={markers} />
       </MapContainer>
       <DataCards />
       <ThemeButton isDark={isDark} />
