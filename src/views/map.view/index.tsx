@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import {
   MapContainer, TileLayer, Marker,
 } from 'react-leaflet';
+import { LatLngTuple } from 'leaflet';
 import ThemeButton from '../../components/buttons.component/themeButton.button';
 import { darkMap } from '../../styles/theme';
 import DropMarker from '../../components/dropMarker.component';
@@ -16,12 +17,19 @@ interface Props {
 const MapView = (props: Props): ReactElement => {
   const { isDark } = props;
 
+  const markers: Array<LatLngTuple> = [
+    [43.446782, -1.589371],
+    [43.46510392814111, -1.574551238326115],
+    [45.446782, -1.589371],
+  ];
+
   return (
     <div>
       <MapContainer
         center={[43.446782, -1.589371]}
         zoom={13}
         zoomControl={false}
+        preferCanvas
         attributionControl={false}
         style={{
           width: '100%',
@@ -32,10 +40,12 @@ const MapView = (props: Props): ReactElement => {
         <TileLayer
           url={`https://api.mapbox.com/styles/v1/corentin29/${darkMap}/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY29yZW50aW4yOSIsImEiOiJja3V3dmgxOG0wMTdpMnZsOGs2OGU4eDQzIn0.p3UORX0_zEWs7XpxBBWMHA`}
         />
-        <Marker
-          position={[43.446782, -1.589371]}
-          icon={DropMarker}
-        />
+        {markers.map((marker) => (
+          <Marker
+            position={marker}
+            icon={DropMarker}
+          />
+        ))}
       </MapContainer>
       <DataCards />
       <ThemeButton isDark={isDark} />
