@@ -8,7 +8,7 @@ import icon from '../../assets/wi-raindrop.svg';
 
 const mcg = (L as any).markerClusterGroup({
   iconCreateFunction(cluster: any) {
-    return L.divIcon({ html: `<b>${cluster.getChildCount()}</b>` });
+    return L.divIcon({ html: cluster.getChildCount(), iconSize: L.point(32, 32), className: 'cluster' });
   },
 });
 
