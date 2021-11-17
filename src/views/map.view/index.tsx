@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import {
   MapContainer, useMap,
 } from 'react-leaflet';
@@ -29,6 +29,11 @@ const TileLayer = ({ isDark }: any) => {
 
 const MapView = (props: Props): ReactElement => {
   const { isDark } = props;
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch('https://us-central1-ocean-quality.cloudfunctions.net/app/spots/').then((res) => res.json()).then((marker) => setData(marker));
+  }, []);
+  console.log(data);
 
   const markers: Array<LatLngTuple> = [
     [43.446782, -1.589371],

@@ -6,7 +6,7 @@ import styles from '../styles';
 
 const LocationButton = () => (
   <Box sx={styles.locationButton}>
-    <IconButton sx={{ bgcolor: 'background.default' }}>
+    <IconButton sx={{ bgcolor: 'background.default' }} onClick={() => console.log('test')}>
       <TiLocationArrow size={35} color="text.default" />
     </IconButton>
   </Box>
