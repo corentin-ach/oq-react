@@ -2,13 +2,16 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import {
   MapContainer, useMap,
 } from 'react-leaflet';
-import L, { LatLngTuple } from 'leaflet';
+import L from 'leaflet';
+import { useDispatch, useSelector } from 'react-redux';
 import ThemeButton from '../../components/buttons.component/themeButton.button';
 import { darkMap, lightMap } from '../../styles/theme';
 import DataCards from '../../components/dataCards.component';
 import SearchBar from '../../components/searchBar.component';
 import LocationButton from '../../components/buttons.component/locationButton.button';
 import MarkersCluster from '../../components/markersCluster.component';
+import { RootState } from '../../app/store';
+import { getSpots } from '../../features/getSpotsSlice';
 
 interface Props {
   isDark: boolean
@@ -29,17 +32,20 @@ const TileLayer = ({ isDark }: any) => {
 
 const MapView = (props: Props): ReactElement => {
   const { isDark } = props;
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    fetch('https://us-central1-ocean-quality.cloudfunctions.net/app/spots/').then((res) => res.json()).then((marker) => setData(marker));
-  }, []);
-  console.log(data);
+  const dispatch = useDispatch();
+  const { spots, loading } = useSelector((state: RootState) => state.spots);
+  useEffect(() => { dispatch(getSpots()); }, []);
+  const [markers, setMarkers] = useState([[0]]);
 
-  const markers: Array<LatLngTuple> = [
-    [43.446782, -1.589371],
-    [43.46510392814111, -1.574551238326115],
-    [45.446782, -1.589371],
-  ];
+  const allCoords: Array<number[]> = [];
+  useEffect(() => {
+    spots?.forEach((spot) => {
+      allCoords.push(spot.coords);
+    });
+    setMarkers(allCoords);
+  }, [spots]);
+
+  console.log(loading);
 
   return (
     <div>
