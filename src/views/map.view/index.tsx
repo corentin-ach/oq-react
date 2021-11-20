@@ -12,6 +12,7 @@ import LocationButton from '../../components/buttons.component/locationButton.bu
 import MarkersCluster from '../../components/markersCluster.component';
 import { RootState } from '../../app/store';
 import { getSpots } from '../../features/getSpotsSlice';
+import CircularLoader from '../../components/circularLoader.component';
 
 interface Props {
   isDark: boolean
@@ -45,8 +46,6 @@ const MapView = (props: Props): ReactElement => {
     setMarkers(allCoords);
   }, [spots]);
 
-  console.log(loading);
-
   return (
     <div>
       <MapContainer
@@ -70,6 +69,7 @@ const MapView = (props: Props): ReactElement => {
       <ThemeButton isDark={isDark} />
       <LocationButton />
       <SearchBar />
+      {loading ? <CircularLoader /> : null}
     </div>
   );
 };
