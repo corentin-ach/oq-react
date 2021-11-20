@@ -13,6 +13,7 @@ import MarkersCluster from '../../components/markersCluster.component';
 import { RootState } from '../../app/store';
 import { getSpots } from '../../features/getSpotsSlice';
 import CircularLoader from '../../components/circularLoader.component';
+import LocationMarker from '../../components/locationMarker.component';
 
 interface Props {
   isDark: boolean
@@ -35,6 +36,8 @@ const MapView = (props: Props): ReactElement => {
   const { isDark } = props;
   const dispatch = useDispatch();
   const { spots, loading } = useSelector((state: RootState) => state.spots);
+  const { location } = useSelector((state: RootState) => state.location);
+
   useEffect(() => { dispatch(getSpots()); }, []);
   const [markers, setMarkers] = useState([[0]]);
 
@@ -49,7 +52,7 @@ const MapView = (props: Props): ReactElement => {
   return (
     <div>
       <MapContainer
-        center={[43.446782, -1.589371]}
+        center={location}
         zoom={13}
         zoomControl={false}
         preferCanvas
@@ -63,6 +66,7 @@ const MapView = (props: Props): ReactElement => {
         <TileLayer
           isDark={isDark}
         />
+        <LocationMarker />
         <MarkersCluster markers={markers} />
       </MapContainer>
       <DataCards />

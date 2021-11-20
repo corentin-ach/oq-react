@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import toggleReducer from '../features/themeSlice';
 import spotsReducer from '../features/getSpotsSlice';
+import locationReducer from '../features/locationSlice';
 
 export const store = configureStore({
   reducer: {
     theme: toggleReducer,
     spots: spotsReducer,
+    location: locationReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });
