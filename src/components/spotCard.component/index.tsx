@@ -7,6 +7,7 @@ import styles from './styles';
 import BottleIcon from '../../assets/bottle';
 import RainDropIcon from '../../assets/raindrop';
 import SealIcon from '../../assets/seal';
+import IndicatorIcon from '../../assets/indicator';
 
 const SpotCard = (): ReactElement => {
   const { t } = useTranslation(['translation']);
@@ -14,12 +15,12 @@ const SpotCard = (): ReactElement => {
     {
       id: 1,
       icon: <RainDropIcon />,
-      data: 'Excellent',
+      data: 'Bonne',
     },
     {
       id: 2,
       icon: <BottleIcon />,
-      data: 'Mauvais',
+      data: 'Propre',
     },
     {
       id: 3,
@@ -34,9 +35,17 @@ const SpotCard = (): ReactElement => {
       height="200px"
       sx={styles.mainCard}
     >
-      <Typography sx={styles.spotTitle}>
-        La Milady
-      </Typography>
+      <Box sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+      }}
+      >
+        <Typography sx={styles.spotTitle}>
+          La Milady
+        </Typography>
+        <IndicatorIcon status="#65DEAB" size="30" />
+      </Box>
+
       <Box sx={{
         justifyContent: 'space-between', display: 'flex', flexDirection: 'column', height: '100%', paddingTop: 2,
       }}
@@ -50,7 +59,12 @@ const SpotCard = (): ReactElement => {
               }}
             >
               <Box>{data.icon}</Box>
-              <Typography sx={{ color: 'text.primary', fontSize: 12 }}>{data.data}</Typography>
+              <Box sx={{
+                display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
+              }}
+              >
+                <Typography sx={{ color: 'text.primary', fontSize: 12, marginLeft: 0.4 }}>{data.data}</Typography>
+              </Box>
             </Box>
           ))}
         </Grid>

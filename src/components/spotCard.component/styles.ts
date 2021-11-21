@@ -14,10 +14,11 @@ const styles = {
     fontSize: 25,
     fontWeight: 'bold',
     textAlign: 'left',
+    marginLeft: 2,
   },
   signalTitle: {
     fontSize: 15,
-    color: 'red',
+    color: '#AA1E10',
   },
 } as const;
 

@@ -22,7 +22,7 @@ const MainCard = (): ReactElement => {
         sx={styles.infoCard}
       >
         <Typography sx={styles.name}>
-          EndlessO
+          Oavel
         </Typography>
         <Typography sx={styles.description}>
           {t('translation:mapView.welcomeCard.description')}
