@@ -28,7 +28,9 @@ const LocationMarker = () => {
   });
 
   return (
-    <Marker position={position} icon={UserIcon} />
+    <div>
+      <Marker position={position} icon={UserIcon} />
+    </div>
   );
 };
 

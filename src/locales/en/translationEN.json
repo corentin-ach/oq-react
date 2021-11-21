@@ -2,7 +2,7 @@
     "mapView": {
         "welcomeCard": {
             "welcomeTitle": "Bienvenue,",
-            "description": "EndlessO est un projet open source qui a pour but d’informer sur la qualité des eaux côtières et de signaler des pollutions.",
+            "description": "Oavel est un projet open source qui a pour but de protéger le littoral, d'informer et d'éduquer à sa protection.",
             "signal": "Signaler un phénomène"
         }
     }

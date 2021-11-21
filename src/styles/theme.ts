@@ -50,5 +50,5 @@ export const darkTheme = createTheme({
   },
 });
 
-export const lightMap = 'ckuvkg7qn260718qpfel4clh8';
+export const lightMap = 'ckw9knz2x404s14pa0wiytqju';
 export const darkMap = 'ckv71ygqg861e14l9rkusoxlc';

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ThemeButton from '../../components/buttons.component/themeButton.button';
 import { darkMap, lightMap } from '../../styles/theme';
 import DataCards from '../../components/dataCards.component';
-import SearchBar from '../../components/searchBar.component';
+// import SearchBar from '../../components/searchBar.component';
 import LocationButton from '../../components/buttons.component/locationButton.button';
 import MarkersCluster from '../../components/markersCluster.component';
 import { RootState } from '../../app/store';
@@ -72,7 +72,6 @@ const MapView = (props: Props): ReactElement => {
       <DataCards />
       <ThemeButton isDark={isDark} />
       <LocationButton />
-      <SearchBar />
       {loading ? <CircularLoader /> : null}
     </div>
   );
