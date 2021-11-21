@@ -4,9 +4,9 @@ import {
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import styles from './styles';
-import TempIcon from '../../assets/temp';
+import BottleIcon from '../../assets/bottle';
 import RainDropIcon from '../../assets/raindrop';
-import FavIcon from '../../assets/fav';
+import SealIcon from '../../assets/seal';
 
 const SpotCard = (): ReactElement => {
   const { t } = useTranslation(['translation']);
@@ -18,13 +18,13 @@ const SpotCard = (): ReactElement => {
     },
     {
       id: 2,
-      icon: <TempIcon />,
-      data: '21',
+      icon: <BottleIcon />,
+      data: 'Mauvais',
     },
     {
       id: 3,
-      icon: <FavIcon />,
-      data: 'Favoris',
+      icon: <SealIcon />,
+      data: 'Aucun',
     },
 
   ];
@@ -50,7 +50,7 @@ const SpotCard = (): ReactElement => {
               }}
             >
               <Box>{data.icon}</Box>
-              <Typography sx={{ color: 'text.primary' }}>{data.data}</Typography>
+              <Typography sx={{ color: 'text.primary', fontSize: 12 }}>{data.data}</Typography>
             </Box>
           ))}
         </Grid>

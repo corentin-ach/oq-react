@@ -14,7 +14,7 @@ const UserIcon = new L.Icon({
   shadowUrl: undefined,
   shadowSize: undefined,
   shadowAnchor: undefined,
-  iconSize: [15, 15],
+  iconSize: [25, 25],
   className: undefined,
 });
 
