@@ -8,9 +8,15 @@ import BottleIcon from '../../assets/bottle';
 import RainDropIcon from '../../assets/raindrop';
 import SealIcon from '../../assets/seal';
 import IndicatorIcon from '../../assets/indicator';
+import { Spot } from '../../features/setSpotSlice';
 
-const SpotCard = (): ReactElement => {
+interface Props {
+  selectedSpot: Spot
+}
+
+const SpotCard = (props: Props): ReactElement => {
   const { t } = useTranslation(['translation']);
+  const { selectedSpot } = props;
   const spotData = [
     {
       id: 1,
@@ -41,9 +47,9 @@ const SpotCard = (): ReactElement => {
       }}
       >
         <Typography sx={styles.spotTitle}>
-          La Milady
+          {selectedSpot.name}
         </Typography>
-        <IndicatorIcon status="#65DEAB" size="30" />
+        <IndicatorIcon status={selectedSpot.quality === 1 ? '#65DEAB' : '#F38732'} size="30" />
       </Box>
 
       <Box sx={{

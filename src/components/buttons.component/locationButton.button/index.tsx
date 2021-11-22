@@ -11,7 +11,6 @@ const LocationButton = () => {
   const userLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       dispatch(findLocation([position.coords.latitude, position.coords.longitude]));
-      console.log(position.coords.latitude);
     });
   };
   return (

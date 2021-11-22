@@ -35,6 +35,7 @@ const MapView = (props: Props): ReactElement => {
   const dispatch = useDispatch();
   const { spots, loading } = useSelector((state: RootState) => state.spots);
   const { location } = useSelector((state: RootState) => state.location);
+  const { spot } = useSelector((state: RootState) => state.spot);
 
   useEffect(() => { dispatch(getSpots()); }, []);
 
@@ -60,7 +61,7 @@ const MapView = (props: Props): ReactElement => {
           markers={spots}
         />
       </MapContainer>
-      <DataCards />
+      <DataCards selectedSpot={spot} />
       <ThemeButton isDark={isDark} />
       <LocationButton />
       {loading ? <CircularLoader /> : null}
