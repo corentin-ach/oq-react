@@ -4,6 +4,7 @@ export type Spot = {
     coords: Array<number>,
     name: string
     quality: number
+    id: string
 }
 
 type AllSpot = {
