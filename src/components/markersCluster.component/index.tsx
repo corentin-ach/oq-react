@@ -5,6 +5,7 @@ import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import { useMap } from 'react-leaflet';
 import icon from '../../assets/wi-raindrop.svg';
+import { Spot } from '../../features/getSpotsSlice';
 
 const mcg = (L as any).markerClusterGroup({
   iconCreateFunction(cluster: any) {
@@ -26,13 +27,20 @@ const customMarker = new L.Icon({
 
 const MarkersCluster = ({ markers }: any) => {
   const map = useMap();
-
   useEffect(() => {
     mcg.clearLayers();
-    markers.forEach((coords: Array<number>) => L.marker(new L.LatLng(coords[0], coords[1]), {
-      icon: customMarker,
-    })
-      .addTo(mcg));
+    markers.forEach(
+      (element: Spot) => {
+        L.marker(new L.LatLng(element.coords[0], element.coords[1]), {
+          icon: customMarker,
+          alt: element.id,
+        }).on('click', () => {
+          console.log(element);
+        })
+          .addTo(mcg);
+        // eslint-disable-next-line no-underscore-dangle
+      },
+    );
     map.addLayer(mcg);
   }, [markers, map]);
 
