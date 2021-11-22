@@ -1,9 +1,14 @@
 import L from 'leaflet';
-import icon from '../../assets/wi-raindrop.svg';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../app/store';
+// import blueDrop from '../../assets/bluedrop.svg';
+import orangeDrop from '../../assets/orangedrop.svg';
+
+const { spot } = useSelector((state: RootState) => state.spot);
 
 const DropMarker = new L.Icon({
-  iconUrl: icon,
-  iconRetinaUrl: icon,
+  iconUrl: spot.quality === 1 ? orangeDrop : orangeDrop,
+  iconRetinaUrl: spot.quality === 1 ? orangeDrop : orangeDrop,
   iconAnchor: undefined,
   popupAnchor: undefined,
   shadowUrl: undefined,

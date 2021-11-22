@@ -3,12 +3,20 @@ import { Box } from '@mui/material';
 import SpotCard from '../spotCard.component';
 import MainCard from '../mainCard.component';
 import styles from './styles';
+import { Spot } from '../../features/setSpotSlice';
 
-const DataCards = (): ReactElement => (
-  <Box sx={styles.dataCards}>
-    <MainCard />
-    <SpotCard />
-  </Box>
-);
+interface Props {
+  selectedSpot: Spot
+}
+
+const DataCards = (props: Props): ReactElement => {
+  const { selectedSpot } = props;
+  return (
+    <Box sx={styles.dataCards}>
+      <MainCard />
+      <SpotCard selectedSpot={selectedSpot} />
+    </Box>
+  );
+};
 
 export default DataCards;

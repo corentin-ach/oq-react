@@ -4,8 +4,10 @@ import 'leaflet.markercluster/dist/leaflet.markercluster';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import { useMap } from 'react-leaflet';
-import icon from '../../assets/wi-raindrop.svg';
+import { useDispatch } from 'react-redux';
 import { Spot } from '../../features/getSpotsSlice';
+import { setSpot } from '../../features/setSpotSlice';
+import blueDrop from '../../assets/bluedrop.svg';
 
 const mcg = (L as any).markerClusterGroup({
   iconCreateFunction(cluster: any) {
@@ -13,20 +15,20 @@ const mcg = (L as any).markerClusterGroup({
   },
 });
 
-const customMarker = new L.Icon({
-  iconUrl: icon,
-  iconRetinaUrl: icon,
-  iconAnchor: undefined,
-  popupAnchor: undefined,
-  shadowUrl: undefined,
-  shadowSize: undefined,
-  shadowAnchor: undefined,
-  iconSize: [30, 30],
-  className: undefined,
-});
-
 const MarkersCluster = ({ markers }: any) => {
+  const customMarker = new L.Icon({
+    iconUrl: blueDrop,
+    iconRetinaUrl: blueDrop,
+    iconAnchor: undefined,
+    popupAnchor: undefined,
+    shadowUrl: undefined,
+    shadowSize: undefined,
+    shadowAnchor: undefined,
+    iconSize: [30, 30],
+    className: undefined,
+  });
   const map = useMap();
+  const dispatch = useDispatch();
   useEffect(() => {
     mcg.clearLayers();
     markers.forEach(
@@ -35,7 +37,7 @@ const MarkersCluster = ({ markers }: any) => {
           icon: customMarker,
           alt: element.id,
         }).on('click', () => {
-          console.log(element);
+          dispatch(setSpot(element));
         })
           .addTo(mcg);
         // eslint-disable-next-line no-underscore-dangle
