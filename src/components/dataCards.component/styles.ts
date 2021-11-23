@@ -5,7 +5,7 @@ const styles = {
     flexDirection: 'column',
     zIndex: 10,
     position: 'absolute',
-    top: 0,
+    top: 60,
     left: 0,
     margin: 5,
   },
