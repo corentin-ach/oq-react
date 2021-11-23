@@ -4,9 +4,7 @@ import {
 } from 'react-leaflet';
 import L from 'leaflet';
 import { useDispatch, useSelector } from 'react-redux';
-import ThemeButton from '../../components/buttons.component/themeButton.button';
 import DataCards from '../../components/dataCards.component';
-import LocationButton from '../../components/buttons.component/locationButton.button';
 import MarkersCluster from '../../components/markersCluster.component';
 import { RootState } from '../../app/store';
 import { getSpots } from '../../features/getSpotsSlice';
@@ -62,8 +60,6 @@ const MapView = (props: Props): ReactElement => {
         />
       </MapContainer>
       <DataCards selectedSpot={spot} />
-      <ThemeButton isDark={isDark} />
-      <LocationButton />
       {loading ? <CircularLoader /> : null}
     </div>
   );

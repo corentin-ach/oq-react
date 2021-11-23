@@ -25,7 +25,7 @@ const LocationMarker = () => {
   useEffect(() => {
     setPosition(location);
     map.flyTo(location, map.getZoom());
-  });
+  }, []);
 
   return (
     <div>

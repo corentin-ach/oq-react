@@ -38,6 +38,7 @@ const MarkersCluster = ({ markers }: any) => {
           alt: element.id,
         }).on('click', () => {
           dispatch(setSpot(element));
+          map.flyTo([element.coords[0], element.coords[1]], map.getZoom());
         })
           .addTo(mcg);
         // eslint-disable-next-line no-underscore-dangle

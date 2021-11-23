@@ -21,17 +21,20 @@ const SpotCard = (props: Props): ReactElement => {
     {
       id: 1,
       icon: <RainDropIcon />,
-      data: 'Bonne',
+      data: selectedSpot.quality.water === 1 ? 'Bonne' : 'Mauvaise',
+      color: selectedSpot.quality.water === 1 ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
     },
     {
       id: 2,
       icon: <BottleIcon />,
-      data: 'Propre',
+      data: selectedSpot.quality.plastic === 1 ? 'Propre' : 'Présence',
+      color: selectedSpot.quality.plastic === 1 ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
     },
     {
       id: 3,
       icon: <SealIcon />,
-      data: 'Aucun',
+      data: selectedSpot.quality.seal === 1 ? 'Aucun' : 'Présence',
+      color: selectedSpot.quality.seal === 1 ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
     },
 
   ];
@@ -49,7 +52,7 @@ const SpotCard = (props: Props): ReactElement => {
         <Typography sx={styles.spotTitle}>
           {selectedSpot.name}
         </Typography>
-        <IndicatorIcon status={selectedSpot.quality === 1 ? '#65DEAB' : '#F38732'} size="30" />
+        <IndicatorIcon status={selectedSpot.quality.status === 1 ? '#65DEAB' : '#F38732'} size="30" />
       </Box>
 
       <Box sx={{
@@ -61,7 +64,7 @@ const SpotCard = (props: Props): ReactElement => {
             <Box
               key={data.id}
               sx={{
-                bgcolor: 'background.paper', borderRadius: 2, height: 70, width: 90, paddingTop: 1.5,
+                bgcolor: data.color, borderRadius: 2, height: 70, width: 90, paddingTop: 1.5,
               }}
             >
               <Box>{data.icon}</Box>
