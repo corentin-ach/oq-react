@@ -18,7 +18,7 @@ const styles = {
   },
   signalTitle: {
     fontSize: 15,
-    color: '#AA1E10',
+    color: '#F60C0C',
   },
 } as const;
 
