@@ -1,9 +1,5 @@
 const styles = {
-  toggleButton: {
-    height: 50,
-    width: 50,
-  },
-  locationButton: {
+  button: {
     height: 50,
     width: 50,
   },

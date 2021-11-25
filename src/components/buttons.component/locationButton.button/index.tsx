@@ -14,7 +14,7 @@ const LocationButton = () => {
     });
   };
   return (
-    <Box sx={styles.locationButton}>
+    <Box sx={styles.button}>
       <IconButton sx={{ bgcolor: 'background.default' }} onClick={() => userLocation()}>
         <TiLocationArrow size={35} color="text.default" />
       </IconButton>

@@ -17,11 +17,13 @@ const initialState: AllSpot = {
   loading: false,
 };
 
+const url = process.env.REACT_APP_API;
+
 export const getSpots = createAsyncThunk(
   'spots',
   // eslint-disable-next-line no-unused-vars
   async (thunkAPI) => {
-    const res = await fetch('https://us-central1-ocean-quality.cloudfunctions.net/app/spots').then(
+    const res = await fetch(`${url}/spots`).then(
       (data) => data.json(),
     );
     return res;

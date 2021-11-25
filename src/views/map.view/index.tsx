@@ -28,6 +28,7 @@ const TileLayer = ({ isDark }: any) => {
   map.addLayer(isDark ? darkLayer : lightLayer);
   return null;
 };
+
 const MapView = (props: Props): ReactElement => {
   const { isDark } = props;
   const dispatch = useDispatch();
