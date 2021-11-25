@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { ThemeProvider } from '@mui/system';
 import {
-  AppBar, Toolbar, Box,
+  AppBar, Toolbar, Box, Grid,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
 import MapView from './views/map.view';
@@ -23,17 +23,37 @@ function App() {
         <AppBar position="fixed">
           <Box sx={{ flexGrow: 1 }}>
             <Toolbar sx={{ bgcolor: 'background.default' }}>
-              <Box sx={{
-                display: 'flex', justifyContent: 'end', flexGrow: 1.4, alignItems: 'center',
-              }}
-              >
-                <Icon />
-                <HeaderIcon isDark={!!theme} />
-              </Box>
-              <Box sx={{ display: 'flex', justifyContent: 'end', flexGrow: 1 }}>
-                <LocationButton />
-                <ThemeButton isDark={!!theme} />
-              </Box>
+              <Grid container alignItems="center">
+                <Grid
+                  item
+                  xs={2}
+                  sm={4}
+                  md={1}
+                />
+                <Grid
+                  item
+                  xs={2}
+                  sm={6}
+                  md={10}
+                  sx={{
+                    display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+                  }}
+
+                >
+                  <Icon />
+                  <HeaderIcon isDark={!!theme} />
+                </Grid>
+                <Grid
+                  item
+                  xs={2}
+                  sm={2}
+                  md={1}
+                  sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'end' }}
+                >
+                  <LocationButton />
+                  <ThemeButton isDark={!!theme} />
+                </Grid>
+              </Grid>
             </Toolbar>
           </Box>
         </AppBar>
