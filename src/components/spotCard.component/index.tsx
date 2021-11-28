@@ -9,6 +9,7 @@ import RainDropIcon from '../../assets/raindrop';
 import SealIcon from '../../assets/seal';
 import IndicatorIcon from '../../assets/indicator';
 import { Spot } from '../../features/setSpotSlice';
+import ModalSpot from '../modalSpot.component';
 
 interface Props {
   selectedSpot: Spot
@@ -17,24 +18,31 @@ interface Props {
 const SpotCard = (props: Props): ReactElement => {
   const { t } = useTranslation(['translation']);
   const { selectedSpot } = props;
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   const spotData = [
     {
       id: 1,
-      icon: <RainDropIcon />,
-      data: selectedSpot.quality.water === 1 ? 'Bonne' : 'Mauvaise',
-      color: selectedSpot.quality.water === 1 ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
+      icon: <RainDropIcon size={34} />,
+      data: !selectedSpot.quality.water ? 'Bonne' : 'Mauvaise',
+      color: !selectedSpot.quality.water ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
     },
     {
       id: 2,
-      icon: <BottleIcon />,
-      data: selectedSpot.quality.plastic === 1 ? 'Propre' : 'Présence',
-      color: selectedSpot.quality.plastic === 1 ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
+      icon: <BottleIcon size={36} />,
+      data: !selectedSpot.quality.plastic ? 'Propre' : 'Présence',
+      color: !selectedSpot.quality.plastic ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
     },
     {
       id: 3,
-      icon: <SealIcon />,
-      data: selectedSpot.quality.seal === 1 ? 'Aucun' : 'Présence',
-      color: selectedSpot.quality.seal === 1 ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
+      icon: <SealIcon size={36} />,
+      data: !selectedSpot.quality.seal ? 'Aucun' : 'Présence',
+      color: !selectedSpot.quality.seal ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
     },
 
   ];
@@ -52,7 +60,7 @@ const SpotCard = (props: Props): ReactElement => {
         <Typography sx={styles.spotTitle}>
           {selectedSpot.name}
         </Typography>
-        <IndicatorIcon status={selectedSpot.quality.status === 1 ? '#65DEAB' : '#F38732'} size="30" />
+        <IndicatorIcon status={!selectedSpot.quality.status ? '#65DEAB' : '#F38732'} size="30" />
       </Box>
 
       <Box sx={{
@@ -83,12 +91,14 @@ const SpotCard = (props: Props): ReactElement => {
           sx={{
             bgcolor: 'background.paper', textTransform: 'none', height: '50px', borderRadius: 2, marginTop: 2,
           }}
+          onClick={() => handleOpen()}
         >
           <Typography sx={styles.signalTitle}>
             {t('translation:mapView.welcomeCard.signal')}
           </Typography>
         </Button>
       </Box>
+      <ModalSpot mode={open} handleClose={() => handleClose()} />
     </Box>
   );
 };
