@@ -52,3 +52,8 @@ export const darkTheme = createTheme({
 
 export const lightMap = 'ckw9knz2x404s14pa0wiytqju';
 export const darkMap = 'ckv71ygqg861e14l9rkusoxlc';
+
+export const colors = {
+  goodQuality: '#65DEAB',
+  badQuality: '#F38732',
+};

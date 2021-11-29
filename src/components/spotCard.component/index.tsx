@@ -19,6 +19,7 @@ const SpotCard = (props: Props): ReactElement => {
   const { t } = useTranslation(['translation']);
   const { selectedSpot } = props;
   const [open, setOpen] = React.useState(false);
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -46,6 +47,7 @@ const SpotCard = (props: Props): ReactElement => {
     },
 
   ];
+  console.log(selectedSpot);
   return (
     <Box
       width="300px"
@@ -98,7 +100,7 @@ const SpotCard = (props: Props): ReactElement => {
           </Typography>
         </Button>
       </Box>
-      <ModalSpot mode={open} handleClose={() => handleClose()} />
+      <ModalSpot mode={open} handleClose={() => handleClose()} selectedSpot={selectedSpot} />
     </Box>
   );
 };
