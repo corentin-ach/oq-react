@@ -28,11 +28,9 @@ export const setVote = createAsyncThunk(
   'vote',
   // eslint-disable-next-line no-unused-vars
   async (allVotes: Vote, thunkAPI) => {
-    console.log(allVotes.quality);
-    const res = await fetch(`${url}/spot/${allVotes.id}`, { method: 'PATCH', body: JSON.stringify(allVotes.quality) }).then(
+    const res = await fetch(`${url}/spot/${allVotes.id}`, { method: 'PATCH', body: JSON.stringify({ quality: allVotes.quality }) }).then(
       (data) => data.json(),
     );
-    console.log(res);
     return res;
   },
 );
@@ -47,6 +45,7 @@ export const voteSlice = createSlice({
     })
       .addCase(
         setVote.fulfilled, (state, { payload }) => {
+          console.log(payload.quality);
           state.loading = false;
           state.id = payload.id;
           state.quality.water = payload.water;

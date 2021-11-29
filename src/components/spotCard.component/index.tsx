@@ -47,7 +47,7 @@ const SpotCard = (props: Props): ReactElement => {
     },
 
   ];
-  console.log(selectedSpot);
+
   return (
     <Box
       width="300px"
