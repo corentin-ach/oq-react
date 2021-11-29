@@ -4,14 +4,13 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CheckIcon from '@mui/icons-material/Check';
-import { useDispatch } from 'react-redux';
 import BottleIcon from '../../assets/bottle';
 import RainDropIcon from '../../assets/raindrop';
 import SealIcon from '../../assets/seal';
 import styles from './styles';
 import { colors } from '../../styles/theme';
 import { Spot } from '../../features/setSpotSlice';
-import { setVote } from '../../features/voteSlice';
+import { url } from '../../app/store';
 
 interface Props {
     mode: boolean
@@ -37,8 +36,7 @@ const ModalSpot = (props: Props) => {
   const plasticVote = plastic;
   const [seal, setSeal] = useState(false);
   const sealVote = seal;
-  const [votes, setVotes]: any = useState({});
-  const dispatch = useDispatch();
+  const [quality, setQuality]: any = useState({});
 
   useEffect(() => {
     const vote: Vote = {
@@ -49,7 +47,7 @@ const ModalSpot = (props: Props) => {
         seal: sealVote,
       },
     };
-    setVotes(vote);
+    setQuality(vote);
   }, [waterVote, plasticVote, sealVote, selectedSpot]);
 
   const spotData = [
@@ -85,7 +83,19 @@ const ModalSpot = (props: Props) => {
   };
 
   const onSend = () => {
-    dispatch(setVote(votes));
+    fetch(`${url}/spot/${quality.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ quality: quality.quality }),
+    }).then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     handleClose();
   };
 
