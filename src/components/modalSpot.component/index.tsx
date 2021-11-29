@@ -1,27 +1,35 @@
 import {
   Dialog, Typography, Box, Button, Grid,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CheckIcon from '@mui/icons-material/Check';
+import { useDispatch } from 'react-redux';
 import BottleIcon from '../../assets/bottle';
 import RainDropIcon from '../../assets/raindrop';
 import SealIcon from '../../assets/seal';
 import styles from './styles';
+import { colors } from '../../styles/theme';
+import { Spot } from '../../features/setSpotSlice';
+import { setVote } from '../../features/voteSlice';
 
 interface Props {
     mode: boolean
     handleClose: () => void
+    selectedSpot: Spot
 }
 
 interface Vote {
-  water: boolean,
-  plastic: boolean,
-  seal: boolean,
+  id: string,
+  quality: {
+    water: boolean,
+    plastic: boolean,
+    seal: boolean,
+  }
 }
 
 const ModalSpot = (props: Props) => {
-  const { mode, handleClose } = props;
+  const { mode, handleClose, selectedSpot } = props;
   const { t } = useTranslation(['translation']);
   const [water, setWater] = useState(false);
   const waterVote = water;
@@ -29,34 +37,42 @@ const ModalSpot = (props: Props) => {
   const plasticVote = plastic;
   const [seal, setSeal] = useState(false);
   const sealVote = seal;
+  const [votes, setVotes]: any = useState({});
+  const dispatch = useDispatch();
 
-  const vote: Vote = {
-    water: waterVote,
-    plastic: plasticVote,
-    seal: sealVote,
-  };
+  useEffect(() => {
+    const vote: Vote = {
+      id: selectedSpot.id,
+      quality: {
+        water: waterVote,
+        plastic: plasticVote,
+        seal: sealVote,
+      },
+    };
+    setVotes(vote);
+  }, [waterVote, plasticVote, sealVote, selectedSpot]);
 
   const spotData = [
     {
       id: 1,
       icon: <RainDropIcon size={25} />,
       name: 'Mauvaise qualité de leau',
-      onClick: () => setWater(!water),
-      check: water ? <CheckIcon sx={{ color: '#65DEAB' }} /> : null,
+      onClick: () => setWater(!waterVote),
+      check: water ? <CheckIcon sx={{ color: colors.goodQuality }} /> : null,
     },
     {
       id: 2,
       icon: <BottleIcon size={25} />,
       name: 'Présence de plastique',
-      onClick: () => setPlastic(!plastic),
-      check: plastic ? <CheckIcon sx={{ color: '#65DEAB' }} /> : null,
+      onClick: () => setPlastic(!plasticVote),
+      check: plastic ? <CheckIcon sx={{ color: colors.goodQuality }} /> : null,
     },
     {
       id: 3,
       icon: <SealIcon size={25} />,
       name: 'Présence dun animal marin',
-      onClick: () => setSeal(!seal),
-      check: seal ? <CheckIcon sx={{ color: '#65DEAB' }} /> : null,
+      onClick: () => setSeal(!sealVote),
+      check: seal ? <CheckIcon sx={{ color: colors.goodQuality }} /> : null,
     },
 
   ];
@@ -68,7 +84,10 @@ const ModalSpot = (props: Props) => {
     setSeal(false);
   };
 
-  console.log(vote);
+  const onSend = () => {
+    dispatch(setVote(votes));
+    handleClose();
+  };
 
   return (
     <Dialog
@@ -116,7 +135,7 @@ const ModalSpot = (props: Props) => {
               sx={{
                 textTransform: 'none', height: '50px', borderRadius: 2,
               }}
-              onClick={() => handleClose()}
+              onClick={() => onSend()}
             >
               <Typography sx={styles.sendButton}>
                 {t('translation:mapView.dialogSpot.sendButton')}

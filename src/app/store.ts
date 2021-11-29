@@ -3,6 +3,7 @@ import toggleReducer from '../features/themeSlice';
 import spotsReducer from '../features/getSpotsSlice';
 import locationReducer from '../features/locationSlice';
 import spotReducer from '../features/setSpotSlice';
+import voteReducer from '../features/voteSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     spots: spotsReducer,
     location: locationReducer,
     spot: spotReducer,
+    vote: voteReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

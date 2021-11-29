@@ -1,13 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 type Quality = {
-  status: number;
-  water: number;
-  plastic: number;
-  seal: number;
+  status: boolean;
+  water: boolean;
+  plastic: boolean;
+  seal: boolean;
 }
 
 export type Spot = {
+  id: string,
   name: string;
   quality: Quality;
 }
@@ -18,12 +19,13 @@ export interface SpotState {
 
 const initialState: SpotState = {
   spot: {
+    id: '',
     name: 'La Milady',
     quality: {
-      status: 1,
-      water: 1,
-      plastic: 1,
-      seal: 1,
+      status: false,
+      water: false,
+      plastic: false,
+      seal: false,
     },
   },
 };
@@ -33,6 +35,7 @@ export const showSpotSlice = createSlice({
   initialState,
   reducers: {
     setSpot: (state, marker) => {
+      state.spot.id = marker.payload.id;
       state.spot.name = marker.payload.name;
       state.spot.quality.status = marker.payload.quality.status;
       state.spot.quality.water = marker.payload.quality.water;
