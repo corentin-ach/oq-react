@@ -31,45 +31,42 @@ const ModalSpot = (props: Props) => {
   const { mode, handleClose, selectedSpot } = props;
   const { t } = useTranslation(['translation']);
   const [water, setWater] = useState(false);
-  const waterVote = water;
   const [plastic, setPlastic] = useState(false);
-  const plasticVote = plastic;
   const [seal, setSeal] = useState(false);
-  const sealVote = seal;
   const [quality, setQuality]: any = useState({});
 
   useEffect(() => {
     const vote: Vote = {
       id: selectedSpot.id,
       quality: {
-        water: waterVote,
-        plastic: plasticVote,
-        seal: sealVote,
+        water,
+        plastic,
+        seal,
       },
     };
     setQuality(vote);
-  }, [waterVote, plasticVote, sealVote, selectedSpot]);
+  }, [selectedSpot, water, plastic, seal]);
 
   const spotData = [
     {
       id: 1,
       icon: <RainDropIcon size={25} />,
       name: 'Mauvaise qualité de leau',
-      onClick: () => setWater(!waterVote),
+      onClick: () => setWater(!water),
       check: water ? <CheckIcon sx={{ color: colors.goodQuality }} /> : null,
     },
     {
       id: 2,
       icon: <BottleIcon size={25} />,
       name: 'Présence de plastique',
-      onClick: () => setPlastic(!plasticVote),
+      onClick: () => setPlastic(!plastic),
       check: plastic ? <CheckIcon sx={{ color: colors.goodQuality }} /> : null,
     },
     {
       id: 3,
       icon: <SealIcon size={25} />,
       name: 'Présence dun animal marin',
-      onClick: () => setSeal(!sealVote),
+      onClick: () => setSeal(!seal),
       check: seal ? <CheckIcon sx={{ color: colors.goodQuality }} /> : null,
     },
 
