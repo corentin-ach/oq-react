@@ -27,10 +27,14 @@ const url = process.env.REACT_APP_API;
 export const setVote = createAsyncThunk(
   'vote',
   // eslint-disable-next-line no-unused-vars
-  async (allVotes: Vote, thunkAPI) => {
-    const res = await fetch(`${url}/spot/${allVotes.id}`, { method: 'PATCH', body: JSON.stringify({ quality: allVotes.quality }) }).then(
-      (data) => data.json(),
-    );
+  async (spot: Vote, thunkAPI) => {
+    const res = await fetch(`${url}/spot/${spot.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ quality: spot.quality }),
+    }).then((response) => response.json());
     return res;
   },
 );
@@ -45,7 +49,6 @@ export const voteSlice = createSlice({
     })
       .addCase(
         setVote.fulfilled, (state, { payload }) => {
-          console.log(payload.quality);
           state.loading = false;
           state.id = payload.id;
           state.quality.water = payload.water;
