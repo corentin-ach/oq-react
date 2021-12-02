@@ -6,9 +6,19 @@ const styles = {
     textAlign: 'left',
     marginBottom: 2,
   },
+  description: {
+    color: 'text.primary',
+    fontSize: 12,
+    textAlign: 'left',
+    marginBottom: 2,
+  },
+  optionTitle: {
+    color: 'text.primary',
+    fontSize: 14,
+  },
   container: {
     bgcolor: 'background.default',
-    padding: 2,
+    padding: 4,
     alignContent: 'flex-start',
     display: 'flex',
     flexDirection: 'column',
