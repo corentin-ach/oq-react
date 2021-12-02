@@ -14,7 +14,7 @@ const DataCards = (props: Props): ReactElement => {
   return (
     <Box sx={styles.dataCards}>
       <MainCard />
-      <SpotCard selectedSpot={selectedSpot} />
+      {selectedSpot.id ? <SpotCard selectedSpot={selectedSpot} /> : null}
     </Box>
   );
 };
