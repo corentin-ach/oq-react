@@ -53,21 +53,21 @@ const ModalSpot = (props: Props) => {
     {
       id: 1,
       icon: <RainDropIcon size={25} />,
-      name: 'Mauvaise qualité de leau',
+      name: t('translation:mapView.dialogSpot.water'),
       onClick: () => setWater(!water),
       check: water ? <CheckIcon sx={{ color: colors.goodQuality }} /> : null,
     },
     {
       id: 2,
       icon: <BottleIcon size={25} />,
-      name: 'Présence de plastique',
+      name: t('translation:mapView.dialogSpot.plastic'),
       onClick: () => setPlastic(!plastic),
       check: plastic ? <CheckIcon sx={{ color: colors.goodQuality }} /> : null,
     },
     {
       id: 3,
       icon: <SealIcon size={25} />,
-      name: 'Présence dun animal marin',
+      name: t('translation:mapView.dialogSpot.seal'),
       onClick: () => setSeal(!seal),
       check: seal ? <CheckIcon sx={{ color: colors.goodQuality }} /> : null,
     },
@@ -83,31 +83,34 @@ const ModalSpot = (props: Props) => {
 
   const onSend = () => {
     dispatch(setVote(quality));
-    handleClose();
+    onClose();
   };
 
   return (
     <Dialog
       open={mode}
       keepMounted
-      maxWidth="sm"
+      maxWidth="xs"
       fullWidth
       onClose={handleClose}
     >
       <Box sx={styles.container}>
         <Typography sx={styles.title}>
-          Signaler
+          {t('translation:mapView.dialogSpot.title')}
+        </Typography>
+        <Typography sx={styles.description}>
+          {t('translation:mapView.dialogSpot.description', { spotName: selectedSpot.name })}
         </Typography>
         {spotData.map((data) => (
           <Grid container sx={styles.optionCard} key={data.id} onClick={data.onClick}>
-            <Grid item md={3} sx={styles.centerFlex}>{data.check}</Grid>
-            <Grid item md={1} sx={styles.centerFlex}>
+            <Grid item md={2} sx={styles.centerFlex}>{data.check}</Grid>
+            <Grid item md={2} sx={styles.centerFlex}>
               {data.icon}
             </Grid>
-            <Grid item md={5}>
-              <Typography>{data.name}</Typography>
+            <Grid item md={6}>
+              <Typography sx={styles.optionTitle}>{data.name}</Typography>
             </Grid>
-            <Grid item md={3} />
+            <Grid item md={1} />
           </Grid>
         ))}
         <Grid container sx={styles.buttonsArea}>

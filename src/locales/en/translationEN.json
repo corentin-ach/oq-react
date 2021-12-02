@@ -8,7 +8,15 @@
         },
         "dialogSpot": {
             "cancelButton": "Annuler",
-            "sendButton": "Envoyer"
+            "sendButton": "Envoyer",
+            "title": "Signaler",
+            "description": "Vous êtes sur le point  de signaler un phénomène que vous voyez ou que vous ressentez sur le spot de {{spotName}}. Merci, votre contribution est importante pour la communauté.",
+            "water": "Mauvaise qualité de l'eau",
+            "plastic": "Présence de plastique",
+            "seal": "Animal marin en danger"
+        },
+        "spotCard": {
+            "stackMessage": "Merci, votre signalement a bien été pris en compte !"
         }
     }
 }
