@@ -27,7 +27,7 @@ const SpotCard = (props: Props): ReactElement => {
   const Transition = (slideProps: SlideProps): ReactElement => <Slide {...slideProps} direction="right" />;
 
   useEffect(() => {
-    if (!loading) {
+    if (loading) {
       setAlert(true);
     }
   }, [loading]);
