@@ -27,6 +27,7 @@ const MarkersCluster = ({ markers }: any) => {
     iconSize: [30, 30],
     className: undefined,
   });
+
   const map = useMap();
   const dispatch = useDispatch();
   useEffect(() => {

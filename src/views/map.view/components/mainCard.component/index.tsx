@@ -2,10 +2,16 @@ import React, { ReactElement } from 'react';
 import { Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { RiDropFill } from 'react-icons/ri';
+import { motion } from 'framer-motion';
 import styles from './styles';
 
-const MainCard = (): ReactElement => {
+interface Props {
+  onClick: () => void;
+}
+
+const MainCard = (props: Props): ReactElement => {
   const { t } = useTranslation(['translation']);
+  const { onClick } = props;
   return (
     <Box
       width="300px"
@@ -16,18 +22,33 @@ const MainCard = (): ReactElement => {
       <Typography sx={styles.welcomeTitle}>
         {t('translation:mapView.welcomeCard.welcomeTitle')}
       </Typography>
-      <Box
-        width="100%"
-        height="110px"
-        sx={styles.infoCard}
+      <motion.div
+        variants={{
+          open: {
+            y: 0,
+            opacity: 1,
+            transition: {
+              y: { stiffness: 1000, velocity: -100 },
+            },
+          },
+        }}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.95 }}
       >
-        <Typography sx={styles.name}>
-          {t('translation:mapView.welcomeCard.title')}
-        </Typography>
-        <Typography sx={styles.description}>
-          {t('translation:mapView.welcomeCard.description')}
-        </Typography>
-      </Box>
+        <Box
+          width="100%"
+          height="110px"
+          sx={styles.infoCard}
+          onClick={onClick}
+        >
+          <Typography sx={styles.name}>
+            {t('translation:mapView.welcomeCard.title')}
+          </Typography>
+          <Typography sx={styles.description}>
+            {t('translation:mapView.welcomeCard.description')}
+          </Typography>
+        </Box>
+      </motion.div>
     </Box>
   );
 };

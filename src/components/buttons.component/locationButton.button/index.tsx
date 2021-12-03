@@ -1,7 +1,7 @@
 import { IconButton } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-import { TiLocationArrow } from 'react-icons/ti';
+import { MdNearMe } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { findLocation } from '../../../features/locationSlice';
 import styles from '../styles';
@@ -16,7 +16,7 @@ const LocationButton = () => {
   return (
     <Box sx={styles.button}>
       <IconButton sx={{ bgcolor: 'background.default' }} onClick={() => userLocation()}>
-        <TiLocationArrow size={35} color="text.default" />
+        <MdNearMe size={32} color="text.default" />
       </IconButton>
     </Box>
   );

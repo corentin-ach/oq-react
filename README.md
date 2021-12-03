@@ -1,5 +1,5 @@
 
-# EndlessO
+# Oavel
 
 > "Toute personne a le droit d'accéder aux informations relatives à l'environnement détenues par les autorités publiques." - Code  de l'environnement
 > 
@@ -18,7 +18,7 @@ Cela met donc en danger l'ensemble des pratiquants de sport nautique, baigneurs,
 
 Ce manque de communication provient d'un manque de moyens et surtout de volonté à informer la population. 
 
-Ocean Quality intervient donc ici : informer et sensibiliser sur la qualité des spots, des plages, et offrir la possibilité à quiconque d'alerter une pollution, qu'elle soit visuelle, formelle, et en temps réel. 
+Oavel intervient donc ici : informer et sensibiliser sur la qualité des spots, des plages, et offrir la possibilité à quiconque d'alerter une pollution, qu'elle soit visuelle, formelle, et en temps réel. 
 
  
 

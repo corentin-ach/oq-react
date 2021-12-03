@@ -124,6 +124,7 @@ const ModalSpot = (props: Props) => {
             variants={variants}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            key={data.id}
           >
             <Grid container sx={styles.optionCard} key={data.id} onClick={data.onClick}>
 
