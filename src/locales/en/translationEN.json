@@ -16,7 +16,15 @@
             "seal": "Animal marin en danger"
         },
         "spotCard": {
-            "stackMessage": "Merci, votre signalement a bien été pris en compte !"
+            "stackMessage": "Merci, votre signalement a bien été pris en compte !",
+            "quality": {
+                "goodWater": "Bonne",
+                "badWater": "Mauvaise",
+                "goodPlastic": "Propre",
+                "badPlastic": "Présence",
+                "goodSeal": "Aucun",
+                "badSeal": "Présence"
+            }
         }
     }
 }

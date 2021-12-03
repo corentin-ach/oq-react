@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useMap, Marker } from 'react-leaflet';
 import { useSelector } from 'react-redux';
 import L from 'leaflet';
-import { RootState } from '../../app/store';
+import { RootState } from '../../../../app/store';
 
-import icon from '../../assets/userLocation.svg';
+import icon from '../../../../assets/userLocation.svg';
 
 const UserIcon = new L.Icon({
   iconUrl: icon,

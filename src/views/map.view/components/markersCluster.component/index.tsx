@@ -5,9 +5,9 @@ import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import { useMap } from 'react-leaflet';
 import { useDispatch } from 'react-redux';
-import { Spot } from '../../features/getSpotsSlice';
-import { setSpot } from '../../features/setSpotSlice';
-import blueDrop from '../../assets/bluedrop.svg';
+import blueDrop from '../../../../assets/bluedrop.svg';
+import { Spot } from '../../../../features/getSpotsSlice';
+import { setSpot } from '../../../../features/setSpotSlice';
 
 const mcg = (L as any).markerClusterGroup({
   iconCreateFunction(cluster: any) {
@@ -38,6 +38,7 @@ const MarkersCluster = ({ markers }: any) => {
           alt: element.id,
         }).on('click', () => {
           dispatch(setSpot(element));
+          map.flyTo([element.coords[0], element.coords[1]], map.getZoom());
         })
           .addTo(mcg);
       },

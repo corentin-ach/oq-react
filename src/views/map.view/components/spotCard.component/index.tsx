@@ -5,13 +5,13 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import styles from './styles';
-import BottleIcon from '../../assets/bottle';
-import RainDropIcon from '../../assets/raindrop';
-import SealIcon from '../../assets/seal';
-import IndicatorIcon from '../../assets/indicator';
-import { Spot } from '../../features/setSpotSlice';
+import BottleIcon from '../../../../assets/bottle';
+import RainDropIcon from '../../../../assets/raindrop';
+import SealIcon from '../../../../assets/seal';
+import IndicatorIcon from '../../../../assets/indicator';
+import { Spot } from '../../../../features/setSpotSlice';
 import ModalSpot from '../modalSpot.component';
-import { RootState } from '../../app/store';
+import { RootState } from '../../../../app/store';
 
 interface Props {
   selectedSpot: Spot
@@ -42,19 +42,19 @@ const SpotCard = (props: Props): ReactElement => {
     {
       id: 1,
       icon: <RainDropIcon size={34} />,
-      data: !selectedSpot.quality.water ? 'Bonne' : 'Mauvaise',
+      data: !selectedSpot.quality.water ? t('translation:mapView.spotCard.quality.goodWater') : t('translation:mapView.spotCard.quality.badWater'),
       color: !selectedSpot.quality.water ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
     },
     {
       id: 2,
       icon: <BottleIcon size={36} />,
-      data: !selectedSpot.quality.plastic ? 'Propre' : 'Présence',
+      data: !selectedSpot.quality.plastic ? t('translation:mapView.spotCard.quality.goodPlastic') : t('translation:mapView.spotCard.quality.badPlastic'),
       color: !selectedSpot.quality.plastic ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
     },
     {
       id: 3,
       icon: <SealIcon size={36} />,
-      data: !selectedSpot.quality.seal ? 'Aucun' : 'Présence',
+      data: !selectedSpot.quality.seal ? t('translation:mapView.spotCard.quality.goodSeal') : t('translation:mapView.spotCard.quality.badSeal'),
       color: !selectedSpot.quality.seal ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
     },
 
@@ -66,21 +66,14 @@ const SpotCard = (props: Props): ReactElement => {
       height="200px"
       sx={styles.mainCard}
     >
-      <Box sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}
-      >
+      <Box sx={styles.headerCard}>
         <Typography sx={styles.spotTitle}>
           {selectedSpot.name}
         </Typography>
         <IndicatorIcon status={!selectedSpot.quality.status ? '#65DEAB' : '#F38732'} size="30" />
       </Box>
 
-      <Box sx={{
-        justifyContent: 'space-between', display: 'flex', flexDirection: 'column', height: '100%', paddingTop: 2,
-      }}
-      >
+      <Box sx={styles.qualityContainer}>
         <Grid container sx={{ justifyContent: 'space-around' }}>
           {spotData.map((data) => (
             <Box
@@ -90,11 +83,8 @@ const SpotCard = (props: Props): ReactElement => {
               }}
             >
               <Box>{data.icon}</Box>
-              <Box sx={{
-                display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
-              }}
-              >
-                <Typography sx={{ color: 'text.primary', fontSize: 12, marginLeft: 0.4 }}>{data.data}</Typography>
+              <Box sx={styles.dataContainer}>
+                <Typography sx={styles.dataText}>{data.data}</Typography>
               </Box>
             </Box>
           ))}
@@ -102,9 +92,7 @@ const SpotCard = (props: Props): ReactElement => {
 
         <Button
           size="large"
-          sx={{
-            bgcolor: 'background.paper', textTransform: 'none', height: '50px', borderRadius: 2, marginTop: 2,
-          }}
+          sx={styles.button}
           onClick={() => handleOpen()}
         >
           <Typography sx={styles.signalTitle}>

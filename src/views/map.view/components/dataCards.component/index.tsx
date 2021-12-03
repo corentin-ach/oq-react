@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import SpotCard from '../spotCard.component';
 import MainCard from '../mainCard.component';
 import styles from './styles';
-import { Spot } from '../../features/setSpotSlice';
+import { Spot } from '../../../../features/setSpotSlice';
 
 interface Props {
   selectedSpot: Spot
