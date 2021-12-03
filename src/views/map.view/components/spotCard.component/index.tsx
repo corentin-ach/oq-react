@@ -4,6 +4,7 @@ import {
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 import styles from './styles';
 import BottleIcon from '../../../../assets/bottle';
 import RainDropIcon from '../../../../assets/raindrop';
@@ -76,17 +77,32 @@ const SpotCard = (props: Props): ReactElement => {
       <Box sx={styles.qualityContainer}>
         <Grid container sx={{ justifyContent: 'space-around' }}>
           {spotData.map((data) => (
-            <Box
-              key={data.id}
-              sx={{
-                bgcolor: data.color, borderRadius: 2, height: 70, width: 90, paddingTop: 1.5,
+            <motion.div
+              variants={{
+                open: {
+                  y: 0,
+                  opacity: 1,
+                  transition: {
+                    y: { stiffness: 1000, velocity: -100 },
+                  },
+                },
               }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              key={data.id}
             >
-              <Box>{data.icon}</Box>
-              <Box sx={styles.dataContainer}>
-                <Typography sx={styles.dataText}>{data.data}</Typography>
+              <Box
+                key={data.id}
+                sx={{
+                  bgcolor: data.color, borderRadius: 2, height: 70, width: 90, paddingTop: 1.5,
+                }}
+              >
+                <Box>{data.icon}</Box>
+                <Box sx={styles.dataContainer}>
+                  <Typography sx={styles.dataText}>{data.data}</Typography>
+                </Box>
               </Box>
-            </Box>
+            </motion.div>
           ))}
         </Grid>
 

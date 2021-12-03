@@ -3,7 +3,7 @@
         "welcomeCard": {
             "welcomeTitle": "Bienvenue,",
             "title": "Qu'est ce qu'Oavel ?",
-            "description": "Oavel est un projet open source qui a pour but de protéger le littoral, d'informer sur les pollutions et d'éduquer à sa protection.",
+            "description": "Oavel est un projet open source pour protéger le littoral, informer sur les pollutions et éduquer à sa protection. Cliquez pour en savoir plus.",
             "signal": "Signaler un phénomène"
         },
         "dialogSpot": {

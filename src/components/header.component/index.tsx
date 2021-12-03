@@ -4,14 +4,16 @@ import React, { ReactElement } from 'react';
 import HeaderIcon from '../../assets/header';
 import Icon from '../../assets/icon';
 import LocationButton from '../buttons.component/locationButton.button';
+import MainButton from '../buttons.component/mainButton.button';
 import ThemeButton from '../buttons.component/themeButton.button';
 
 interface Props {
     theme: boolean
+    onMainButton: () => void;
 }
 
 const Header = (props: Props): ReactElement => {
-  const { theme } = props;
+  const { theme, onMainButton } = props;
   return (
     <AppBar position="fixed">
       <Box sx={{ flexGrow: 1 }}>
@@ -44,6 +46,7 @@ const Header = (props: Props): ReactElement => {
             >
               <LocationButton />
               <ThemeButton isDark={!!theme} />
+              <MainButton onClick={onMainButton} />
             </Grid>
           </Grid>
         </Toolbar>

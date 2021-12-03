@@ -14,6 +14,7 @@ import { darkMap, lightMap } from '../../styles/theme';
 
 interface Props {
   isDark: boolean
+  onIntroClick: () => void;
 }
 
 const TileLayer = ({ isDark }: any) => {
@@ -30,7 +31,7 @@ const TileLayer = ({ isDark }: any) => {
 };
 
 const MapView = (props: Props): ReactElement => {
-  const { isDark } = props;
+  const { isDark, onIntroClick } = props;
   const dispatch = useDispatch();
   const { spots, loading } = useSelector((state: RootState) => state.spots);
   const { location } = useSelector((state: RootState) => state.location);
@@ -60,7 +61,7 @@ const MapView = (props: Props): ReactElement => {
           markers={spots}
         />
       </MapContainer>
-      <DataCards selectedSpot={spot} />
+      <DataCards selectedSpot={spot} onClick={onIntroClick} />
       {loading ? <CircularLoader /> : null}
     </div>
   );

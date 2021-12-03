@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Box, IconButton } from '@mui/material';
-import { MdOutlineBrightness4, MdOutlineWbSunny } from 'react-icons/md';
+import { MdNightsStay, MdOutlineWbSunny } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { toggleTheme } from '../../../features/themeSlice';
 import styles from '../styles';
@@ -15,7 +15,7 @@ const ThemeButton = (props: Props): ReactElement => {
   return (
     <Box sx={styles.button}>
       <IconButton onClick={() => dispatch(toggleTheme())} sx={{ bgcolor: 'background.default' }}>
-        {isDark ? <MdOutlineWbSunny size={35} color="#FAD826" /> : <MdOutlineBrightness4 size={35} color="text.default" />}
+        {isDark ? <MdOutlineWbSunny size={32} color="#FAD826" /> : <MdNightsStay size={32} color="#FAD826" />}
       </IconButton>
     </Box>
   );

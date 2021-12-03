@@ -18,6 +18,7 @@ const styles = {
     border: 0,
     borderRadius: 1,
     marginTop: 2,
+    paddingTop: 0.1,
   },
   name: {
     color: 'text.primary',
