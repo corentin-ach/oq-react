@@ -4,12 +4,12 @@ import {
 } from 'react-leaflet';
 import L from 'leaflet';
 import { useDispatch, useSelector } from 'react-redux';
-import DataCards from '../../components/dataCards.component';
-import MarkersCluster from '../../components/markersCluster.component';
+import DataCards from './components/dataCards.component';
+import MarkersCluster from './components/markersCluster.component';
 import { RootState } from '../../app/store';
 import { getSpots } from '../../features/getSpotsSlice';
 import CircularLoader from '../../components/circularLoader.component';
-import LocationMarker from '../../components/locationMarker.component';
+import LocationMarker from './components/locationMarker.component';
 import { darkMap, lightMap } from '../../styles/theme';
 
 interface Props {

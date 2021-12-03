@@ -2,16 +2,17 @@ import {
   Dialog, Typography, Box, Button, Grid,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import CheckIcon from '@mui/icons-material/Check';
 import { useDispatch } from 'react-redux';
-import BottleIcon from '../../assets/bottle';
-import RainDropIcon from '../../assets/raindrop';
-import SealIcon from '../../assets/seal';
+import BottleIcon from '../../../../assets/bottle';
+import RainDropIcon from '../../../../assets/raindrop';
+import SealIcon from '../../../../assets/seal';
 import styles from './styles';
-import { colors } from '../../styles/theme';
-import { Spot } from '../../features/setSpotSlice';
-import { setVote } from '../../features/voteSlice';
+import { colors } from '../../../../styles/theme';
+import { Spot } from '../../../../features/setSpotSlice';
+import { setVote } from '../../../../features/voteSlice';
 
 interface Props {
     mode: boolean
@@ -36,6 +37,23 @@ const ModalSpot = (props: Props) => {
   const [seal, setSeal] = useState(false);
   const [quality, setQuality]: any = useState({});
   const dispatch = useDispatch();
+
+  const variants = {
+    open: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        y: { stiffness: 1000, velocity: -100 },
+      },
+    },
+    closed: {
+      y: 50,
+      opacity: 0,
+      transition: {
+        y: { stiffness: 1000 },
+      },
+    },
+  };
 
   useEffect(() => {
     const vote: Vote = {
@@ -102,16 +120,23 @@ const ModalSpot = (props: Props) => {
           {t('translation:mapView.dialogSpot.description', { spotName: selectedSpot.name })}
         </Typography>
         {spotData.map((data) => (
-          <Grid container sx={styles.optionCard} key={data.id} onClick={data.onClick}>
-            <Grid item md={2} sx={styles.centerFlex}>{data.check}</Grid>
-            <Grid item md={2} sx={styles.centerFlex}>
-              {data.icon}
+          <motion.div
+            variants={variants}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Grid container sx={styles.optionCard} key={data.id} onClick={data.onClick}>
+
+              <Grid item md={2} sx={styles.centerFlex}>{data.check}</Grid>
+              <Grid item md={2} sx={styles.centerFlex}>
+                {data.icon}
+              </Grid>
+              <Grid item md={6}>
+                <Typography sx={styles.optionTitle}>{data.name}</Typography>
+              </Grid>
+              <Grid item md={1} />
             </Grid>
-            <Grid item md={6}>
-              <Typography sx={styles.optionTitle}>{data.name}</Typography>
-            </Grid>
-            <Grid item md={1} />
-          </Grid>
+          </motion.div>
         ))}
         <Grid container sx={styles.buttonsArea}>
           <Grid item md={6} sx={styles.centerFlex}>
