@@ -22,17 +22,19 @@ const LocationMarker = () => {
   const [position, setPosition]: any = useState([0, 0]);
   const map = useMap();
   const { location } = useSelector((state: RootState) => state.location);
+  const equals = (a: any, b: any) => JSON.stringify(a) === JSON.stringify(b);
   useEffect(() => {
     setPosition(location);
     map.flyTo(location, map.getZoom());
   }, [map, location]);
-
   return (
     <div>
-      <Marker
-        position={position}
-        icon={UserIcon}
-      />
+      {equals([47.166302, -1.531076], position) ? null : (
+        <Marker
+          position={position}
+          icon={UserIcon}
+        />
+      )}
     </div>
   );
 };
