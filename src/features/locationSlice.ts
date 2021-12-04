@@ -5,7 +5,7 @@ export interface LocationState {
 }
 
 const initialState: LocationState = {
-  location: [43.446782, -1.589371],
+  location: [47.166302, -1.531076],
 };
 
 export const locationSlice = createSlice({
