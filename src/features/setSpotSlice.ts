@@ -11,6 +11,7 @@ export type Spot = {
   id: string,
   name: string;
   quality: Quality;
+  status: boolean;
 }
 
 export interface SpotState {
@@ -27,6 +28,7 @@ const initialState: SpotState = {
       plastic: false,
       seal: false,
     },
+    status: false,
   },
 };
 
@@ -41,6 +43,7 @@ export const showSpotSlice = createSlice({
       state.spot.quality.water = marker.payload.quality.water;
       state.spot.quality.plastic = marker.payload.quality.plastic;
       state.spot.quality.seal = marker.payload.quality.seal;
+      state.spot.status = marker.payload.status;
     },
   },
 });
