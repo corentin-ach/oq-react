@@ -1,9 +1,8 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import {
-  Box, Typography, Button, Grid, Snackbar, Alert, Slide, SlideProps,
+  Box, Typography, Button, Grid,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import styles from './styles';
 import BottleIcon from '../../../../assets/bottle';
@@ -12,7 +11,6 @@ import SealIcon from '../../../../assets/seal';
 import IndicatorIcon from '../../../../assets/indicator';
 import { Spot } from '../../../../features/setSpotSlice';
 import ModalSpot from '../modalSpot.component';
-import { RootState } from '../../../../app/store';
 
 interface Props {
   selectedSpot: Spot
@@ -22,16 +20,6 @@ const SpotCard = (props: Props): ReactElement => {
   const { t } = useTranslation(['translation']);
   const { selectedSpot } = props;
   const [open, setOpen] = useState(false);
-  const { loading } = useSelector((state: RootState) => state.vote);
-  const [alert, setAlert] = useState(false);
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  const Transition = (slideProps: SlideProps): ReactElement => <Slide {...slideProps} direction="right" />;
-
-  useEffect(() => {
-    if (loading) {
-      setAlert(true);
-    }
-  }, [loading]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -117,16 +105,6 @@ const SpotCard = (props: Props): ReactElement => {
         </Button>
       </Box>
       <ModalSpot mode={open} handleClose={() => handleClose()} selectedSpot={selectedSpot} />
-      <Snackbar
-        open={alert}
-        autoHideDuration={6000}
-        onClose={() => setAlert(false)}
-        TransitionComponent={Transition}
-      >
-        <Alert severity="success" onClose={() => setAlert(false)} sx={{ width: '100%' }}>
-          {t('translation:mapView.spotCard.stackMessage')}
-        </Alert>
-      </Snackbar>
     </Box>
   );
 };
