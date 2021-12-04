@@ -4,6 +4,7 @@ import spotsReducer from '../features/getSpotsSlice';
 import locationReducer from '../features/locationSlice';
 import spotReducer from '../features/setSpotSlice';
 import voteReducer from '../features/voteSlice';
+import notionReducer from '../features/getNotionSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     location: locationReducer,
     spot: spotReducer,
     vote: voteReducer,
+    notion: notionReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

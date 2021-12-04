@@ -1,8 +1,14 @@
-import React, { ReactElement } from 'react';
+import React, { useEffect } from 'react';
 import {
   Drawer, IconButton, Box, styled,
 } from '@mui/material';
 import { MdChevronRight } from 'react-icons/md';
+import 'react-notion-x/src/styles.css';
+// import { NotionRenderer } from 'react-notion-x';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPageTitle } from 'notion-utils';
+import { RootState } from '../../app/store';
+import { getNotion } from '../../features/getNotionSlice';
 
 interface Props {
     isOpen: boolean;
@@ -18,8 +24,14 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-start',
 }));
 
-const ContentView = (props: Props): ReactElement => {
+const ContentView = (props: Props) => {
   const { isOpen, onClose } = props;
+  const { notion } = useSelector((state: RootState) => state.notion);
+  console.log(notion.data.block);
+  const title = getPageTitle(notion.data.block);
+  console.log(title);
+  const dispatch = useDispatch();
+  useEffect(() => { dispatch(getNotion()); }, []);
   return (
     <Drawer
       anchor="right"
