@@ -59,7 +59,7 @@ const SpotCard = (props: Props): ReactElement => {
         <Typography sx={styles.spotTitle}>
           {selectedSpot.name}
         </Typography>
-        <IndicatorIcon status={!selectedSpot.quality.status ? '#65DEAB' : '#F38732'} size="30" />
+        <IndicatorIcon status={!selectedSpot.status ? '#65DEAB' : '#F38732'} size="30" />
       </Box>
 
       <Box sx={styles.qualityContainer}>
