@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { RiDropFill } from 'react-icons/ri';
 import { motion } from 'framer-motion';
 import styles from './styles';
+import HelloIcon from '../../../../assets/hello';
 
 interface Props {
   onClick: () => void;
@@ -41,12 +42,17 @@ const MainCard = (props: Props): ReactElement => {
           sx={styles.infoCard}
           onClick={onClick}
         >
-          <Typography sx={styles.name}>
-            {t('translation:mapView.welcomeCard.title')}
-          </Typography>
-          <Typography sx={styles.description}>
-            {t('translation:mapView.welcomeCard.description')}
-          </Typography>
+          <Box sx={styles.helloIcon}>
+            <HelloIcon />
+          </Box>
+          <Box>
+            <Typography sx={styles.name}>
+              {t('translation:mapView.welcomeCard.title')}
+            </Typography>
+            <Typography sx={styles.description}>
+              {t('translation:mapView.welcomeCard.description')}
+            </Typography>
+          </Box>
         </Box>
       </motion.div>
     </Box>

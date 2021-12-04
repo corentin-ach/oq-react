@@ -19,13 +19,15 @@ const styles = {
     borderRadius: 1,
     marginTop: 2,
     paddingTop: 0.1,
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   name: {
     color: 'text.primary',
     fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'left',
-    marginTop: 2,
     marginLeft: 2,
     marginRight: 2,
   },
@@ -36,6 +38,9 @@ const styles = {
     textAlign: 'left',
     marginLeft: 2,
     marginRight: 2,
+  },
+  helloIcon: {
+    marginLeft: 2,
   },
 
 } as const;
