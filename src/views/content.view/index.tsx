@@ -4,9 +4,8 @@ import {
 } from '@mui/material';
 import { MdChevronRight } from 'react-icons/md';
 import 'react-notion-x/src/styles.css';
-// import { NotionRenderer } from 'react-notion-x';
+import { NotionRenderer } from 'react-notion';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPageTitle } from 'notion-utils';
 import { RootState } from '../../app/store';
 import { getNotion } from '../../features/getNotionSlice';
 
@@ -27,9 +26,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 const ContentView = (props: Props) => {
   const { isOpen, onClose } = props;
   const { notion } = useSelector((state: RootState) => state.notion);
-  console.log(notion.data.block);
-  const title = getPageTitle(notion.data.block);
-  console.log(title);
+  console.log(notion);
   const dispatch = useDispatch();
   useEffect(() => { dispatch(getNotion()); }, []);
   return (
@@ -49,7 +46,7 @@ const ContentView = (props: Props) => {
         bgcolor: 'background.default',
       }}
       >
-        <p>test</p>
+        <NotionRenderer blockMap={notion?.block} fullPage />
       </Box>
     </Drawer>
   );
