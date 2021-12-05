@@ -3,6 +3,7 @@ import {
   Drawer, IconButton, Box, styled,
 } from '@mui/material';
 import { MdChevronRight } from 'react-icons/md';
+import Stats from './components/stats.component';
 
 interface Props {
     isOpen: boolean;
@@ -32,12 +33,13 @@ const ContentView = (props: Props): ReactElement => {
         </IconButton>
       </DrawerHeader>
       <Box sx={{
-        width: 400,
+        width: 380,
         height: '100%',
         bgcolor: 'background.default',
+        padding: 2,
       }}
       >
-        <p>test</p>
+        <Stats />
       </Box>
     </Drawer>
   );
