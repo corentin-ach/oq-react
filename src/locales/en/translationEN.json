@@ -26,5 +26,10 @@
                 "badSeal": "Présence"
             }
         }
+    }, 
+    "contentView": {
+        "stats": {
+            "time": "Dernière mise à jour le {{day}}"
+        }
     }
 }

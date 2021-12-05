@@ -1,10 +1,13 @@
 import { Box, Typography, Grid } from '@mui/material';
 import React from 'react';
+import dayjs from 'dayjs';
+import { useTranslation } from 'react-i18next';
 import AlertIcon from '../../../../assets/alert';
 import RainDropIcon from '../../../../assets/raindrop';
 import styles from './styles';
 
 const Stats = () => {
+  const { t } = useTranslation(['translation']);
   const statData: any = [
     {
       id: 1,
@@ -29,7 +32,7 @@ const Stats = () => {
         Statistiques
       </Typography>
       <Typography sx={styles.time}>
-        Dernière mise à jour le
+        {t('translation:contentView.stats.time', { day: dayjs().locale('fr').format('D MMMM YYYY') })}
       </Typography>
       <Grid container sx={{ justifyContent: 'space-around' }} spacing={3}>
         {statData.map((stat: any) => (
