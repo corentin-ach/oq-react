@@ -8,7 +8,7 @@ const styles = {
   },
   dataSubtitle: {
     color: 'text.primary',
-    fontSize: 15,
+    fontSize: 17,
     fontWeight: 'bold',
     marginLeft: 0.5,
   },

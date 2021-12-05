@@ -29,7 +29,7 @@ const MapView = (props: Props): ReactElement => {
     <div>
       <MapContainer
         center={location}
-        zoom={7}
+        zoom={5.5}
         zoomControl={false}
         preferCanvas
         attributionControl={false}

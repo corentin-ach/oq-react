@@ -11,19 +11,27 @@ const Stats = () => {
   const statData: any = [
     {
       id: 1,
-      subtitle: 'référencés',
+      subtitle: 'Référencés',
       data: 45,
-      dataSubtitle: 'spots',
+      dataSubtitle: 'Spots',
       size: 6,
       icon: <RainDropIcon size={50} />,
     },
     {
       id: 2,
-      subtitle: 'en cours',
+      subtitle: 'En cours',
       data: 3,
-      dataSubtitle: 'problèmes',
+      dataSubtitle: 'Problèmes',
       size: 6,
       icon: <AlertIcon size={50} />,
+    },
+    {
+      id: 3,
+      subtitle: 'Taux de perturbations',
+      data: null,
+      dataSubtitle: null,
+      size: 12,
+      icon: null,
     },
   ];
   return (
