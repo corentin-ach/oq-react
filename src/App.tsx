@@ -14,11 +14,9 @@ function App() {
   const [contentView, setContentView] = useState(false);
   return (
     <ThemeProvider theme={theme ? darkTheme : lightTheme}>
-      <div className="App">
-        <Header theme={theme} onMainButton={() => setContentView(true)} />
-        <MapView isDark={theme} onIntroClick={() => setContentView(true)} />
-        <ContentView isOpen={contentView} onClose={() => setContentView(false)} />
-      </div>
+      <Header theme={theme} onMainButton={() => setContentView(true)} />
+      <MapView isDark={theme} onIntroClick={() => setContentView(true)} />
+      <ContentView isOpen={contentView} onClose={() => setContentView(false)} />
     </ThemeProvider>
   );
 }
