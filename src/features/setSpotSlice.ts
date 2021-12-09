@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 type Quality = {
-  status: boolean;
   water: boolean;
   plastic: boolean;
   seal: boolean;
@@ -23,7 +22,6 @@ const initialState: SpotState = {
     id: '',
     name: 'La Milady',
     quality: {
-      status: false,
       water: false,
       plastic: false,
       seal: false,
@@ -39,10 +37,9 @@ export const showSpotSlice = createSlice({
     setSpot: (state, marker) => {
       state.spot.id = marker.payload.id;
       state.spot.name = marker.payload.name;
-      state.spot.quality.status = marker.payload.quality.status;
-      state.spot.quality.water = marker.payload.quality.water;
-      state.spot.quality.plastic = marker.payload.quality.plastic;
-      state.spot.quality.seal = marker.payload.quality.seal;
+      state.spot.quality.water = marker.payload.water;
+      state.spot.quality.plastic = marker.payload.plastic;
+      state.spot.quality.seal = marker.payload.seal;
       state.spot.status = marker.payload.status;
     },
   },

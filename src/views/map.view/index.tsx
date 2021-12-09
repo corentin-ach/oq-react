@@ -2,7 +2,7 @@
 import React, {
   ReactElement, useEffect, useRef, useState,
 } from 'react';
-import MapGL, { Layer, Source } from 'react-map-gl';
+import ReactMapGL, { Layer, Source } from 'react-map-gl';
 import { useDispatch, useSelector } from 'react-redux';
 import { GeoJsonProperties } from 'geojson';
 import DataCards from './components/dataCards.component';
@@ -11,6 +11,7 @@ import { getSpots } from '../../features/getSpotsSlice';
 import CircularLoader from '../../components/circularLoader.component';
 import { darkMap, lightMap } from '../../styles/theme';
 import { clusterLayer, clusterCountLayer, unclusteredPointLayer } from './components/layers.component';
+import { setSpot } from '../../features/setSpotSlice';
 
 interface Props {
   isDark: boolean
@@ -27,7 +28,7 @@ const MapView = (props: Props): ReactElement => {
 
   useEffect(() => { dispatch(getSpots()); }, []);
 
-  const [viewport, setViewport] = React.useState({
+  const [viewport, setViewport]: any = useState({
     latitude: 47.166302,
     longitude: -1.531076,
     zoom: 6,
@@ -43,6 +44,13 @@ const MapView = (props: Props): ReactElement => {
       type: 'Feature',
       properties: {
         id: element.id,
+        name: element.name,
+        quality: {
+          water: element.quality.water,
+          plastic: element.quality.plastic,
+          seal: element.quality.seal,
+        },
+        status: element.status,
       },
       geometry: {
         type: 'Point',
@@ -52,19 +60,53 @@ const MapView = (props: Props): ReactElement => {
     setMarkers(geojson);
   }, [spots]);
 
+  const onClick = (event: any) => {
+    const feature = event.features[0];
+    const clusterId = feature?.properties?.cluster_id;
+    const mapboxSource = mapRef.current.getMap().getSource('spots');
+
+    if (clusterId) {
+      mapboxSource.getClusterExpansionZoom(clusterId, (err: any, zoom: any) => {
+        if (err) {
+          return;
+        }
+        setViewport({
+          longitude: feature?.geometry?.coordinates[0] || 0,
+          latitude: feature?.geometry?.coordinates[1] || 0,
+          zoom,
+          transitionDuration: 500,
+        });
+      });
+    } else if (feature?.layer.id === 'unclustered-point') {
+      const qjson = JSON.parse(feature.properties.quality);
+      dispatch(setSpot({
+        id: feature.properties.id,
+        name: feature.properties.name,
+        water: qjson.water,
+        plastic: qjson.plastic,
+        seal: qjson.seal,
+        status: feature.properties.status,
+      }));
+      console.log(qjson);
+    } else return null;
+    return null;
+  };
+
   return (
     <div>
-      <MapGL
+      <ReactMapGL
         {...viewport}
         width="100vw"
         height="100vh"
         mapStyle={isDark ? darkMap : lightMap}
         onViewportChange={setViewport}
+        interactiveLayerIds={[clusterLayer.id, unclusteredPointLayer.id]}
         ref={mapRef}
+        onClick={onClick}
         mapboxApiAccessToken="pk.eyJ1IjoiY29yZW50aW4yOSIsImEiOiJja3V3dmgxOG0wMTdpMnZsOGs2OGU4eDQzIn0.p3UORX0_zEWs7XpxBBWMHA"
       >
         <Source
-          id="earthquakes"
+          id="spots"
           type="geojson"
           data={markers}
           cluster
@@ -75,7 +117,7 @@ const MapView = (props: Props): ReactElement => {
           <Layer {...clusterCountLayer} />
           <Layer {...unclusteredPointLayer} />
         </Source>
-      </MapGL>
+      </ReactMapGL>
       <DataCards selectedSpot={spot} onClick={onIntroClick} />
       {loading ? <CircularLoader /> : null}
     </div>

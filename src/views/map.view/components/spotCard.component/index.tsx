@@ -85,7 +85,7 @@ const SpotCard = (props: Props): ReactElement => {
                   bgcolor: data.color, borderRadius: 2, height: 70, width: 90, paddingTop: 1.5,
                 }}
               >
-                <Box>{data.icon}</Box>
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>{data.icon}</Box>
                 <Box sx={styles.dataContainer}>
                   <Typography sx={styles.dataText}>{data.data}</Typography>
                 </Box>
