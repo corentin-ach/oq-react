@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import toggleReducer from '../features/themeSlice';
 import spotsReducer from '../features/getSpotsSlice';
-import locationReducer from '../features/locationSlice';
 import spotReducer from '../features/setSpotSlice';
 import voteReducer from '../features/voteSlice';
 
@@ -9,7 +8,6 @@ export const store = configureStore({
   reducer: {
     theme: toggleReducer,
     spots: spotsReducer,
-    location: locationReducer,
     spot: spotReducer,
     vote: voteReducer,
   },
@@ -22,3 +20,4 @@ export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch;
 
 export const url = process.env.REACT_APP_API;
+export const key = process.env.REACT_APP_MAPBOX;

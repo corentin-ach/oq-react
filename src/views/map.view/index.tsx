@@ -2,11 +2,11 @@
 import React, {
   ReactElement, useEffect, useRef, useState,
 } from 'react';
-import ReactMapGL, { Layer, Source } from 'react-map-gl';
+import ReactMapGL, { Layer, Source, GeolocateControl } from 'react-map-gl';
 import { useDispatch, useSelector } from 'react-redux';
 import { GeoJsonProperties } from 'geojson';
 import DataCards from './components/dataCards.component';
-import { RootState } from '../../app/store';
+import { key, RootState } from '../../app/store';
 import { getSpots } from '../../features/getSpotsSlice';
 import CircularLoader from '../../components/circularLoader.component';
 import { darkMap, lightMap } from '../../styles/theme';
@@ -27,6 +27,13 @@ const MapView = (props: Props): ReactElement => {
   const mapRef: any = useRef(null);
 
   useEffect(() => { dispatch(getSpots()); }, []);
+
+  const geolocateStyle = {
+    bottom: 0,
+    right: 0,
+    margin: 30,
+  };
+  const positionOptions = { enableHighAccuracy: false };
 
   const [viewport, setViewport]: any = useState({
     latitude: 47.166302,
@@ -87,7 +94,6 @@ const MapView = (props: Props): ReactElement => {
         seal: qjson.seal,
         status: feature.properties.status,
       }));
-      console.log(qjson);
     } else return null;
     return null;
   };
@@ -102,8 +108,9 @@ const MapView = (props: Props): ReactElement => {
         onViewportChange={setViewport}
         interactiveLayerIds={[clusterLayer.id, unclusteredPointLayer.id]}
         ref={mapRef}
+        attributionControl={false}
         onClick={onClick}
-        mapboxApiAccessToken="pk.eyJ1IjoiY29yZW50aW4yOSIsImEiOiJja3V3dmgxOG0wMTdpMnZsOGs2OGU4eDQzIn0.p3UORX0_zEWs7XpxBBWMHA"
+        mapboxApiAccessToken={`${key}`}
       >
         <Source
           id="spots"
@@ -117,6 +124,11 @@ const MapView = (props: Props): ReactElement => {
           <Layer {...clusterCountLayer} />
           <Layer {...unclusteredPointLayer} />
         </Source>
+        <GeolocateControl
+          style={geolocateStyle}
+          positionOptions={positionOptions}
+          trackUserLocation
+        />
       </ReactMapGL>
       <DataCards selectedSpot={spot} onClick={onIntroClick} />
       {loading ? <CircularLoader /> : null}

@@ -3,7 +3,6 @@ import { Box } from '@mui/system';
 import React, { ReactElement } from 'react';
 import HeaderIcon from '../../assets/header';
 import Icon from '../../assets/icon';
-import LocationButton from '../buttons.component/locationButton.button';
 import MainButton from '../buttons.component/mainButton.button';
 import ThemeButton from '../buttons.component/themeButton.button';
 
@@ -44,7 +43,6 @@ const Header = (props: Props): ReactElement => {
               md={1}
               sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'end' }}
             >
-              <LocationButton />
               <ThemeButton isDark={!!theme} />
               <MainButton onClick={onMainButton} />
             </Grid>
