@@ -12,11 +12,18 @@ import ContentView from './views/content.view';
 function App() {
   const theme = useSelector((state: RootState) => state.theme.dark);
   const [contentView, setContentView] = useState(false);
+  const { spots, loading } = useSelector((state: RootState) => state.spots);
+
   return (
     <ThemeProvider theme={theme ? darkTheme : lightTheme}>
       <Header theme={theme} onMainButton={() => setContentView(true)} />
-      <MapView isDark={theme} onIntroClick={() => setContentView(true)} />
-      <ContentView isOpen={contentView} onClose={() => setContentView(false)} />
+      <MapView
+        isDark={theme}
+        onIntroClick={() => setContentView(true)}
+        spots={spots}
+        loading={loading}
+      />
+      <ContentView isOpen={contentView} onClose={() => setContentView(false)} spots={spots} />
     </ThemeProvider>
   );
 }

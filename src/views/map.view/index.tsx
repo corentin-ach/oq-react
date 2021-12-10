@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GeoJsonProperties } from 'geojson';
 import DataCards from './components/dataCards.component';
 import { key, RootState } from '../../app/store';
-import { getSpots } from '../../features/getSpotsSlice';
+import { getSpots, Spot } from '../../features/getSpotsSlice';
 import CircularLoader from '../../components/circularLoader.component';
 import { darkMap, lightMap } from '../../styles/theme';
 import { clusterLayer, clusterCountLayer, unclusteredPointLayer } from './components/layers.component';
@@ -16,12 +16,15 @@ import { setSpot } from '../../features/setSpotSlice';
 interface Props {
   isDark: boolean
   onIntroClick: () => void;
+  spots: Array<Spot>;
+  loading: boolean;
 }
 
 const MapView = (props: Props): ReactElement => {
-  const { isDark, onIntroClick } = props;
+  const {
+    isDark, onIntroClick, spots, loading,
+  } = props;
   const dispatch = useDispatch();
-  const { spots, loading } = useSelector((state: RootState) => state.spots);
   const [markers, setMarkers]: any = useState({});
   const { spot } = useSelector((state: RootState) => state.spot);
   const mapRef: any = useRef(null);
