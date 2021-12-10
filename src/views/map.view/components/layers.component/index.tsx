@@ -4,7 +4,11 @@ export const clusterLayer: any = {
   source: 'spots',
   filter: ['has', 'point_count'],
   paint: {
-    'circle-color': ['step', ['get', 'point_count'], '#5DADEC', 100, '#5DADEC', 750, '#5DADEC'],
+    'circle-color': [
+      'case',
+      ['get', 'status'],
+      '#F38732',
+      '#65DEAB'],
     'circle-radius': ['step', ['get', 'point_count'], 35, 100, 30, 750, 40],
     'circle-blur': 0.6,
   },
@@ -31,7 +35,7 @@ export const unclusteredPointLayer: any = {
   source: 'spots',
   filter: ['!', ['has', 'point_count']],
   paint: {
-    'circle-color': '#5DADEC',
+    'circle-color': ['match', ['get', 'stringStatus'], 'false', '#65DEAB', 'true', '#F38732', '#5DADEC'],
     'circle-radius': 10,
   },
 };

@@ -51,7 +51,7 @@ const Stats = (props: Props) => {
     {
       id: 3,
       subtitle: 'Taux de perturbations en cours',
-      data: computeStats(spots).warningRate,
+      data: 1 - computeStats(spots).warningRate,
       size: 12,
       icon: <BorderLinearProgress variant="determinate" value={computeStats(spots).warningRate * 100} />,
       margin: 5,

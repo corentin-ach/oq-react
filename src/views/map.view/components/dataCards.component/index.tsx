@@ -32,6 +32,7 @@ const DataCards = (props: Props): ReactElement => {
   return (
     <Box sx={styles.dataCards}>
       <MainCard onClick={onClick} />
+
       {selectedSpot.id ? (
         <motion.div
           animate={{ translateX: 400 }}
@@ -49,7 +50,7 @@ const DataCards = (props: Props): ReactElement => {
         TransitionComponent={Transition}
       >
         <Alert severity="success" onClose={() => setAlert(false)} sx={{ width: '100%' }}>
-          {t('translation:mapView.spotCard.stackMessage')}
+          {t('translation:mapView.spotCard.stackMessageTitle')}
         </Alert>
       </Snackbar>
     </Box>

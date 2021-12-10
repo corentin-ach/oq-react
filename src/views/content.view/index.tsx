@@ -11,6 +11,8 @@ interface Props {
     isOpen: boolean;
     onClose: () => void;
     spots: Array<Spot>;
+    value: string;
+    handleChange: any;
 }
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -23,11 +25,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 const ContentView = (props: Props): ReactElement => {
-  const { isOpen, onClose, spots } = props;
-  const [value, setValue] = React.useState('1');
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
+  const {
+    isOpen, onClose, spots, value, handleChange,
+  } = props;
 
   return (
     <Drawer

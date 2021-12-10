@@ -2,7 +2,9 @@
 import React, {
   ReactElement, useEffect, useRef, useState,
 } from 'react';
-import ReactMapGL, { Layer, Source, GeolocateControl } from 'react-map-gl';
+import ReactMapGL, {
+  Layer, Source, GeolocateControl, Popup,
+} from 'react-map-gl';
 import { useDispatch, useSelector } from 'react-redux';
 import { GeoJsonProperties } from 'geojson';
 import DataCards from './components/dataCards.component';
@@ -28,13 +30,14 @@ const MapView = (props: Props): ReactElement => {
   const [markers, setMarkers]: any = useState({});
   const { spot } = useSelector((state: RootState) => state.spot);
   const mapRef: any = useRef(null);
+  const [popupInfo, setPopupInfo] = useState<any>(null);
 
   useEffect(() => { dispatch(getSpots()); }, []);
 
   const geolocateStyle = {
     bottom: 0,
     right: 0,
-    margin: 30,
+    margin: 20,
   };
   const positionOptions = { enableHighAccuracy: false };
 
@@ -61,6 +64,7 @@ const MapView = (props: Props): ReactElement => {
           seal: element.quality.seal,
         },
         status: element.status,
+        stringStatus: element.status ? 'true' : 'false',
       },
       geometry: {
         type: 'Point',
@@ -97,6 +101,10 @@ const MapView = (props: Props): ReactElement => {
         seal: qjson.seal,
         status: feature.properties.status,
       }));
+      setPopupInfo({
+        lngLat: feature.geometry.coordinates,
+        text: feature.properties.name,
+      });
     } else return null;
     return null;
   };
@@ -122,6 +130,9 @@ const MapView = (props: Props): ReactElement => {
           cluster
           clusterMaxZoom={14}
           clusterRadius={50}
+          clusterProperties={{
+            status: ['any', ['==', ['get', 'stringStatus'], 'true'], 'true'],
+          }}
         >
           <Layer {...clusterLayer} />
           <Layer {...clusterCountLayer} />
@@ -132,6 +143,16 @@ const MapView = (props: Props): ReactElement => {
           positionOptions={positionOptions}
           trackUserLocation
         />
+        {popupInfo && (
+        <Popup
+          longitude={popupInfo.lngLat[0]}
+          latitude={popupInfo.lngLat[1]}
+          onClose={setPopupInfo}
+          closeButton={false}
+        >
+          {popupInfo.text}
+        </Popup>
+        )}
       </ReactMapGL>
       <DataCards selectedSpot={spot} onClick={onIntroClick} />
       {loading ? <CircularLoader /> : null}
