@@ -1,4 +1,6 @@
+/* eslint-disable import/no-webpack-loader-syntax */
 import React, { useState } from 'react';
+import mapboxgl from 'mapbox-gl';
 import './App.css';
 import { ThemeProvider } from '@mui/system';
 import { useSelector } from 'react-redux';
@@ -8,6 +10,8 @@ import './locales/i18n';
 import { RootState } from './app/store';
 import Header from './components/header.component';
 import ContentView from './views/content.view';
+// @ts-ignore
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 function App() {
   const theme = useSelector((state: RootState) => state.theme.dark);
