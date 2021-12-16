@@ -30,6 +30,13 @@
     "contentView": {
         "stats": {
             "time": "Dernière mise à jour le {{day}}"
+        },
+        "about": {
+            "intro": "Oavel est une plateforme participative qui vise à alerter des phénomènes de pollution. Chacun est libre de contribuer au partage et à l'exactitude des informations. Les pollutions peuvent être visuelles comme simplement ressenties. Elles peuvent concerner la qualité de l'eau comme une situation anormale, tel qu'un animal échoué ou une invasion de méduses.",
+            "p1": "Les quelques analysent de l'eau ne suffisent généralement pas à déterminer si l'eau d'une plage est de bonne qualité. Ces analyses se basent uniquement sur 2 indicateurs, correspondant respectivement à 2 bactéries. Or, de nombreuses autres pollutions et facteurs peuvent impacter la qualité de l'eau. Cela pose donc réellement problème car les usagers ne sont aucunement informés de ce manque de pertinence des analyses. Les résultats sont faussés, et une plage peut ainsi être polluée alors que celle-ci est marquée comme Excellente. Cela met donc en danger l'ensemble des pratiquants de sport nautique, baigneurs, animaux et tous les autres usagers. Sans compter la faune et la flore environnante qui subissent également les conséquences. Oavel souhaite avertir rapidement et utiliser la force d'une communauté bienveillante pour transmettre à tous l'information, pour alerter, éduquer, agir."
+        },
+        "tab": {
+            "stats": "Statistiques"
         }
     }
 }
