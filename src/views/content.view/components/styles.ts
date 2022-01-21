@@ -12,6 +12,14 @@ const styles = {
     fontWeight: 'bold',
     marginLeft: 0.5,
   },
+  button: {
+    color: 'white',
+    textTransform: 'none',
+    height: '50px',
+    width: '100%',
+    borderRadius: 2,
+    marginTop: 2,
+  },
   data: {
     color: 'text.primary',
     fontSize: 30,

@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { styled } from '@mui/material/styles';
 import AlertIcon from '../../../../assets/alert';
 import RainDropIcon from '../../../../assets/raindrop';
-import styles from './styles';
+import styles from '../styles';
 import { Spot } from '../../../../features/getSpotsSlice';
 import computeStats from '../../../../functions/stats';
 

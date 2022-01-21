@@ -39,17 +39,20 @@ const ContentView = (props: Props): ReactElement => {
       onClose={onClose}
     >
       <TabContext value={value}>
-        <DrawerHeader>
+        <DrawerHeader sx={{ bgcolor: 'background.default' }}>
           <IconButton onClick={onClose}>
             <MdChevronRight />
           </IconButton>
-          <TabList onChange={handleChange}>
+          <TabList
+            onChange={handleChange}
+          >
             <Tab label="Oavel" value="1" sx={{ fontWeight: 'bold' }} />
             <Tab label={t('translation:contentView.tab.stats')} value="2" sx={{ fontWeight: 'bold' }} />
           </TabList>
         </DrawerHeader>
         <Box sx={{
           width: 380,
+          height: '150%',
           bgcolor: 'background.default',
           padding: 2,
         }}
