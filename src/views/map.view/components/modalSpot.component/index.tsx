@@ -156,6 +156,7 @@ const ModalSpot = (props: Props) => {
           </Grid>
           <Grid item md={6} sx={styles.centerFlex}>
             <Button
+              disabled={!water && !plastic && !seal}
               size="large"
               fullWidth
               sx={{

@@ -1,6 +1,5 @@
 const styles = {
   mainCard: {
-    bgcolor: 'background.default',
     borderRadius: 2,
     padding: 2,
     alignContent: 'flex-start',

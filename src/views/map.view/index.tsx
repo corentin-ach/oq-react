@@ -42,9 +42,9 @@ const MapView = (props: Props): ReactElement => {
   const positionOptions = { enableHighAccuracy: false };
 
   const [viewport, setViewport]: any = useState({
-    latitude: 47.166302,
-    longitude: -1.531076,
-    zoom: 6,
+    latitude: 48.310341,
+    longitude: -3.824453,
+    zoom: 7,
   });
 
   const geojson: GeoJsonProperties = {
@@ -62,6 +62,7 @@ const MapView = (props: Props): ReactElement => {
           water: element.quality.water,
           plastic: element.quality.plastic,
           seal: element.quality.seal,
+          date: element.quality.date,
         },
         status: element.status,
         stringStatus: element.status ? 'true' : 'false',
@@ -99,6 +100,7 @@ const MapView = (props: Props): ReactElement => {
         water: qjson.water,
         plastic: qjson.plastic,
         seal: qjson.seal,
+        date: qjson.date,
         status: feature.properties.status,
       }));
       setPopupInfo({
@@ -154,7 +156,7 @@ const MapView = (props: Props): ReactElement => {
         </Popup>
         )}
       </ReactMapGL>
-      <DataCards selectedSpot={spot} onClick={onIntroClick} />
+      <DataCards selectedSpot={spot} onClick={onIntroClick} isDark={isDark} />
       {loading ? <CircularLoader /> : null}
     </div>
   );

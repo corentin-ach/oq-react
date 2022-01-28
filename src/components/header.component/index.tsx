@@ -14,7 +14,9 @@ interface Props {
 const Header = (props: Props): ReactElement => {
   const { theme, onMainButton } = props;
   return (
-    <AppBar position="fixed">
+    <AppBar
+      position="fixed"
+    >
       <Box sx={{ flexGrow: 1 }}>
         <Toolbar sx={{ bgcolor: 'background.default' }}>
           <Grid container alignItems="center">

@@ -4,6 +4,7 @@ import {
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
+import dayjs from 'dayjs';
 import styles from './styles';
 import BottleIcon from '../../../../assets/bottle';
 import RainDropIcon from '../../../../assets/raindrop';
@@ -14,11 +15,12 @@ import ModalSpot from '../modalSpot.component';
 
 interface Props {
   selectedSpot: Spot
+  isDark: boolean
 }
 
 const SpotCard = (props: Props): ReactElement => {
   const { t } = useTranslation(['translation']);
-  const { selectedSpot } = props;
+  const { selectedSpot, isDark } = props;
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -52,8 +54,8 @@ const SpotCard = (props: Props): ReactElement => {
   return (
     <Box
       width="300px"
-      height="200px"
-      sx={styles.mainCard}
+      height="220px"
+      sx={{ ...styles.mainCard, bgcolor: !isDark ? 'rgba(255, 255, 255, .70)' : 'rgba(59, 59, 59, .70)', backdropFilter: 'blur(10px)' }}
     >
       <Box sx={styles.headerCard}>
         <Typography sx={styles.spotTitle}>
@@ -61,6 +63,11 @@ const SpotCard = (props: Props): ReactElement => {
         </Typography>
         <IndicatorIcon status={!selectedSpot.status ? '#65DEAB' : '#F38732'} size="30" />
       </Box>
+      <Typography sx={styles.timeText}>
+        Dernière alerte le
+        {' '}
+        {dayjs(selectedSpot.quality.date).format('DD/MM/YY')}
+      </Typography>
 
       <Box sx={styles.qualityContainer}>
         <Grid container sx={{ justifyContent: 'space-around' }}>

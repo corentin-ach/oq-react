@@ -8,16 +8,17 @@ import HelloIcon from '../../../../assets/hello';
 
 interface Props {
   onClick: () => void;
+  isDark: boolean;
 }
 
 const MainCard = (props: Props): ReactElement => {
   const { t } = useTranslation(['translation']);
-  const { onClick } = props;
+  const { onClick, isDark } = props;
   return (
     <Box
       width="300px"
       height="230px"
-      sx={styles.mainCard}
+      sx={{ ...styles.mainCard, bgcolor: !isDark ? 'rgba(255, 255, 255, .70)' : 'rgba(59, 59, 59, .70)', backdropFilter: 'blur(10px)' }}
     >
       <RiDropFill color="#5DADEC" size={60} />
       <Typography sx={styles.welcomeTitle}>

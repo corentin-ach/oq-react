@@ -4,6 +4,7 @@ type Quality = {
   water: boolean;
   plastic: boolean;
   seal: boolean;
+  date: string;
 }
 
 export type Spot = {
@@ -25,6 +26,7 @@ const initialState: SpotState = {
       water: false,
       plastic: false,
       seal: false,
+      date: '',
     },
     status: false,
   },
@@ -40,6 +42,7 @@ export const showSpotSlice = createSlice({
       state.spot.quality.water = marker.payload.water;
       state.spot.quality.plastic = marker.payload.plastic;
       state.spot.quality.seal = marker.payload.seal;
+      state.spot.quality.date = marker.payload.date;
       state.spot.status = marker.payload.status;
     },
   },

@@ -1,6 +1,5 @@
 const styles = {
   mainCard: {
-    bgcolor: 'background.default',
     border: 0,
     borderRadius: 2,
     padding: 2,
@@ -30,6 +29,11 @@ const styles = {
     color: 'text.primary',
     fontSize: 12,
     marginLeft: 0.4,
+  },
+  timeText: {
+    color: 'text.primary',
+    fontSize: 12,
+    marginLeft: 2,
   },
   button: {
     bgcolor: 'background.paper',

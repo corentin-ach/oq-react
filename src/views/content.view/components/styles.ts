@@ -13,7 +13,7 @@ const styles = {
     marginLeft: 0.5,
   },
   button: {
-    color: 'white',
+    color: '#5DADEC',
     textTransform: 'none',
     height: '50px',
     width: '100%',

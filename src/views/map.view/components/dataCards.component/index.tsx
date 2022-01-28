@@ -14,11 +14,12 @@ import { RootState } from '../../../../app/store';
 interface Props {
   selectedSpot: Spot
   onClick: () => void;
+  isDark: boolean;
 }
 
 const DataCards = (props: Props): ReactElement => {
   const { t } = useTranslation(['translation']);
-  const { selectedSpot, onClick } = props;
+  const { selectedSpot, onClick, isDark } = props;
   const { loading } = useSelector((state: RootState) => state.vote);
   const [alert, setAlert] = useState(false);
   // eslint-disable-next-line react/jsx-props-no-spreading
@@ -31,7 +32,7 @@ const DataCards = (props: Props): ReactElement => {
   }, [loading]);
   return (
     <Box sx={styles.dataCards}>
-      <MainCard onClick={onClick} />
+      <MainCard onClick={onClick} isDark={isDark} />
 
       {selectedSpot.id ? (
         <motion.div
@@ -40,7 +41,7 @@ const DataCards = (props: Props): ReactElement => {
           initial="hidden"
           variants={{ hidden: { x: -400 } }}
         >
-          <SpotCard selectedSpot={selectedSpot} />
+          <SpotCard selectedSpot={selectedSpot} isDark={isDark} />
         </motion.div>
       ) : null}
       <Snackbar
