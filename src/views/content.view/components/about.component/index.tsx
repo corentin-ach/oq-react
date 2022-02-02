@@ -1,7 +1,7 @@
 import { Box, Typography, Button } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import PhareIcon from '../../../../assets/phare';
+import EarthIcon from '../../../../assets/earth';
 import styles from '../styles';
 
 const About = () => {
@@ -15,7 +15,7 @@ const About = () => {
       <Typography>
         {t('translation:contentView.about.intro')}
       </Typography>
-      <PhareIcon />
+      <EarthIcon size={350} />
       <Typography>
         {t('translation:contentView.about.p1')}
       </Typography>

@@ -3,7 +3,7 @@
         "welcomeCard": {
             "welcomeTitle": "Bienvenue,",
             "title": "Qu'est ce qu'Oavel ?",
-            "description": "Un projet participatif pour éduquer à la protection du littoral et informer sur les pollutions. Cliquez pour en savoir plus.",
+            "description": "Une plateforme participative pour éduquer à la protection du littoral et informer sur son état. Cliquez pour en savoir plus.",
             "signal": "Signaler un phénomène"
         },
         "dialogSpot": {
@@ -32,13 +32,17 @@
             "time": "Dernière mise à jour le {{day}}"
         },
         "about": {
-            "intro": "Oavel est une plateforme participative qui vise à alerter des phénomènes de pollution sur le littoral français. Chacun est libre de contribuer au partage et à l'exactitude des informations. Les pollutions peuvent être visuelles comme simplement ressenties. Elles peuvent concerner la qualité de l'eau comme une situation anormale, tel qu'un animal échoué ou des déchets de plastique.",
-            "p1": "Votre confiante participation contribue à rendre notre littoral accessible, propre, accueuillant, elle contribue à éduquer et à offrir une vision statistique de l'état au fil du temps.",
-            "title": "Rendre l'état de nos littoraux accessible",
+            "intro": "Oavel est une plateforme participative qui vise à alerter des phénomènes de pollution sur le littoral breton. Chacun est libre de contribuer au partage et à l'exactitude des informations. Les pollutions peuvent être visuelles comme simplement ressenties. Elles peuvent concerner la qualité de l'eau comme une situation anormale, tel qu'un animal échoué ou des déchets de plastique.",
+            "p1": "Votre confiante participation contribue à rendre notre littoral accessible, propre, accueuillant, et à garder une trace de son état au fil du temps",
+            "title": "Rendre accessible l'état de nos littoraux",
             "buttonLink": "En savoir davantage"
         },
         "tab": {
             "stats": "Statistiques"
         }
+    },
+    "mobileView": {
+        "installButton": "App bientôt disponible",
+        "intro": "Oavel est une plateforme participative qui vise à éduquer à la protection du littoral Breton et à informer sur son état."
     }
 }

@@ -1,6 +1,5 @@
 import React from 'react';
-import { IconButton } from '@mui/material';
-import { Box } from '@mui/system';
+import { IconButton, Box } from '@mui/material';
 import { MdMenu } from 'react-icons/md';
 import styles from '../styles';
 

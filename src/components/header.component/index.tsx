@@ -1,5 +1,6 @@
-import { AppBar, Toolbar, Grid } from '@mui/material';
-import { Box } from '@mui/system';
+import {
+  AppBar, Toolbar, Grid, Box,
+} from '@mui/material';
 import React, { ReactElement } from 'react';
 import HeaderIcon from '../../assets/header';
 import Icon from '../../assets/icon';
@@ -36,7 +37,7 @@ const Header = (props: Props): ReactElement => {
               }}
             >
               <Icon />
-              <HeaderIcon isDark={!!theme} />
+              <HeaderIcon isDark={!!theme} size={60} />
             </Grid>
             <Grid
               item
