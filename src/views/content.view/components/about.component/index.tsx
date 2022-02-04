@@ -2,6 +2,7 @@ import { Box, Typography, Button } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import EarthIcon from '../../../../assets/earth';
+import Indicators from '../../../../components/indicators.component';
 import styles from '../styles';
 
 const About = () => {
@@ -28,6 +29,10 @@ const About = () => {
           {t('translation:contentView.about.buttonLink')}
         </Typography>
       </Button>
+      <Typography variant="h5" fontWeight="bold" marginBottom="20px" marginTop="20px">
+        {t('translation:contentView.about.indicatorTitle')}
+      </Typography>
+      <Indicators />
     </Box>
   );
 };

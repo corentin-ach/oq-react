@@ -52,7 +52,7 @@ const ContentView = (props: Props): ReactElement => {
         </DrawerHeader>
         <Box sx={{
           width: 380,
-          height: '150%',
+          height: '200%',
           bgcolor: 'background.default',
           padding: 2,
         }}

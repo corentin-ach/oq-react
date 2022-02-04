@@ -53,10 +53,11 @@ const Stats = (props: Props) => {
       subtitle: 'Taux de perturbations en cours',
       data: `${computeStats(spots).warningRate}%`,
       size: 12,
-      icon: <BorderLinearProgress variant="determinate" value={100 - computeStats(spots).warningRate * 100} />,
+      icon: <BorderLinearProgress variant="determinate" value={100 - computeStats(spots).warningRate} />,
       margin: 5,
     },
   ];
+
   return (
     <Box>
       <Typography sx={styles.statsTitle}>
