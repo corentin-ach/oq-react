@@ -45,7 +45,7 @@ function App() {
         ? <MobileView theme={theme} />
         : (
           <>
-            <Header theme={theme} onMainButton={() => { setContentView(true); setValue('2'); }} />
+            <Header spots={spots} theme={theme} onMainButton={() => { setContentView(true); setValue('2'); }} />
             <MapView
               isDark={theme}
               onIntroClick={() => { setContentView(true); setValue('1'); }}
