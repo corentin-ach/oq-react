@@ -94,15 +94,24 @@ const MapView = (props: Props): ReactElement => {
       });
     } else if (feature?.layer.id === 'unclustered-point') {
       const qjson = JSON.parse(feature.properties.quality);
+
       dispatch(setSpot({
         id: feature.properties.id,
+        coords: [feature?.geometry?.coordinates[1], feature?.geometry?.coordinates[0]],
         name: feature.properties.name,
         water: qjson.water,
         plastic: qjson.plastic,
         seal: qjson.seal,
         date: qjson.date,
         status: feature.properties.status,
+        bySearch: false,
       }));
+      setViewport({
+        longitude: feature?.geometry?.coordinates[0],
+        latitude: feature?.geometry?.coordinates[1],
+        zoom: 11,
+        transitionDuration: 500,
+      });
       setPopupInfo({
         lngLat: feature.geometry.coordinates,
         text: feature.properties.name,
@@ -110,6 +119,21 @@ const MapView = (props: Props): ReactElement => {
     } else return null;
     return null;
   };
+
+  useEffect(() => {
+    if (spot.bySearch) {
+      setViewport({
+        longitude: spot.coords[0],
+        latitude: spot.coords[1],
+        zoom: 11,
+        transitionDuration: 500,
+      });
+      setPopupInfo({
+        lngLat: spot.coords,
+        text: spot.name,
+      });
+    }
+  }, [spot]);
 
   return (
     <div>

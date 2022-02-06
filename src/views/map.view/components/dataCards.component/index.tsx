@@ -19,7 +19,9 @@ interface Props {
 
 const DataCards = (props: Props): ReactElement => {
   const { t } = useTranslation(['translation']);
-  const { selectedSpot, onClick, isDark } = props;
+  const {
+    selectedSpot, onClick, isDark,
+  } = props;
   const { loading } = useSelector((state: RootState) => state.vote);
   const [alert, setAlert] = useState(false);
   // eslint-disable-next-line react/jsx-props-no-spreading

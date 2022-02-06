@@ -19,12 +19,14 @@ const SearchBar = (props: Props) => {
     if (value) {
       dispatch(setSpot({
         id: value.id,
+        coords: [value.coords[1], value.coords[0]],
         name: value.name,
         water: value.quality.water,
         plastic: value.quality.plastic,
         seal: value.quality.seal,
         date: value.quality.date,
         status: value.status,
+        bySearch: true,
       }));
     }
   };
@@ -34,7 +36,7 @@ const SearchBar = (props: Props) => {
       disablePortal
       size="small"
       options={listSpots}
-      sx={{ width: 400 }}
+      sx={{ width: '50%' }}
       onChange={(event, value) => displaySpotOnClick(value)}
       // eslint-disable-next-line react/jsx-props-no-spreading
       renderInput={(params) => <TextField {...params} label="Rechercher une plage" />}

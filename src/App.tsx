@@ -26,6 +26,7 @@ function App() {
     width: window.innerWidth,
     height: window.innerHeight,
   });
+
   useEffect(() => {
     const handleWindowResize = () => setDimensions({
       width: window.innerWidth,
