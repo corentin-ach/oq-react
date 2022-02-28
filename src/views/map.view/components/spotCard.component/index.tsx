@@ -48,7 +48,6 @@ const SpotCard = (props: Props): ReactElement => {
       data: !selectedSpot.quality.seal ? t('translation:mapView.spotCard.quality.goodSeal') : t('translation:mapView.spotCard.quality.badSeal'),
       color: !selectedSpot.quality.seal ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
     },
-
   ];
 
   return (
@@ -100,14 +99,14 @@ const SpotCard = (props: Props): ReactElement => {
             </motion.div>
           ))}
         </Grid>
-
         <Button
           size="large"
+          variant="text"
           sx={styles.button}
           onClick={() => handleOpen()}
         >
           <Typography sx={styles.signalTitle}>
-            {t('translation:mapView.welcomeCard.signal')}
+            {selectedSpot.status ? t('translation:mapView.welcomeCard.other') : t('translation:mapView.welcomeCard.signal')}
           </Typography>
         </Button>
       </Box>

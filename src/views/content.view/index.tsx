@@ -48,6 +48,7 @@ const ContentView = (props: Props): ReactElement => {
           >
             <Tab label="Oavel" value="1" sx={{ fontWeight: 'bold' }} />
             <Tab label={t('translation:contentView.tab.stats')} value="2" sx={{ fontWeight: 'bold' }} />
+            <Tab label={t('translation:contentView.tab.publishSpot')} value="3" sx={{ fontWeight: 'bold' }} />
           </TabList>
         </DrawerHeader>
         <Box sx={{
@@ -62,6 +63,9 @@ const ContentView = (props: Props): ReactElement => {
           </TabPanel>
           <TabPanel value="2">
             <Stats spots={spots} />
+          </TabPanel>
+          <TabPanel value="3">
+            <p>test</p>
           </TabPanel>
         </Box>
       </TabContext>

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-type Quality = {
+export type Quality = {
   water: boolean;
   plastic: boolean;
   seal: boolean;

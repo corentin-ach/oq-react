@@ -109,7 +109,7 @@ const MapView = (props: Props): ReactElement => {
       setViewport({
         longitude: feature?.geometry?.coordinates[0],
         latitude: feature?.geometry?.coordinates[1],
-        zoom: 11,
+        zoom: 13,
         transitionDuration: 500,
       });
       setPopupInfo({
@@ -125,7 +125,7 @@ const MapView = (props: Props): ReactElement => {
       setViewport({
         longitude: spot.coords[0],
         latitude: spot.coords[1],
-        zoom: 11,
+        zoom: 13,
         transitionDuration: 500,
       });
       setPopupInfo({

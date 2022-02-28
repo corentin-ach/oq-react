@@ -9,6 +9,11 @@ const styles = {
     left: 0,
     margin: 5,
   },
+  question: {
+    color: 'text.primary',
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
 } as const;
 
 export default styles;
