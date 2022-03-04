@@ -90,7 +90,7 @@ export const darkTheme = createTheme({
 });
 
 export const lightMap = 'mapbox://styles/corentin29/ckw9knz2x404s14pa0wiytqju';
-export const darkMap = 'mapbox://styles/corentin29/cl026x1br000115rzkvrtybgn';
+export const darkMap = 'mapbox://styles/corentin29/cl0clojqn000r14jrnfir6eg0';
 
 export const colors = {
   goodQuality: '#65DEAB',

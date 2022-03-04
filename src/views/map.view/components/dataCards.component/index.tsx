@@ -10,7 +10,6 @@ import MainCard from '../mainCard.component';
 import styles from './styles';
 import { Spot } from '../../../../features/setSpotSlice';
 import { RootState } from '../../../../app/store';
-import QuestionBar from '../questionBar.component';
 
 interface Props {
   selectedSpot: Spot
@@ -57,7 +56,6 @@ const DataCards = (props: Props): ReactElement => {
           {t('translation:mapView.spotCard.stackMessageTitle')}
         </Alert>
       </Snackbar>
-      {selectedSpot.status ? <QuestionBar isDark={isDark} selectedSpot={selectedSpot} /> : null}
 
     </Box>
   );

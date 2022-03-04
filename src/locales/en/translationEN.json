@@ -4,7 +4,6 @@
             "welcomeTitle": "Bienvenue,",
             "title": "Qu'est ce qu'Oavel ?",
             "description": "Une plateforme participative pour éduquer à la protection du littoral et informer sur son état. Cliquez pour en savoir plus.",
-            "signal": "Signaler un phénomène",
             "other": "Autre phénomène"
         },
         "dialogSpot": {
@@ -19,6 +18,9 @@
         "spotCard": {
             "stackMessageTitle": "Merci, signalement réussi !",
             "question": "Confirmez-vous l'alerte en cours ?",
+            "signal": "Signaler un phénomène",
+            "clean": "Arrêter l'alerte en cours",
+            "afterClean": "Merci, ce spot va être mis à jour !",
             "quality": {
                 "goodWater": "Bonne",
                 "badWater": "Mauvaise",

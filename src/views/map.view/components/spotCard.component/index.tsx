@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { ReactElement, useState } from 'react';
 import {
   Box, Typography, Button, Grid,
@@ -22,12 +23,17 @@ const SpotCard = (props: Props): ReactElement => {
   const { t } = useTranslation(['translation']);
   const { selectedSpot, isDark } = props;
   const [open, setOpen] = useState(false);
+  const [cleanButton, setCleanButton] = useState(true);
 
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+  };
+  const submitClean = () => {
+    console.log('clean');
+    setCleanButton(false);
   };
   const spotData = [
     {
@@ -53,7 +59,7 @@ const SpotCard = (props: Props): ReactElement => {
   return (
     <Box
       width="300px"
-      height="220px"
+      height={selectedSpot.status ? '290px' : '220px'}
       sx={{ ...styles.mainCard, bgcolor: !isDark ? 'rgba(255, 255, 255, .70)' : 'rgba(59, 59, 59, .70)', backdropFilter: 'blur(10px)' }}
     >
       <Box sx={styles.headerCard}>
@@ -106,9 +112,33 @@ const SpotCard = (props: Props): ReactElement => {
           onClick={() => handleOpen()}
         >
           <Typography sx={styles.signalTitle}>
-            {selectedSpot.status ? t('translation:mapView.welcomeCard.other') : t('translation:mapView.welcomeCard.signal')}
+            {t('translation:mapView.spotCard.signal')}
           </Typography>
         </Button>
+        {selectedSpot.status && cleanButton ? (
+          <Button
+            size="large"
+            variant="text"
+            sx={styles.button}
+            onClick={() => submitClean()}
+          >
+            <Typography sx={styles.cleanTitle}>
+              {t('translation:mapView.spotCard.clean')}
+            </Typography>
+          </Button>
+        ) : selectedSpot.status && !cleanButton ? (
+          <Button
+            disabled
+            size="large"
+            variant="text"
+            sx={styles.cleanButton}
+            onClick={() => submitClean()}
+          >
+            <Typography sx={styles.afterCleanTitle}>
+              {t('translation:mapView.spotCard.afterClean')}
+            </Typography>
+          </Button>
+        ) : null}
       </Box>
       <ModalSpot mode={open} handleClose={() => handleClose()} selectedSpot={selectedSpot} />
     </Box>

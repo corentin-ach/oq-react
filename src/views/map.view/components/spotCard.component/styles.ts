@@ -1,3 +1,5 @@
+import { colors } from '../../../../styles/theme';
+
 const styles = {
   mainCard: {
     border: 0,
@@ -52,6 +54,21 @@ const styles = {
   headerCard: {
     display: 'flex',
     justifyContent: 'space-between',
+  },
+  cleanTitle: {
+    fontSize: 15,
+    color: colors.goodQuality,
+  },
+  cleanButton: {
+    bgcolor: 'rgba(0,0,0,0)',
+    textTransform: 'none',
+    height: '50px',
+    borderRadius: 2,
+    marginTop: 2,
+  },
+  afterCleanTitle: {
+    fontSize: 15,
+    color: 'text.primary',
   },
 } as const;
 
