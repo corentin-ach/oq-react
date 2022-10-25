@@ -5,6 +5,7 @@ import React, { ReactElement } from 'react';
 import HeaderIcon from '../../assets/header';
 import Icon from '../../assets/icon';
 import { Spot } from '../../features/getSpotsSlice';
+import LocalesButton from '../buttons.component/locales.button';
 import MainButton from '../buttons.component/mainButton.button';
 import ThemeButton from '../buttons.component/themeButton.button';
 import SearchBar from '../searchbar.component';
@@ -53,6 +54,7 @@ const Header = (props: Props): ReactElement => {
             >
               <SearchBar spots={spots} />
               <ThemeButton isDark={!!theme} />
+              <LocalesButton />
               <MainButton onClick={onMainButton} />
             </Grid>
           </Grid>

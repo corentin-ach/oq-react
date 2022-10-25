@@ -1,18 +1,21 @@
 /* eslint-disable no-nested-ternary */
 import React, { ReactElement, useState } from 'react';
 import {
-  Box, Typography, Button, Grid,
+  Box, Typography, Button, Grid, Chip,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import dayjs from 'dayjs';
+import { useDispatch } from 'react-redux';
+import { Check, Circle, PriorityHigh } from '@mui/icons-material';
 import styles from './styles';
 import BottleIcon from '../../../../assets/bottle';
 import RainDropIcon from '../../../../assets/raindrop';
 import SealIcon from '../../../../assets/seal';
-import IndicatorIcon from '../../../../assets/indicator';
 import { Spot } from '../../../../features/setSpotSlice';
 import ModalSpot from '../modalSpot.component';
+import { setVote } from '../../../../features/voteSlice';
+import { colors } from '../../../../styles/theme';
 
 interface Props {
   selectedSpot: Spot
@@ -20,10 +23,11 @@ interface Props {
 }
 
 const SpotCard = (props: Props): ReactElement => {
-  const { t } = useTranslation(['translation']);
+  const { t } = useTranslation(['translationFR']);
   const { selectedSpot, isDark } = props;
   const [open, setOpen] = useState(false);
   const [cleanButton, setCleanButton] = useState(true);
+  const dispatch = useDispatch();
 
   const handleOpen = () => {
     setOpen(true);
@@ -31,9 +35,17 @@ const SpotCard = (props: Props): ReactElement => {
   const handleClose = () => {
     setOpen(false);
   };
+  const cleanVote: any = {
+    id: selectedSpot.id,
+    quality: {
+      water: false,
+      plastic: false,
+      seal: false,
+    },
+  };
   const submitClean = () => {
-    console.log('clean');
     setCleanButton(false);
+    dispatch(setVote(cleanVote));
   };
   const spotData = [
     {
@@ -41,18 +53,21 @@ const SpotCard = (props: Props): ReactElement => {
       icon: <RainDropIcon size={34} />,
       data: !selectedSpot.quality.water ? t('translation:mapView.spotCard.quality.goodWater') : t('translation:mapView.spotCard.quality.badWater'),
       color: !selectedSpot.quality.water ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
+      circle: !selectedSpot.quality.water ? '#65DEAB' : '#F38732',
     },
     {
       id: 2,
       icon: <BottleIcon size={36} />,
       data: !selectedSpot.quality.plastic ? t('translation:mapView.spotCard.quality.goodPlastic') : t('translation:mapView.spotCard.quality.badPlastic'),
       color: !selectedSpot.quality.plastic ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
+      circle: !selectedSpot.quality.plastic ? '#65DEAB' : '#F38732',
     },
     {
       id: 3,
       icon: <SealIcon size={36} />,
       data: !selectedSpot.quality.seal ? t('translation:mapView.spotCard.quality.goodSeal') : t('translation:mapView.spotCard.quality.badSeal'),
       color: !selectedSpot.quality.seal ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
+      circle: !selectedSpot.quality.seal ? '#65DEAB' : '#F38732',
     },
   ];
 
@@ -63,13 +78,19 @@ const SpotCard = (props: Props): ReactElement => {
       sx={{ ...styles.mainCard, bgcolor: !isDark ? 'rgba(255, 255, 255, .70)' : 'rgba(59, 59, 59, .70)', backdropFilter: 'blur(10px)' }}
     >
       <Box sx={styles.headerCard}>
-        <Typography sx={styles.spotTitle}>
+        <Typography variant="h6">
           {selectedSpot.name}
         </Typography>
-        <IndicatorIcon status={!selectedSpot.status ? '#65DEAB' : '#F38732'} size="30" />
+        <Chip
+          size="small"
+          variant="outlined"
+          icon={!selectedSpot.status ? <Check /> : <PriorityHigh />}
+          label={!selectedSpot.status ? 'Ok' : 'Attention'}
+          sx={{ borderColor: !selectedSpot.status ? colors.goodQuality : colors.badQuality }}
+        />
       </Box>
       <Typography sx={styles.timeText}>
-        Dernière alerte le
+        {t('translation:mapView.spotCard.time')}
         {' '}
         {dayjs(selectedSpot.quality.date).format('DD/MM/YY')}
       </Typography>
@@ -99,6 +120,7 @@ const SpotCard = (props: Props): ReactElement => {
               >
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>{data.icon}</Box>
                 <Box sx={styles.dataContainer}>
+                  <Circle sx={{ color: data.circle, fontSize: 10 }} />
                   <Typography sx={styles.dataText}>{data.data}</Typography>
                 </Box>
               </Box>

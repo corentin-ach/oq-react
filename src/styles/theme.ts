@@ -57,6 +57,21 @@ export const lightTheme = createTheme({
       desktop: 1200,
     },
   },
+  components: {
+    MuiTypography: {
+      variants: [
+        {
+          props: { variant: 'h6' },
+          style: {
+            color: '#565656',
+            fontSize: 25,
+            fontWeight: 'bold',
+            textAlign: 'left',
+          },
+        },
+      ],
+    },
+  },
 });
 
 export const darkTheme = createTheme({
@@ -85,6 +100,21 @@ export const darkTheme = createTheme({
       tablet: 640,
       laptop: 1024,
       desktop: 1200,
+    },
+  },
+  components: {
+    MuiTypography: {
+      variants: [
+        {
+          props: { variant: 'h6' },
+          style: {
+            color: 'white',
+            fontSize: 25,
+            fontWeight: 'bold',
+            textAlign: 'left',
+          },
+        },
+      ],
     },
   },
 });

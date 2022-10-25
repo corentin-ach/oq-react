@@ -12,7 +12,7 @@ interface Props {
 }
 
 const MainCard = (props: Props): ReactElement => {
-  const { t } = useTranslation(['translation']);
+  const { t } = useTranslation();
   const { onClick, isDark } = props;
   return (
     <Box
@@ -21,7 +21,7 @@ const MainCard = (props: Props): ReactElement => {
       sx={{ ...styles.mainCard, bgcolor: !isDark ? 'rgba(255, 255, 255, .70)' : 'rgba(59, 59, 59, .70)', backdropFilter: 'blur(10px)' }}
     >
       <RiDropFill color="#5DADEC" size={60} />
-      <Typography sx={styles.welcomeTitle}>
+      <Typography variant="h6">
         {t('translation:mapView.welcomeCard.welcomeTitle')}
       </Typography>
       <motion.div

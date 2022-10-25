@@ -35,7 +35,6 @@ const styles = {
   timeText: {
     color: 'text.primary',
     fontSize: 12,
-    marginLeft: 2,
   },
   button: {
     bgcolor: 'background.paper',
@@ -54,6 +53,7 @@ const styles = {
   headerCard: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   cleanTitle: {
     fontSize: 15,

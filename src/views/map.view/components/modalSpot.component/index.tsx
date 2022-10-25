@@ -31,7 +31,7 @@ interface Vote {
 
 const ModalSpot = (props: Props) => {
   const { mode, handleClose, selectedSpot } = props;
-  const { t } = useTranslation(['translation']);
+  const { t } = useTranslation(['translationFR']);
   const [water, setWater] = useState(false);
   const [plastic, setPlastic] = useState(false);
   const [seal, setSeal] = useState(false);
@@ -113,7 +113,7 @@ const ModalSpot = (props: Props) => {
       onClose={handleClose}
     >
       <Box sx={styles.container}>
-        <Typography sx={styles.title}>
+        <Typography variant="h6" sx={styles.title}>
           {t('translation:mapView.dialogSpot.title')}
         </Typography>
         <Typography sx={styles.description}>

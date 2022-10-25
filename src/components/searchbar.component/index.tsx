@@ -1,5 +1,6 @@
 import { Autocomplete, TextField } from '@mui/material';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Spot } from '../../features/getSpotsSlice';
 import { setSpot } from '../../features/setSpotSlice';
@@ -14,6 +15,7 @@ const SearchBar = (props: Props) => {
   const listSpots = spots.map((spot) => (
     { ...spot, label: spot.name }
   ));
+  const { t } = useTranslation();
 
   const displaySpotOnClick = (value: any) => {
     if (value) {
@@ -39,7 +41,7 @@ const SearchBar = (props: Props) => {
       sx={{ width: '50%' }}
       onChange={(event, value) => displaySpotOnClick(value)}
       // eslint-disable-next-line react/jsx-props-no-spreading
-      renderInput={(params) => <TextField {...params} label="Rechercher une plage" />}
+      renderInput={(params) => <TextField {...params} label={t('translation:mapView.header.searchBar')} />}
     />
   );
 };
