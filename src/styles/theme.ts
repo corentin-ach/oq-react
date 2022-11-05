@@ -119,10 +119,13 @@ export const darkTheme = createTheme({
   },
 });
 
-export const lightMap = 'mapbox://styles/corentin29/ckw9knz2x404s14pa0wiytqju';
+export const lightMap = 'mapbox://styles/corentin29/cl0ckw813000016jpuhd9vn6v';
 export const darkMap = 'mapbox://styles/corentin29/cl0clojqn000r14jrnfir6eg0';
 
 export const colors = {
+  primary: '#5DADEC',
   goodQuality: '#65DEAB',
+  goodQuality2: 'rgb(101, 222, 171,0.9)',
   badQuality: '#F38732',
+  badQuality2: 'rgb(243, 135, 50, 0.5)',
 };

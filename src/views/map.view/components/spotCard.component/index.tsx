@@ -7,15 +7,15 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import dayjs from 'dayjs';
 import { useDispatch } from 'react-redux';
-import { Check, Circle, PriorityHigh } from '@mui/icons-material';
 import styles from './styles';
 import BottleIcon from '../../../../assets/bottle';
 import RainDropIcon from '../../../../assets/raindrop';
 import SealIcon from '../../../../assets/seal';
-import { Spot } from '../../../../features/setSpotSlice';
 import ModalSpot from '../modalSpot.component';
 import { setVote } from '../../../../features/voteSlice';
 import { colors } from '../../../../styles/theme';
+import { Spot } from '../../../../features/getSpotsSlice';
+import computeStatusBySpot from '../../../../functions/status';
 
 interface Props {
   selectedSpot: Spot
@@ -52,22 +52,19 @@ const SpotCard = (props: Props): ReactElement => {
       id: 1,
       icon: <RainDropIcon size={34} />,
       data: !selectedSpot.quality.water ? t('translation:mapView.spotCard.quality.goodWater') : t('translation:mapView.spotCard.quality.badWater'),
-      color: !selectedSpot.quality.water ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
-      circle: !selectedSpot.quality.water ? '#65DEAB' : '#F38732',
+      color: !selectedSpot.quality.water ? colors.goodQuality2 : colors.badQuality2,
     },
     {
       id: 2,
       icon: <BottleIcon size={36} />,
       data: !selectedSpot.quality.plastic ? t('translation:mapView.spotCard.quality.goodPlastic') : t('translation:mapView.spotCard.quality.badPlastic'),
-      color: !selectedSpot.quality.plastic ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
-      circle: !selectedSpot.quality.plastic ? '#65DEAB' : '#F38732',
+      color: !selectedSpot.quality.plastic ? colors.goodQuality2 : colors.badQuality2,
     },
     {
       id: 3,
       icon: <SealIcon size={36} />,
       data: !selectedSpot.quality.seal ? t('translation:mapView.spotCard.quality.goodSeal') : t('translation:mapView.spotCard.quality.badSeal'),
-      color: !selectedSpot.quality.seal ? 'background.paper' : 'rgb(243, 135, 50, 0.3)',
-      circle: !selectedSpot.quality.seal ? '#65DEAB' : '#F38732',
+      color: !selectedSpot.quality.seal ? colors.goodQuality2 : colors.badQuality2,
     },
   ];
 
@@ -75,7 +72,7 @@ const SpotCard = (props: Props): ReactElement => {
     <Box
       width="300px"
       height={selectedSpot.status ? '290px' : '220px'}
-      sx={{ ...styles.mainCard, bgcolor: !isDark ? 'rgba(255, 255, 255, .70)' : 'rgba(59, 59, 59, .70)', backdropFilter: 'blur(10px)' }}
+      sx={{ ...styles.mainCard, bgcolor: !isDark ? 'rgba(255, 255, 255, .8)' : 'rgba(59, 59, 59, .70)', backdropFilter: 'blur(10px)' }}
     >
       <Box sx={styles.headerCard}>
         <Typography variant="h6">
@@ -84,9 +81,7 @@ const SpotCard = (props: Props): ReactElement => {
         <Chip
           size="small"
           variant="outlined"
-          icon={!selectedSpot.status ? <Check /> : <PriorityHigh />}
-          label={!selectedSpot.status ? 'Ok' : 'Attention'}
-          sx={{ borderColor: !selectedSpot.status ? colors.goodQuality : colors.badQuality }}
+          label={computeStatusBySpot(selectedSpot.quality)}
         />
       </Box>
       <Typography sx={styles.timeText}>
@@ -115,12 +110,11 @@ const SpotCard = (props: Props): ReactElement => {
               <Box
                 key={data.id}
                 sx={{
-                  bgcolor: data.color, borderRadius: 2, height: 70, width: 90, paddingTop: 1.5,
+                  bgcolor: 'background.paper', borderRadius: 2, height: 70, width: 90, paddingTop: 1.5, border: `1px solid ${data.color}`,
                 }}
               >
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>{data.icon}</Box>
                 <Box sx={styles.dataContainer}>
-                  <Circle sx={{ color: data.circle, fontSize: 10 }} />
                   <Typography sx={styles.dataText}>{data.data}</Typography>
                 </Box>
               </Box>
@@ -162,7 +156,12 @@ const SpotCard = (props: Props): ReactElement => {
           </Button>
         ) : null}
       </Box>
-      <ModalSpot mode={open} handleClose={() => handleClose()} selectedSpot={selectedSpot} />
+      <ModalSpot
+        isSelectable={false}
+        mode={open}
+        handleClose={() => handleClose()}
+        selectedSpot={selectedSpot}
+      />
     </Box>
   );
 };

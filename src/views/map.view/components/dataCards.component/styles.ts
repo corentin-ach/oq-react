@@ -1,7 +1,7 @@
 const styles = {
   dataCards: {
     display: 'flex',
-    height: '75%',
+    height: '60%',
     flexDirection: 'column',
     // zIndex: 10,
     position: 'absolute',

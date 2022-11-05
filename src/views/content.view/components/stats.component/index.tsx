@@ -1,32 +1,19 @@
 import {
-  Box, Typography, Grid, LinearProgress, linearProgressClasses,
+  Box, Typography, Grid,
 } from '@mui/material';
 import React from 'react';
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
-import { styled } from '@mui/material/styles';
 import AlertIcon from '../../../../assets/alert';
 import RainDropIcon from '../../../../assets/raindrop';
 import styles from '../styles';
 import { Spot } from '../../../../features/getSpotsSlice';
 import computeStats from '../../../../functions/stats';
+import BorderLinearProgress from '../../../../components/linearProgress.component';
 
 interface Props {
   spots: Array<Spot>;
 }
-
-const BorderLinearProgress = styled(LinearProgress)(() => ({
-  height: 15,
-  width: '80%',
-  borderRadius: 10,
-  [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: '#F38732',
-  },
-  [`& .${linearProgressClasses.bar}`]: {
-    borderRadius: 5,
-    backgroundColor: '#65DEAB',
-  },
-}));
 
 const Stats = (props: Props) => {
   const { t } = useTranslation(['translation']);
@@ -53,7 +40,7 @@ const Stats = (props: Props) => {
       subtitle: 'Taux de perturbations en cours',
       data: `${computeStats(spots).warningRate}%`,
       size: 12,
-      icon: <BorderLinearProgress variant="determinate" value={100 - computeStats(spots).warningRate} />,
+      icon: <BorderLinearProgress height={15} variant="determinate" value={100 - computeStats(spots).warningRate} />,
       margin: 5,
     },
   ];

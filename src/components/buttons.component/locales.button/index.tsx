@@ -44,7 +44,6 @@ const LocalesButton = (): ReactElement => {
       check: language.fr ? <CheckIcon sx={{ color: colors.goodQuality }} /> : null,
     },
   ];
-  console.log('🚀 ~ file: index.tsx ~ line 15 ~ LocalesButton ~ language', language);
   return (
     <div>
       <Box sx={{ ...styles.button, marginLeft: 1 }}>

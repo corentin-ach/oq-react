@@ -1,21 +1,7 @@
 /* eslint-disable prefer-destructuring */
 import { createSlice } from '@reduxjs/toolkit';
+import { Spot } from './getSpotsSlice';
 
-type Quality = {
-  water: boolean;
-  plastic: boolean;
-  seal: boolean;
-  date: string;
-}
-
-export type Spot = {
-  id: string;
-  coords: Array<number>;
-  name: string;
-  quality: Quality;
-  status: boolean;
-  bySearch: boolean;
-}
 export interface SpotState {
     spot: Spot,
 }

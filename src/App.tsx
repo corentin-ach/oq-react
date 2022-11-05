@@ -49,7 +49,7 @@ function App() {
             <Header spots={spots} theme={theme} onMainButton={() => { setContentView(true); setValue('2'); }} />
             <MapView
               isDark={theme}
-              onIntroClick={() => { setContentView(true); setValue('1'); }}
+              onIntroClick={() => { setContentView(true); setValue('2'); }}
               spots={spots}
               loading={loading}
             />

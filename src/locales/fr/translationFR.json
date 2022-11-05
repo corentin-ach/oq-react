@@ -3,17 +3,22 @@
         "welcomeCard": {
             "welcomeTitle": "Bienvenue,",
             "title": "Qu'est ce qu'Oavel ?",
-            "description": "Une plateforme participative pour éduquer à la protection du littoral et informer sur son état. Cliquez pour en savoir plus.",
-            "other": "Autre phénomène"
+            "description": "Plateforme participative pour la protection du littoral",
+            "other": "Autre phénomène",
+            "rate": " de perturbation dans cette zone, à "
         },
         "dialogSpot": {
             "cancelButton": "Annuler",
             "sendButton": "Envoyer",
-            "title": "Signaler",
-            "description": "Vous êtes sur le point  de signaler un phénomène que vous voyez ou que vous ressentez sur le spot de {{spotName}}. Merci, votre contribution est importante pour la communauté.",
+            "title": "Signaler un événement",
+            "description": "Vous êtes sur le point  d'alerter sur le spot de {{spotName}}. Merci, votre contribution est importante pour la communauté.",
+            "description2": "Vous êtes sur le point d'alerter, merci pour votre contribution",
             "water": "Mauvaise qualité de l'eau",
             "plastic": "Présence de plastique",
-            "seal": "Animal marin en danger"
+            "seal": "Animal marin en danger",
+            "next": "Suivant",
+            "back": "Retour",
+            "finish": "Terminer"
         },
         "spotCard": {
             "stackMessageTitle": "Merci, signalement réussi !",
@@ -27,7 +32,10 @@
                 "goodPlastic": "Propre",
                 "badPlastic": "Présence",
                 "goodSeal": "Aucun",
-                "badSeal": "Présence"
+                "badSeal": "Présence",
+                "statusGood": "Excellent",
+                "statusSoso": "Moyen",
+                "statusBad": "Mauvais"
             },
             "time": "Dernière mise à jour le"
         },

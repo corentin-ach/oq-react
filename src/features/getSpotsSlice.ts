@@ -13,6 +13,7 @@ export type Spot = {
     quality: Quality
     id: string
     status: boolean
+    bySearch: boolean
 }
 
 type AllSpot = {

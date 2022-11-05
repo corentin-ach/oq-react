@@ -14,6 +14,7 @@ import CircularLoader from '../../components/circularLoader.component';
 import { darkMap, lightMap } from '../../styles/theme';
 import { clusterLayer, clusterCountLayer, unclusteredPointLayer } from './components/layers.component';
 import { setSpot } from '../../features/setSpotSlice';
+import ReportButton from './components/reportButton.component';
 
 interface Props {
   isDark: boolean
@@ -180,8 +181,9 @@ const MapView = (props: Props): ReactElement => {
         </Popup>
         )}
       </ReactMapGL>
-      <DataCards selectedSpot={spot} onClick={onIntroClick} isDark={isDark} />
+      <DataCards spots={spots} selectedSpot={spot} onClick={onIntroClick} isDark={isDark} />
       {loading ? <CircularLoader /> : null}
+      <ReportButton spots={spots} />
     </div>
   );
 };

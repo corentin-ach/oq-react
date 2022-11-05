@@ -16,7 +16,7 @@ export const computeStats = (spots: Array<Spot>) => {
   const stat: Stats = {
     numberSpot: spots.length,
     numberWarningStatus: warning.length,
-    warningRate: Number((warning.length / spots.length).toFixed(2)) * 100,
+    warningRate: warning.length ? Number((warning.length / spots.length).toFixed(2)) * 100 : 0,
   };
   return stat;
 };

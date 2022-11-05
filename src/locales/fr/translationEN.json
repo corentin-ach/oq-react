@@ -3,17 +3,22 @@
         "welcomeCard": {
             "welcomeTitle": "Welcome,",
             "title": "What is Oavel?",
-            "description": "A community service to educate about coastline protection and to give informations. Click here to learn more.",
-            "other": "Other event"
+            "description": "A community service for coastline protection",
+            "other": "Other event",
+            "rate": " of perturbation in this area, at "
         },
         "dialogSpot": {
             "cancelButton": "Cancel",
             "sendButton": "Send",
             "title": "Signal",
             "description": "You are going to report an event you have seen or felt on the spot {{spotName}}. Thanks, your contribution is important for the community.",
+            "description2": "You are going to report an event. Thanks for your contribution.",
             "water": "Bad water quality",
             "plastic": "Plastic presence",
-            "seal": "Animal in danger"
+            "seal": "Animal in danger",
+            "next": "Next",
+            "back": "Back",
+            "finish": "Finish"
         },
         "spotCard": {
             "stackMessageTitle": "Thanks, the report has succeeded!",
@@ -27,7 +32,10 @@
                 "goodPlastic": "Clean",
                 "badPlastic": "Presence",
                 "goodSeal": "None",
-                "badSeal": "Presence"
+                "badSeal": "Presence",
+                "statusGood": "Excellent",
+                "statusSoso": "Not good",
+                "statusBad": "Bad"
             },
             "time": "Last update on"
         },

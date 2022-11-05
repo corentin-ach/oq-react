@@ -8,19 +8,21 @@ import { useTranslation } from 'react-i18next';
 import SpotCard from '../spotCard.component';
 import MainCard from '../mainCard.component';
 import styles from './styles';
-import { Spot } from '../../../../features/setSpotSlice';
+import { Spot } from '../../../../features/getSpotsSlice';
+
 import { RootState } from '../../../../app/store';
 
 interface Props {
   selectedSpot: Spot
   onClick: () => void;
   isDark: boolean;
+  spots: Array<Spot>
 }
 
 const DataCards = (props: Props): ReactElement => {
   const { t } = useTranslation(['translation']);
   const {
-    selectedSpot, onClick, isDark,
+    selectedSpot, onClick, isDark, spots,
   } = props;
   const { loading } = useSelector((state: RootState) => state.vote);
   const [alert, setAlert] = useState(false);
@@ -34,7 +36,7 @@ const DataCards = (props: Props): ReactElement => {
   }, [loading]);
   return (
     <Box sx={styles.dataCards}>
-      <MainCard onClick={onClick} isDark={isDark} />
+      <MainCard spots={spots} onClick={onClick} isDark={isDark} />
 
       {selectedSpot.id ? (
         <motion.div

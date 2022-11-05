@@ -8,7 +8,7 @@ const styles = {
     alignContent: 'flex-start',
     display: 'flex',
     flexDirection: 'column',
-    marginTop: 5,
+    marginTop: 4,
   },
   spotTitle: {
     color: 'text.primary',
@@ -28,7 +28,7 @@ const styles = {
     alignItems: 'center',
   },
   dataText: {
-    color: 'text.primary',
+    color: 'white',
     fontSize: 12,
     marginLeft: 0.4,
   },
