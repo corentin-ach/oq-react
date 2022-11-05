@@ -1,21 +1,27 @@
-import { AppBar, Toolbar, Grid } from '@mui/material';
-import { Box } from '@mui/system';
+import {
+  AppBar, Toolbar, Grid, Box,
+} from '@mui/material';
 import React, { ReactElement } from 'react';
 import HeaderIcon from '../../assets/header';
 import Icon from '../../assets/icon';
-import LocationButton from '../buttons.component/locationButton.button';
+import { Spot } from '../../features/getSpotsSlice';
+import LocalesButton from '../buttons.component/locales.button';
 import MainButton from '../buttons.component/mainButton.button';
 import ThemeButton from '../buttons.component/themeButton.button';
+import SearchBar from '../searchbar.component';
 
 interface Props {
     theme: boolean
     onMainButton: () => void;
+    spots: Array<Spot>;
 }
 
 const Header = (props: Props): ReactElement => {
-  const { theme, onMainButton } = props;
+  const { theme, onMainButton, spots } = props;
   return (
-    <AppBar position="fixed">
+    <AppBar
+      position="fixed"
+    >
       <Box sx={{ flexGrow: 1 }}>
         <Toolbar sx={{ bgcolor: 'background.default' }}>
           <Grid container alignItems="center">
@@ -23,29 +29,32 @@ const Header = (props: Props): ReactElement => {
               item
               xs={2}
               sm={4}
-              md={1}
+              md={3}
             />
             <Grid
               item
               xs={2}
               sm={6}
-              md={10}
+              md={6}
               sx={{
                 display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
               }}
             >
               <Icon />
-              <HeaderIcon isDark={!!theme} />
+              <HeaderIcon isDark={!!theme} size={60} />
             </Grid>
             <Grid
               item
               xs={2}
               sm={2}
-              md={1}
-              sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'end' }}
+              md={3}
+              sx={{
+                display: 'flex', flexDirection: 'row', justifyContent: 'end', alignItems: 'center',
+              }}
             >
-              <LocationButton />
+              <SearchBar spots={spots} />
               <ThemeButton isDark={!!theme} />
+              <LocalesButton />
               <MainButton onClick={onMainButton} />
             </Grid>
           </Grid>

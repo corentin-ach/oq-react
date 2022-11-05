@@ -1,17 +1,20 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import translation from './en/translationEN.json';
+import translationFR from './fr/translationFR.json';
+import translationEN from './fr/translationEN.json';
 
 const resources = {
+  fr: {
+    translation: translationFR,
+  },
   en: {
-    translation,
+    translation: translationEN,
   },
 } as const;
 
 i18n.use(initReactI18next).init({
-  lng: 'en',
-  ns: ['translation'],
+  lng: 'fr',
   resources,
 });
 
-export default resources;
+export default i18n;

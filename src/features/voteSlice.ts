@@ -1,9 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import dayjs from 'dayjs';
 
 type Quality = {
     water: boolean,
     plastic: boolean,
     seal: boolean,
+    date: string,
 }
 
 export type Vote = {
@@ -18,6 +20,7 @@ const initialState: Vote = {
     water: false,
     plastic: false,
     seal: false,
+    date: '',
   },
   loading: false,
 };
@@ -33,7 +36,7 @@ export const setVote = createAsyncThunk(
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ quality: spot.quality }),
+      body: JSON.stringify({ quality: { ...spot.quality, date: dayjs(new Date()).format('YYYY-MM-DD') } }),
     }).then((response) => response.json());
     return res;
   },
@@ -54,6 +57,7 @@ export const voteSlice = createSlice({
           state.quality.water = payload.water;
           state.quality.plastic = payload.plastic;
           state.quality.seal = payload.seal;
+          state.quality.date = payload.date;
         },
       )
       .addCase(

@@ -1,34 +1,24 @@
+/* eslint-disable prefer-destructuring */
 import { createSlice } from '@reduxjs/toolkit';
-
-type Quality = {
-  status: boolean;
-  water: boolean;
-  plastic: boolean;
-  seal: boolean;
-}
-
-export type Spot = {
-  id: string,
-  name: string;
-  quality: Quality;
-  status: boolean;
-}
+import { Spot } from './getSpotsSlice';
 
 export interface SpotState {
-    spot: Spot
+    spot: Spot,
 }
 
 const initialState: SpotState = {
   spot: {
     id: '',
+    coords: [0, 0],
     name: 'La Milady',
     quality: {
-      status: false,
       water: false,
       plastic: false,
       seal: false,
+      date: '',
     },
     status: false,
+    bySearch: false,
   },
 };
 
@@ -38,12 +28,14 @@ export const showSpotSlice = createSlice({
   reducers: {
     setSpot: (state, marker) => {
       state.spot.id = marker.payload.id;
+      state.spot.coords = marker.payload.coords;
       state.spot.name = marker.payload.name;
-      state.spot.quality.status = marker.payload.quality.status;
-      state.spot.quality.water = marker.payload.quality.water;
-      state.spot.quality.plastic = marker.payload.quality.plastic;
-      state.spot.quality.seal = marker.payload.quality.seal;
+      state.spot.quality.water = marker.payload.water;
+      state.spot.quality.plastic = marker.payload.plastic;
+      state.spot.quality.seal = marker.payload.seal;
+      state.spot.quality.date = marker.payload.date;
       state.spot.status = marker.payload.status;
+      state.spot.bySearch = marker.payload.bySearch;
     },
   },
 });

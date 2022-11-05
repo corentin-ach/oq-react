@@ -1,39 +1,50 @@
-import { Box, Typography, Grid } from '@mui/material';
+import {
+  Box, Typography, Grid,
+} from '@mui/material';
 import React from 'react';
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 import AlertIcon from '../../../../assets/alert';
 import RainDropIcon from '../../../../assets/raindrop';
-import styles from './styles';
+import styles from '../styles';
+import { Spot } from '../../../../features/getSpotsSlice';
+import computeStats from '../../../../functions/stats';
+import BorderLinearProgress from '../../../../components/linearProgress.component';
 
-const Stats = () => {
+interface Props {
+  spots: Array<Spot>;
+}
+
+const Stats = (props: Props) => {
   const { t } = useTranslation(['translation']);
+  const { spots } = props;
   const statData: any = [
     {
       id: 1,
-      subtitle: 'Référencés',
-      data: 45,
-      dataSubtitle: 'Spots',
+      subtitle: 'Spots référencés',
+      data: computeStats(spots).numberSpot,
       size: 6,
       icon: <RainDropIcon size={50} />,
+      margin: 2,
     },
     {
       id: 2,
-      subtitle: 'En cours',
-      data: 3,
-      dataSubtitle: 'Problèmes',
+      subtitle: 'Signalements',
+      data: computeStats(spots).numberWarningStatus,
       size: 6,
       icon: <AlertIcon size={50} />,
+      margin: 2,
     },
     {
       id: 3,
-      subtitle: 'Taux de perturbations',
-      data: null,
-      dataSubtitle: null,
+      subtitle: 'Taux de perturbations en cours',
+      data: `${computeStats(spots).warningRate}%`,
       size: 12,
-      icon: null,
+      icon: <BorderLinearProgress height={15} variant="determinate" value={100 - computeStats(spots).warningRate} />,
+      margin: 5,
     },
   ];
+
   return (
     <Box>
       <Typography sx={styles.statsTitle}>
@@ -42,26 +53,26 @@ const Stats = () => {
       <Typography sx={styles.time}>
         {t('translation:contentView.stats.time', { day: dayjs().locale('fr').format('D MMMM YYYY') })}
       </Typography>
-      <Grid container sx={{ justifyContent: 'space-around' }} spacing={3}>
+      <Grid container spacing={3}>
         {statData.map((stat: any) => (
           <Grid item sm={stat.size} key={stat.id}>
             <Box
               sx={{
-                bgcolor: 'background.paper', borderRadius: 2, height: 150, paddingTop: 1.5, justifyContent: 'center',
+                bgcolor: 'background.paper', borderRadius: 2, height: 150, paddingTop: 1.5,
               }}
             >
-              <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>
+              <Box sx={{
+                display: 'flex', justifyContent: 'center', marginTop: stat.margin,
+              }}
+              >
                 {stat.icon}
               </Box>
               <Box sx={{
-                display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+                display: 'flex', flexDirection: 'row', alignItems: 'end', justifyContent: 'center',
               }}
               >
                 <Typography sx={styles.data}>
                   {stat.data}
-                </Typography>
-                <Typography sx={styles.dataSubtitle}>
-                  {stat.dataSubtitle}
                 </Typography>
               </Box>
               <Typography sx={styles.subtitle}>

@@ -13,7 +13,7 @@ const ThemeButton = (props: Props): ReactElement => {
   const dispatch = useDispatch();
   const { isDark } = props;
   return (
-    <Box sx={styles.button}>
+    <Box sx={{ ...styles.button, marginLeft: 1 }}>
       <IconButton onClick={() => dispatch(toggleTheme())} sx={{ bgcolor: 'background.default' }}>
         {isDark ? <MdOutlineWbSunny size={32} color="#FAD826" /> : <MdNightsStay size={32} color="#FAD826" />}
       </IconButton>

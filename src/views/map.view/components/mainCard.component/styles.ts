@@ -1,6 +1,5 @@
 const styles = {
   mainCard: {
-    bgcolor: 'background.default',
     borderRadius: 2,
     padding: 2,
     alignContent: 'flex-start',
@@ -25,24 +24,25 @@ const styles = {
   },
   name: {
     color: 'text.primary',
-    fontSize: 15,
+    fontSize: 13,
     fontWeight: 'bold',
     textAlign: 'left',
-    marginLeft: 2,
-    marginRight: 2,
+    marginBottom: 1,
   },
   description: {
     color: 'text.primary',
     fontSize: 12,
     fontWeight: 'normal',
     textAlign: 'left',
-    marginLeft: 2,
     marginRight: 2,
   },
   helloIcon: {
-    marginLeft: 2,
+    marginLeft: 1,
   },
-
+  rate: {
+    marginLeft: 2,
+    marginRight: 2,
+  },
 } as const;
 
 export default styles;

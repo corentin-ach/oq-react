@@ -8,17 +8,22 @@ import { useTranslation } from 'react-i18next';
 import SpotCard from '../spotCard.component';
 import MainCard from '../mainCard.component';
 import styles from './styles';
-import { Spot } from '../../../../features/setSpotSlice';
+import { Spot } from '../../../../features/getSpotsSlice';
+
 import { RootState } from '../../../../app/store';
 
 interface Props {
   selectedSpot: Spot
   onClick: () => void;
+  isDark: boolean;
+  spots: Array<Spot>
 }
 
 const DataCards = (props: Props): ReactElement => {
   const { t } = useTranslation(['translation']);
-  const { selectedSpot, onClick } = props;
+  const {
+    selectedSpot, onClick, isDark, spots,
+  } = props;
   const { loading } = useSelector((state: RootState) => state.vote);
   const [alert, setAlert] = useState(false);
   // eslint-disable-next-line react/jsx-props-no-spreading
@@ -31,7 +36,8 @@ const DataCards = (props: Props): ReactElement => {
   }, [loading]);
   return (
     <Box sx={styles.dataCards}>
-      <MainCard onClick={onClick} />
+      <MainCard spots={spots} onClick={onClick} isDark={isDark} />
+
       {selectedSpot.id ? (
         <motion.div
           animate={{ translateX: 400 }}
@@ -39,7 +45,7 @@ const DataCards = (props: Props): ReactElement => {
           initial="hidden"
           variants={{ hidden: { x: -400 } }}
         >
-          <SpotCard selectedSpot={selectedSpot} />
+          <SpotCard selectedSpot={selectedSpot} isDark={isDark} />
         </motion.div>
       ) : null}
       <Snackbar
@@ -49,11 +55,17 @@ const DataCards = (props: Props): ReactElement => {
         TransitionComponent={Transition}
       >
         <Alert severity="success" onClose={() => setAlert(false)} sx={{ width: '100%' }}>
-          {t('translation:mapView.spotCard.stackMessage')}
+          {t('translation:mapView.spotCard.stackMessageTitle')}
         </Alert>
       </Snackbar>
+
     </Box>
   );
 };
 
 export default DataCards;
+/*
+rajouter condition : si le vote a eu lieu alors QuestionBar ne doit pas réapparaître
+regarder dans le store du voteSlice avec l'id du spot
+
+*/

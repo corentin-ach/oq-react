@@ -4,13 +4,12 @@ const styles = {
     fontSize: 25,
     fontWeight: 'bold',
     textAlign: 'left',
-    marginBottom: 2,
+
   },
   description: {
     color: 'text.primary',
     fontSize: 12,
     textAlign: 'left',
-    marginBottom: 2,
   },
   optionTitle: {
     color: 'text.primary',
@@ -18,7 +17,6 @@ const styles = {
   },
   container: {
     bgcolor: 'background.default',
-    padding: 4,
     alignContent: 'flex-start',
     display: 'flex',
     flexDirection: 'column',

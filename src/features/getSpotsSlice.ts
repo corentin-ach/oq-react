@@ -1,10 +1,19 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+export type Quality = {
+  water: boolean;
+  plastic: boolean;
+  seal: boolean;
+  date: string;
+}
+
 export type Spot = {
     coords: Array<number>,
     name: string
-    quality: number
+    quality: Quality
     id: string
+    status: boolean
+    bySearch: boolean
 }
 
 type AllSpot = {
