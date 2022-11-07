@@ -29,13 +29,13 @@ const Header = (props: Props): ReactElement => {
               item
               xs={2}
               sm={4}
-              md={3}
+              md={4}
             />
             <Grid
               item
               xs={2}
               sm={6}
-              md={6}
+              md={4}
               sx={{
                 display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
               }}
@@ -47,7 +47,7 @@ const Header = (props: Props): ReactElement => {
               item
               xs={2}
               sm={2}
-              md={3}
+              md={4}
               sx={{
                 display: 'flex', flexDirection: 'row', justifyContent: 'end', alignItems: 'center',
               }}

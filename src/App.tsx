@@ -50,6 +50,7 @@ function App() {
             <MapView
               isDark={theme}
               onIntroClick={() => { setContentView(true); setValue('2'); }}
+              openSidebar={() => { setContentView(true); setValue('1'); }}
               spots={spots}
               loading={loading}
             />

@@ -22,7 +22,13 @@ const ReportButton = (props: Props) => {
     <Box>
       <Fab
         sx={{
-          bgcolor: colors.badQuality, position: 'absolute', bottom: 60, right: 10,
+          bgcolor: colors.badQuality,
+          position: 'absolute',
+          bottom: 60,
+          right: 10,
+          '&.MuiButtonBase-root:hover': {
+            bgcolor: colors.badQuality,
+          },
         }}
         onClick={() => handleOpen()}
       >

@@ -103,8 +103,7 @@ const ModalSpot = (props: Props) => {
       step: 0,
       title:
   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-    <Typography sx={{ fontWeight: 'bold' }}>Spot concerné</Typography>
-    <Typography sx={{ margin: 1, p: 1 }}>{ activeStep !== 0 ? spot?.name : null}</Typography>
+    <Typography sx={{ fontWeight: 'bold' }}>{activeStep <= 0 ? t('translation:mapView.dialogSpot.spotConcerned') : spot?.name}</Typography>
   </Box>,
       action: spots ? <SearchBar spots={spots} /> : null,
       display: isSelectable,
@@ -113,25 +112,28 @@ const ModalSpot = (props: Props) => {
       step: 1,
       title:
   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-    <Typography sx={{ fontWeight: 'bold' }}>Type dalerte</Typography>
-    <Box sx={{
-      borderRadius: '5px', margin: 1, p: 1,
-    }}
-    >
-      {selection.water
-        ? <Chip sx={{ color: 'text.primary', pl: 1, m: 0.4 }} color="warning" variant="outlined" icon={<RainDropIcon size={20} />} label={spotData[0].name} /> : null}
-      {selection.plastic
-        ? <Chip sx={{ color: 'text.primary', pl: 1, m: 0.4 }} color="warning" variant="outlined" icon={<BottleIcon size={20} />} label={spotData[1].name} /> : null}
-      {selection.seal
-        ? <Chip sx={{ color: 'text.primary', pl: 1, m: 0.4 }} color="warning" variant="outlined" icon={<SealIcon size={20} />} label={spotData[2].name} /> : null}
-    </Box>
+    <Typography sx={{ fontWeight: 'bold' }}>{t('translation:mapView.dialogSpot.alertType')}</Typography>
+    <>
+      <Box sx={{
+        borderRadius: '5px', margin: 1, p: 1,
+      }}
+      >
+        {selection.water
+          ? <Chip sx={{ color: 'text.primary', m: 0.4 }} color="warning" variant="outlined" icon={<RainDropIcon size={20} />} label={spotData[0].name} /> : null}
+        {selection.plastic
+          ? <Chip sx={{ color: 'text.primary', m: 0.4 }} color="warning" variant="outlined" icon={<BottleIcon size={20} />} label={spotData[1].name} /> : null}
+        {selection.seal
+          ? <Chip sx={{ color: 'text.primary', m: 0.4 }} color="warning" variant="outlined" icon={<SealIcon size={20} />} label={spotData[2].name} /> : null}
+      </Box>
+
+    </>
   </Box>,
       action: <CustomList allData={spotData} />,
       display: true,
     },
     {
       step: 2,
-      title: <Typography sx={{ fontWeight: 'bold' }}>Observations</Typography>,
+      title: <Typography sx={{ fontWeight: 'bold' }}>{t('translation:mapView.dialogSpot.observations')}</Typography>,
       action: <TextField fullWidth multiline maxRows={3} placeholder="Souhaitez-vous ajouter une note ?" />,
       display: true,
     },

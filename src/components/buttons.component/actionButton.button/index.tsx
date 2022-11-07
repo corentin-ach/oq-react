@@ -4,18 +4,20 @@ import React, { ReactElement } from 'react';
 
 interface Props {
     title: ReactElement | string;
-    onClick: () => void;
+    onClick?: () => void;
     isDisabled: boolean;
     sx?: SxProps<Theme>;
     fullWidth: boolean;
+    href?: string
 }
 
 const ActionButton = (props: Props) => {
   const {
-    title, onClick, isDisabled, sx, fullWidth,
+    title, onClick, isDisabled, sx, fullWidth, href,
   } = props;
   return (
     <Button
+      href={href}
       disabled={isDisabled}
       size="large"
       fullWidth={fullWidth}

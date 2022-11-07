@@ -47,7 +47,7 @@ const Stats = (props: Props) => {
 
   return (
     <Box>
-      <Typography sx={styles.statsTitle}>
+      <Typography variant="h6">
         Statistiques
       </Typography>
       <Typography sx={styles.time}>

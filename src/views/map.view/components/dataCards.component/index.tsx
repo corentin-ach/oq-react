@@ -47,7 +47,16 @@ const DataCards = (props: Props): ReactElement => {
         >
           <SpotCard selectedSpot={selectedSpot} isDark={isDark} />
         </motion.div>
-      ) : null}
+      ) : (
+        <motion.div
+          animate={{ translateX: -400 }}
+          transition={{ duration: 0.3 }}
+          initial="hidden"
+          variants={{ hidden: { x: -400 } }}
+        >
+          <SpotCard selectedSpot={selectedSpot} isDark={isDark} />
+        </motion.div>
+      )}
       <Snackbar
         open={alert}
         autoHideDuration={6000}

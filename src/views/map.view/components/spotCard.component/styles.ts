@@ -28,7 +28,7 @@ const styles = {
     alignItems: 'center',
   },
   dataText: {
-    color: 'white',
+    color: 'text.primary',
     fontSize: 12,
     marginLeft: 0.4,
   },

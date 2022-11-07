@@ -13,7 +13,7 @@ const resources = {
 } as const;
 
 i18n.use(initReactI18next).init({
-  lng: 'fr',
+  lng: 'en',
   resources,
 });
 

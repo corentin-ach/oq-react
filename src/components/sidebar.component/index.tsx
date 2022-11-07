@@ -16,8 +16,7 @@ const SideBar = (props: Props): ReactElement => {
       onClose={onClose}
     >
       <Box sx={{
-        width: 400,
-        height: '100%',
+        width: '480px',
         bgcolor: 'background.default',
       }}
       >
