@@ -53,9 +53,9 @@ const ContentView = (props: Props): ReactElement => {
         </DrawerHeader>
         <Box sx={{
           width: 380,
-          height: '200%',
+          height: '450%',
           bgcolor: 'background.default',
-          padding: 2,
+          padding: 1,
         }}
         >
           <TabPanel value="1">

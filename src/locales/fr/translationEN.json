@@ -18,7 +18,10 @@
             "seal": "Animal in danger",
             "next": "Next",
             "back": "Back",
-            "finish": "Finish"
+            "finish": "Finish",
+            "spotConcerned": "Spot",
+            "alertType": "Alert type",
+            "observations": "Observations"
         },
         "spotCard": {
             "stackMessageTitle": "Thanks, the report has succeeded!",
@@ -48,25 +51,7 @@
             "time": "Last update on {{day}}"
         },
         "about": {
-            "intro": "Oavel est une plateforme participative qui vise à alerter des phénomènes de pollution sur le littoral breton. Chacun est libre de contribuer au partage et à l'exactitude des informations. Les pollutions peuvent être visuelles comme simplement ressenties. Elles peuvent concerner la qualité de l'eau comme une situation anormale, tel qu'un animal échoué ou des déchets de plastique.",
-            "p1": "Sur Oavel vous pouvez donc signaler et visualiser l'état d'une plage, sur 3 indicateurs (eau, plastique, échouage). Votre confiante participation contribue à rendre notre littoral accessible, propre, accueuillant, et à garder une trace de son état au fil du temps",
-            "title": "Rendre accessible l'état de nos littoraux",
-            "buttonLink": "Learn more",
-            "indicatorTitle": "3 main indicators"
-        },
-        "indicators": {
-            "water": {
-                "title": "Water quality",
-                "description": "Si l'eau du spot présente des signes de pollution bactérienne, notamment par sa couleur ou une odeur non naturelle, alors il est préférable de signaler une possible mauvaise qualité de l'eau. Des cas d'infection reconnus ou l'intervention de l'ARS peuvent également soutenir la fiabilité de cet indicateur."
-            },
-            "plastic": {
-                "title": "Plastic presence",
-                "description": "Il arrive que certaines plages se retrouvent polluées par des déchets plastiques. Les grandes marées peuvent être à l'origine de ces déchets, qui sont parfois largement visibles à l'oeil nu mais parfois microscopiques. Cet indicateur permet donc de prévenir ces risques pour la santé et l'environnement."
-            },
-            "seal": {
-                "title": "Stranded animal",
-                "description": "Un phoque, un dauphin, un requin, un oiseau... nombreux peuvent être ces animaux qui s'échouent ou qui sont en difficulté sur le littoral. Cet indicateur vise à signaler la présence de ces animaux et à les secourir dans les meilleurs délais."
-            }
+            "me": "Hi! I'm Corentin, a french software engineer, deeply passionated by surf, ocean and its issues. Thank you for considering my work and welcome!"
         },
         "tab": {
             "stats": "Statistics",

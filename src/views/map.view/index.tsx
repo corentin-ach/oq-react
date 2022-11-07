@@ -15,17 +15,19 @@ import { darkMap, lightMap } from '../../styles/theme';
 import { clusterLayer, clusterCountLayer, unclusteredPointLayer } from './components/layers.component';
 import { setSpot } from '../../features/setSpotSlice';
 import ReportButton from './components/reportButton.component';
+import InfoButton from './components/infoButton.component';
 
 interface Props {
   isDark: boolean
   onIntroClick: () => void;
   spots: Array<Spot>;
   loading: boolean;
+  openSidebar: () => void;
 }
 
 const MapView = (props: Props): ReactElement => {
   const {
-    isDark, onIntroClick, spots, loading,
+    isDark, onIntroClick, spots, loading, openSidebar,
   } = props;
   const dispatch = useDispatch();
   const [markers, setMarkers]: any = useState({});
@@ -117,7 +119,21 @@ const MapView = (props: Props): ReactElement => {
         lngLat: feature.geometry.coordinates,
         text: feature.properties.name,
       });
-    } else return null;
+    } else {
+      dispatch(setSpot({
+        id: '',
+        coords: [0, 0],
+        name: 'La Milady',
+        quality: {
+          water: false,
+          plastic: false,
+          seal: false,
+          date: '',
+        },
+        status: false,
+        bySearch: false,
+      }));
+    }
     return null;
   };
 
@@ -184,6 +200,7 @@ const MapView = (props: Props): ReactElement => {
       <DataCards spots={spots} selectedSpot={spot} onClick={onIntroClick} isDark={isDark} />
       {loading ? <CircularLoader /> : null}
       <ReportButton spots={spots} />
+      <InfoButton openSidebar={openSidebar} />
     </div>
   );
 };

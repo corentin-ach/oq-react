@@ -1,39 +1,59 @@
-import { Box, Typography, Button } from '@mui/material';
-import React from 'react';
+/* eslint-disable react/no-children-prop */
+import {
+  Avatar, Box, Grid, Typography,
+} from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import EarthIcon from '../../../../assets/earth';
-import Indicators from '../../../../components/indicators.component';
-import styles from '../styles';
+import ReactMarkdown from 'react-markdown';
+import ActionButton from '../../../../components/buttons.component/actionButton.button';
+import README from '../../../../locales/fr/oavel.md';
+import { colors } from '../../../../styles/theme';
 
 const About = () => {
-  const { t } = useTranslation(['translation']);
+  const [content, setContent] = useState('');
+  const { t } = useTranslation();
+  useEffect(() => {
+    fetch(README)
+      .then((res) => res.text())
+      .then((text) => setContent(text));
+  }, []);
+
+  const links = {
+    avatar: 'https://avatars.githubusercontent.com/u/34914748?v=4',
+    href: 'https://www.linkedin.com/in/corentin-ach-0948b71b1/?locale=en_US',
+  };
 
   return (
-    <Box sx={{ height: '100%' }}>
-      <Typography variant="h5" fontWeight="bold" marginBottom="20px">
-        {t('translation:contentView.about.title')}
-      </Typography>
-      <Typography>
-        {t('translation:contentView.about.intro')}
-      </Typography>
-      <EarthIcon size={350} />
-      <Typography>
-        {t('translation:contentView.about.p1')}
-      </Typography>
-      <Button
-        size="large"
-        variant="outlined"
-        sx={styles.button}
+    <Grid container>
+      <Typography variant="h6">Auteur</Typography>
+      <Grid
+        container
+        sx={{
+          bgcolor: 'background.paper', borderRadius: 2, p: 2, display: 'flex', alignItems: 'center', marginBottom: 1,
+        }}
       >
-        <Typography>
-          {t('translation:contentView.about.buttonLink')}
-        </Typography>
-      </Button>
-      <Typography variant="h5" fontWeight="bold" marginBottom="20px" marginTop="20px">
-        {t('translation:contentView.about.indicatorTitle')}
-      </Typography>
-      <Indicators />
-    </Box>
+        <Grid item sm={3} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Avatar
+            src={links.avatar}
+            sx={{ width: 60, height: 60 }}
+          />
+        </Grid>
+        <Grid item sm={9} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Typography variant="body2">{t('translation:contentView.about.me')}</Typography>
+        </Grid>
+      </Grid>
+      <ActionButton
+        sx={{ bgcolor: colors.primary, color: 'white' }}
+        href={links.href}
+        fullWidth
+        title="Linkedin"
+        isDisabled={false}
+      />
+      <Typography variant="h6">Oavel</Typography>
+      <Box sx={{ bgcolor: 'background.paper', borderRadius: 2, p: 2 }}>
+        <ReactMarkdown children={content} />
+      </Box>
+    </Grid>
   );
 };
 
