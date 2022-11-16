@@ -16,13 +16,14 @@ interface Props {
   selectedSpot: Spot
   onClick: () => void;
   isDark: boolean;
-  spots: Array<Spot>
+  spots: Array<Spot>;
+  showInfoSpot: () => void;
 }
 
 const DataCards = (props: Props): ReactElement => {
   const { t } = useTranslation(['translation']);
   const {
-    selectedSpot, onClick, isDark, spots,
+    selectedSpot, onClick, isDark, spots, showInfoSpot,
   } = props;
   const { loading } = useSelector((state: RootState) => state.vote);
   const [alert, setAlert] = useState(false);
@@ -45,7 +46,12 @@ const DataCards = (props: Props): ReactElement => {
           initial="hidden"
           variants={{ hidden: { x: -400 } }}
         >
-          <SpotCard selectedSpot={selectedSpot} isDark={isDark} />
+          <SpotCard
+            showInfoSpot={() => showInfoSpot()}
+            selectedSpot={selectedSpot}
+            isDark={isDark}
+            isExpandedCard={false}
+          />
         </motion.div>
       ) : (
         <motion.div
@@ -54,7 +60,12 @@ const DataCards = (props: Props): ReactElement => {
           initial="hidden"
           variants={{ hidden: { x: -400 } }}
         >
-          <SpotCard selectedSpot={selectedSpot} isDark={isDark} />
+          <SpotCard
+            showInfoSpot={() => showInfoSpot()}
+            selectedSpot={selectedSpot}
+            isDark={isDark}
+            isExpandedCard={false}
+          />
         </motion.div>
       )}
       <Snackbar

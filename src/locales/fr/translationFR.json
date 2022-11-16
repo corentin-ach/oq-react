@@ -48,7 +48,10 @@
     }, 
     "contentView": {
         "stats": {
-            "time": "Dernière mise à jour le {{day}}"
+            "time": "Dernière mise à jour le {{day}}",
+            "spots": "Spots référencés",
+            "reports": "Signalements",
+            "ratio": "Taux de perturbations en cours"
         },
         "about": {
             "me": "Salut ! Je suis Corentin, un ingénieur front-end, passionné par le surf, l'océan et ses problématiques. Merci pour votre attention à mon travail et bienvenue !"

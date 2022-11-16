@@ -21,7 +21,7 @@ const Stats = (props: Props) => {
   const statData: any = [
     {
       id: 1,
-      subtitle: 'Spots référencés',
+      subtitle: t('translation:contentView.stats.spots'),
       data: computeStats(spots).numberSpot,
       size: 6,
       icon: <RainDropIcon size={50} />,
@@ -29,7 +29,7 @@ const Stats = (props: Props) => {
     },
     {
       id: 2,
-      subtitle: 'Signalements',
+      subtitle: t('translation:contentView.stats.reports'),
       data: computeStats(spots).numberWarningStatus,
       size: 6,
       icon: <AlertIcon size={50} />,
@@ -37,7 +37,7 @@ const Stats = (props: Props) => {
     },
     {
       id: 3,
-      subtitle: 'Taux de perturbations en cours',
+      subtitle: t('translation:contentView.stats.ratio'),
       data: `${computeStats(spots).warningRate}%`,
       size: 12,
       icon: <BorderLinearProgress height={15} variant="determinate" value={100 - computeStats(spots).warningRate} />,
@@ -48,7 +48,7 @@ const Stats = (props: Props) => {
   return (
     <Box>
       <Typography variant="h6">
-        Statistiques
+        {t('translation:contentView.tab.stats')}
       </Typography>
       <Typography sx={styles.time}>
         {t('translation:contentView.stats.time', { day: dayjs().locale('fr').format('D MMMM YYYY') })}

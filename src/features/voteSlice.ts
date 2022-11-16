@@ -1,12 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
-
-type Quality = {
-    water: boolean,
-    plastic: boolean,
-    seal: boolean,
-    date: string,
-}
+import { Quality } from './getSpotsSlice';
 
 export type Vote = {
     id: string;
@@ -21,6 +15,7 @@ const initialState: Vote = {
     plastic: false,
     seal: false,
     date: '',
+    observation: '',
   },
   loading: false,
 };
@@ -58,6 +53,7 @@ export const voteSlice = createSlice({
           state.quality.plastic = payload.plastic;
           state.quality.seal = payload.seal;
           state.quality.date = payload.date;
+          state.quality.observation = payload.observation;
         },
       )
       .addCase(

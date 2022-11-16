@@ -48,7 +48,10 @@
     }, 
     "contentView": {
         "stats": {
-            "time": "Last update on {{day}}"
+            "time": "Last update on {{day}}",
+            "spots": "Total spots",
+            "reports": "Reports",
+            "ratio": "Current reports rate"
         },
         "about": {
             "me": "Hi! I'm Corentin, a french software engineer, deeply passionated by surf, ocean and its issues. Thank you for considering my work and welcome!"

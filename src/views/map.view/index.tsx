@@ -23,11 +23,12 @@ interface Props {
   spots: Array<Spot>;
   loading: boolean;
   openSidebar: () => void;
+  showInfoSpot: () => void;
 }
 
 const MapView = (props: Props): ReactElement => {
   const {
-    isDark, onIntroClick, spots, loading, openSidebar,
+    isDark, onIntroClick, spots, loading, openSidebar, showInfoSpot,
   } = props;
   const dispatch = useDispatch();
   const [markers, setMarkers]: any = useState({});
@@ -66,6 +67,7 @@ const MapView = (props: Props): ReactElement => {
           plastic: element.quality.plastic,
           seal: element.quality.seal,
           date: element.quality.date,
+          observation: element.quality.observation,
         },
         status: element.status,
         stringStatus: element.status ? 'true' : 'false',
@@ -106,6 +108,7 @@ const MapView = (props: Props): ReactElement => {
         plastic: qjson.plastic,
         seal: qjson.seal,
         date: qjson.date,
+        observation: qjson.observation,
         status: feature.properties.status,
         bySearch: false,
       }));
@@ -129,6 +132,7 @@ const MapView = (props: Props): ReactElement => {
           plastic: false,
           seal: false,
           date: '',
+          observation: '',
         },
         status: false,
         bySearch: false,
@@ -197,7 +201,13 @@ const MapView = (props: Props): ReactElement => {
         </Popup>
         )}
       </ReactMapGL>
-      <DataCards spots={spots} selectedSpot={spot} onClick={onIntroClick} isDark={isDark} />
+      <DataCards
+        showInfoSpot={() => showInfoSpot()}
+        spots={spots}
+        selectedSpot={spot}
+        onClick={onIntroClick}
+        isDark={isDark}
+      />
       {loading ? <CircularLoader /> : null}
       <ReportButton spots={spots} />
       <InfoButton openSidebar={openSidebar} />

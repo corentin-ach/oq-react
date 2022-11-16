@@ -32,6 +32,7 @@ interface Vote {
     water: boolean,
     plastic: boolean,
     seal: boolean,
+    observation: string,
   }
 }
 
@@ -45,7 +46,11 @@ const ModalSpot = (props: Props) => {
     water: false,
     plastic: false,
     seal: false,
+    observation: '',
   });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelection({ ...selection, observation: event.target.value });
+  };
   const [quality, setQuality]: any = useState({});
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
@@ -56,6 +61,7 @@ const ModalSpot = (props: Props) => {
         water: selection.water,
         plastic: selection.plastic,
         seal: selection.seal,
+        observation: selection.observation,
       },
     };
     setQuality(vote);
@@ -119,13 +125,12 @@ const ModalSpot = (props: Props) => {
       }}
       >
         {selection.water
-          ? <Chip sx={{ color: 'text.primary', m: 0.4 }} color="warning" variant="outlined" icon={<RainDropIcon size={20} />} label={spotData[0].name} /> : null}
+          ? <Chip sx={{ color: 'text.primary', m: 0.4, paddingLeft: 1 }} color="warning" variant="outlined" icon={<RainDropIcon size={20} />} label={spotData[0].name} /> : null}
         {selection.plastic
-          ? <Chip sx={{ color: 'text.primary', m: 0.4 }} color="warning" variant="outlined" icon={<BottleIcon size={20} />} label={spotData[1].name} /> : null}
+          ? <Chip sx={{ color: 'text.primary', m: 0.4, paddingLeft: 1 }} color="warning" variant="outlined" icon={<BottleIcon size={20} />} label={spotData[1].name} /> : null}
         {selection.seal
-          ? <Chip sx={{ color: 'text.primary', m: 0.4 }} color="warning" variant="outlined" icon={<SealIcon size={20} />} label={spotData[2].name} /> : null}
+          ? <Chip sx={{ color: 'text.primary', m: 0.4, paddingLeft: 1 }} color="warning" variant="outlined" icon={<SealIcon size={20} />} label={spotData[2].name} /> : null}
       </Box>
-
     </>
   </Box>,
       action: <CustomList allData={spotData} />,
@@ -134,14 +139,16 @@ const ModalSpot = (props: Props) => {
     {
       step: 2,
       title: <Typography sx={{ fontWeight: 'bold' }}>{t('translation:mapView.dialogSpot.observations')}</Typography>,
-      action: <TextField fullWidth multiline maxRows={3} placeholder="Souhaitez-vous ajouter une note ?" />,
+      action: <TextField onChange={handleChange} value={selection.observation} fullWidth multiline maxRows={3} placeholder="Souhaitez-vous ajouter une note ?" />,
       display: true,
     },
   ];
 
   const onClose = () => {
     handleClose();
-    setSelection({ water: false, plastic: false, seal: false });
+    setSelection({
+      water: false, plastic: false, seal: false, observation: '',
+    });
     handleStepReset();
   };
 
@@ -185,12 +192,14 @@ const ModalSpot = (props: Props) => {
                   <StepContent>
                     {s.action}
                     <Box>
-                      <ActionButton
-                        fullWidth={false}
-                        onClick={handleStepNext}
-                        title={index === steps.length - 1 ? t('translation:mapView.dialogSpot.finish') : t('translation:mapView.dialogSpot.next')}
-                        isDisabled={false}
-                      />
+                      {index < steps.length - 1 ? (
+                        <ActionButton
+                          fullWidth={false}
+                          onClick={handleStepNext}
+                          title={t('translation:mapView.dialogSpot.next')}
+                          isDisabled={false}
+                        />
+                      ) : null}
                       <ActionButton
                         fullWidth={false}
                         onClick={handleStepBack}

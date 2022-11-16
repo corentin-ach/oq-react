@@ -46,20 +46,23 @@ function App() {
         ? <MobileView theme={theme} />
         : (
           <>
-            <Header spots={spots} theme={theme} onMainButton={() => { setContentView(true); setValue('2'); }} />
+            <Header spots={spots} theme={theme} onMainButton={() => { setContentView(true); setValue('1'); }} />
             <MapView
               isDark={theme}
-              onIntroClick={() => { setContentView(true); setValue('2'); }}
               openSidebar={() => { setContentView(true); setValue('1'); }}
+              onIntroClick={() => { setContentView(true); setValue('2'); }}
+              showInfoSpot={() => { setContentView(true); setValue('3'); }}
               spots={spots}
               loading={loading}
             />
             <ContentView
               isOpen={contentView}
               onClose={() => setContentView(false)}
+              showInfoSpot={() => { setContentView(true); setValue('3'); }}
               spots={spots}
               value={value}
               handleChange={handleChange}
+              isDark={theme}
             />
           </>
         )}

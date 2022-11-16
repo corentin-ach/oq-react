@@ -33,7 +33,6 @@ const styles = {
   time: {
     fontSize: 12,
     marginBottom: 2,
-    marginLeft: 2,
   },
 } as const;
 

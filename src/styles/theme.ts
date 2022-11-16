@@ -37,7 +37,7 @@ export const lightTheme = createTheme({
       main: '#5DADEC',
     },
     background: {
-      default: '#F9F9F9',
+      default: '#F3F3F3',
       paper: '#FFFFFF',
     },
   },
@@ -67,6 +67,12 @@ export const lightTheme = createTheme({
             fontSize: 25,
             fontWeight: 'bold',
             textAlign: 'left',
+          },
+        },
+        {
+          props: { variant: 'body2' },
+          style: {
+            fontSize: 12,
           },
         },
       ],
@@ -112,6 +118,12 @@ export const darkTheme = createTheme({
             fontSize: 25,
             fontWeight: 'bold',
             textAlign: 'left',
+          },
+        },
+        {
+          props: { variant: 'body2' },
+          style: {
+            fontSize: 12,
           },
         },
       ],

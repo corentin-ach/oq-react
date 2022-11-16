@@ -20,11 +20,15 @@ import computeStatusBySpot from '../../../../functions/status';
 interface Props {
   selectedSpot: Spot
   isDark: boolean
+  isExpandedCard: boolean
+  showInfoSpot: () => void
 }
 
 const SpotCard = (props: Props): ReactElement => {
   const { t } = useTranslation(['translationFR']);
-  const { selectedSpot, isDark } = props;
+  const {
+    selectedSpot, isDark, isExpandedCard, showInfoSpot,
+  } = props;
   const [open, setOpen] = useState(false);
   const [cleanButton, setCleanButton] = useState(true);
   const dispatch = useDispatch();
@@ -70,9 +74,11 @@ const SpotCard = (props: Props): ReactElement => {
 
   return (
     <Box
-      width="300px"
-      height={selectedSpot.status ? '290px' : '220px'}
-      sx={{ ...styles.mainCard, bgcolor: !isDark ? 'rgba(255, 255, 255, .8)' : 'rgba(59, 59, 59, .70)', backdropFilter: 'blur(10px)' }}
+      width={isExpandedCard ? 'auto' : '300px'}
+      height={isExpandedCard ? 'auto' : selectedSpot.status ? '350px' : '280px'}
+      sx={{
+        ...styles.mainCard, bgcolor: isExpandedCard ? 'background.default' : !isDark ? 'rgba(255, 255, 255, .8)' : 'rgba(59, 59, 59, .70)', backdropFilter: isExpandedCard ? 'none' : 'blur(10px)', padding: isExpandedCard ? 0 : 2,
+      }}
     >
       <Box sx={styles.headerCard}>
         <Typography variant="h6">
@@ -155,6 +161,11 @@ const SpotCard = (props: Props): ReactElement => {
             </Typography>
           </Button>
         ) : null}
+        {isExpandedCard ? null : (
+          <Button onClick={() => showInfoSpot()} sx={{ ...styles.button, bgcolor: 'none' }}>
+            <Typography>Know more</Typography>
+          </Button>
+        )}
       </Box>
       <ModalSpot
         isSelectable={false}

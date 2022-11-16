@@ -5,6 +5,7 @@ export type Quality = {
   plastic: boolean;
   seal: boolean;
   date: string;
+  observation: string;
 }
 
 export type Spot = {
@@ -14,6 +15,7 @@ export type Spot = {
     id: string
     status: boolean
     bySearch: boolean
+    area: number
 }
 
 type AllSpot = {

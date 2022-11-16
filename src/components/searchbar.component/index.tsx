@@ -28,6 +28,7 @@ const SearchBar = (props: Props) => {
         seal: value.quality.seal,
         date: value.quality.date,
         status: value.status,
+        observation: value.quality.observation,
         bySearch: true,
       }));
     }

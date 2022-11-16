@@ -9,6 +9,7 @@ export interface SpotState {
 const initialState: SpotState = {
   spot: {
     id: '',
+    area: 64,
     coords: [0, 0],
     name: 'La Milady',
     quality: {
@@ -16,6 +17,7 @@ const initialState: SpotState = {
       plastic: false,
       seal: false,
       date: '',
+      observation: '',
     },
     status: false,
     bySearch: false,
@@ -34,6 +36,7 @@ export const showSpotSlice = createSlice({
       state.spot.quality.plastic = marker.payload.plastic;
       state.spot.quality.seal = marker.payload.seal;
       state.spot.quality.date = marker.payload.date;
+      state.spot.quality.observation = marker.payload.observation;
       state.spot.status = marker.payload.status;
       state.spot.bySearch = marker.payload.bySearch;
     },

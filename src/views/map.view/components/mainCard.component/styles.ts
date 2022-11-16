@@ -5,6 +5,7 @@ const styles = {
     alignContent: 'flex-start',
     display: 'flex',
     flexDirection: 'column',
+    marginBottom: 3,
   },
   welcomeTitle: {
     color: 'text.primary',
