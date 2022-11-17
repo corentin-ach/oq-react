@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GeoJsonProperties } from 'geojson';
 import DataCards from './components/dataCards.component';
 import { key, RootState } from '../../app/store';
-import { getSpots, Spot } from '../../features/getSpotsSlice';
+import { Spot } from '../../features/getSpotsSlice';
 import CircularLoader from '../../components/circularLoader.component';
 import { darkMap, lightMap } from '../../styles/theme';
 import { clusterLayer, clusterCountLayer, unclusteredPointLayer } from './components/layers.component';
@@ -35,8 +35,6 @@ const MapView = (props: Props): ReactElement => {
   const { spot } = useSelector((state: RootState) => state.spot);
   const mapRef: any = useRef(null);
   const [popupInfo, setPopupInfo] = useState<any>(null);
-
-  useEffect(() => { dispatch(getSpots()); }, []);
 
   const geolocateStyle = {
     bottom: 0,
