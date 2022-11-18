@@ -11,12 +11,13 @@ import { RootState } from './app/store';
 import Header from './components/header.component';
 import ContentView from './views/content.view';
 import MobileView from './views/mobile.view';
-import useFirestore from './firebase/hooks';
+import { useGetFirestore } from './firebase/hooks';
 // @ts-ignore
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 function App() {
   const theme = useSelector((state: RootState) => state.theme.dark);
+  const { spot } = useSelector((state: RootState) => state);
   const [contentView, setContentView] = useState(false);
   const [value, setValue] = React.useState('1');
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -40,7 +41,8 @@ function App() {
     height: 700,
   };
 
-  const allSpots = useFirestore('spots');
+  const allSpots = useGetFirestore('spots');
+  const selectedSpot = allSpots.filter((s) => s.id === spot.spot.id)[0];
 
   return (
     <ThemeProvider theme={theme ? darkTheme : lightTheme}>
@@ -56,6 +58,7 @@ function App() {
               showInfoSpot={() => { setContentView(true); setValue('3'); }}
               spots={allSpots}
               loading={allSpots.length === 0}
+              spot={selectedSpot}
             />
             <ContentView
               isOpen={contentView}
@@ -65,6 +68,7 @@ function App() {
               value={value}
               handleChange={handleChange}
               isDark={theme}
+              spot={selectedSpot}
             />
           </>
         )}

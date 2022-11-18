@@ -21,14 +21,6 @@ const SearchBar = (props: Props) => {
     if (value) {
       dispatch(setSpot({
         id: value.id,
-        coords: [value.coords[1], value.coords[0]],
-        name: value.name,
-        water: value.quality.water,
-        plastic: value.quality.plastic,
-        seal: value.quality.seal,
-        date: value.quality.date,
-        status: value.status,
-        observation: value.quality.observation,
         bySearch: true,
       }));
     }

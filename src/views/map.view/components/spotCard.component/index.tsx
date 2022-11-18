@@ -6,32 +6,30 @@ import {
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import dayjs from 'dayjs';
-import { useDispatch } from 'react-redux';
 import styles from './styles';
 import BottleIcon from '../../../../assets/bottle';
 import RainDropIcon from '../../../../assets/raindrop';
 import SealIcon from '../../../../assets/seal';
 import ModalSpot from '../modalSpot.component';
-import { setVote } from '../../../../features/voteSlice';
 import { colors } from '../../../../styles/theme';
 import { Spot } from '../../../../features/getSpotsSlice';
-import computeStatusBySpot from '../../../../functions/status';
+import { computeStatusName } from '../../../../functions/status';
+import { setFirestore } from '../../../../firebase/hooks';
 
 interface Props {
-  selectedSpot: Spot
+  spot: Spot
   isDark: boolean
   isExpandedCard: boolean
   showInfoSpot: () => void
 }
 
 const SpotCard = (props: Props): ReactElement => {
-  const { t } = useTranslation(['translationFR']);
+  const { t } = useTranslation();
   const {
-    selectedSpot, isDark, isExpandedCard, showInfoSpot,
+    spot, isDark, isExpandedCard, showInfoSpot,
   } = props;
   const [open, setOpen] = useState(false);
   const [cleanButton, setCleanButton] = useState(true);
-  const dispatch = useDispatch();
 
   const handleOpen = () => {
     setOpen(true);
@@ -39,61 +37,63 @@ const SpotCard = (props: Props): ReactElement => {
   const handleClose = () => {
     setOpen(false);
   };
-  const cleanVote: any = {
-    id: selectedSpot.id,
+  const vote: any = {
+    id: spot?.id,
     quality: {
       water: false,
       plastic: false,
       seal: false,
+      observation: '',
+      date: dayjs(new Date()).format('YYYY-MM-DD'),
     },
   };
   const submitClean = () => {
+    setFirestore('spots', vote, spot);
     setCleanButton(false);
-    dispatch(setVote(cleanVote));
   };
   const spotData = [
     {
       id: 1,
       icon: <RainDropIcon size={34} />,
-      data: !selectedSpot.quality.water ? t('translation:mapView.spotCard.quality.goodWater') : t('translation:mapView.spotCard.quality.badWater'),
-      color: !selectedSpot.quality.water ? colors.goodQuality2 : colors.badQuality2,
+      data: !spot?.quality.water ? t('translation:mapView.spotCard.quality.goodWater') : t('translation:mapView.spotCard.quality.badWater'),
+      color: !spot?.quality.water ? colors.goodQuality2 : colors.badQuality2,
     },
     {
       id: 2,
       icon: <BottleIcon size={36} />,
-      data: !selectedSpot.quality.plastic ? t('translation:mapView.spotCard.quality.goodPlastic') : t('translation:mapView.spotCard.quality.badPlastic'),
-      color: !selectedSpot.quality.plastic ? colors.goodQuality2 : colors.badQuality2,
+      data: !spot?.quality.plastic ? t('translation:mapView.spotCard.quality.goodPlastic') : t('translation:mapView.spotCard.quality.badPlastic'),
+      color: !spot?.quality.plastic ? colors.goodQuality2 : colors.badQuality2,
     },
     {
       id: 3,
       icon: <SealIcon size={36} />,
-      data: !selectedSpot.quality.seal ? t('translation:mapView.spotCard.quality.goodSeal') : t('translation:mapView.spotCard.quality.badSeal'),
-      color: !selectedSpot.quality.seal ? colors.goodQuality2 : colors.badQuality2,
+      data: !spot?.quality.seal ? t('translation:mapView.spotCard.quality.goodSeal') : t('translation:mapView.spotCard.quality.badSeal'),
+      color: !spot?.quality.seal ? colors.goodQuality2 : colors.badQuality2,
     },
   ];
 
   return (
     <Box
       width={isExpandedCard ? 'auto' : '300px'}
-      height={isExpandedCard ? 'auto' : selectedSpot.status ? '350px' : '280px'}
+      height={isExpandedCard ? 'auto' : spot?.status ? '350px' : '280px'}
       sx={{
         ...styles.mainCard, bgcolor: isExpandedCard ? 'background.default' : !isDark ? 'rgba(255, 255, 255, .8)' : 'rgba(59, 59, 59, .70)', backdropFilter: isExpandedCard ? 'none' : 'blur(10px)', padding: isExpandedCard ? 0 : 2,
       }}
     >
       <Box sx={styles.headerCard}>
         <Typography variant="h6">
-          {selectedSpot.name}
+          {spot?.name}
         </Typography>
         <Chip
           size="small"
           variant="outlined"
-          label={computeStatusBySpot(selectedSpot.quality)}
+          label={spot?.quality ? computeStatusName(spot?.quality) : ''}
         />
       </Box>
       <Typography sx={styles.timeText}>
         {t('translation:mapView.spotCard.time')}
         {' '}
-        {dayjs(selectedSpot.quality.date).format('DD/MM/YY')}
+        {dayjs(spot?.quality.date).format('DD/MM/YY')}
       </Typography>
 
       <Box sx={styles.qualityContainer}>
@@ -137,7 +137,7 @@ const SpotCard = (props: Props): ReactElement => {
             {t('translation:mapView.spotCard.signal')}
           </Typography>
         </Button>
-        {selectedSpot.status && cleanButton ? (
+        {spot?.status && cleanButton ? (
           <Button
             size="large"
             variant="text"
@@ -148,7 +148,7 @@ const SpotCard = (props: Props): ReactElement => {
               {t('translation:mapView.spotCard.clean')}
             </Typography>
           </Button>
-        ) : selectedSpot.status && !cleanButton ? (
+        ) : spot?.status && !cleanButton ? (
           <Button
             disabled
             size="large"
@@ -171,7 +171,7 @@ const SpotCard = (props: Props): ReactElement => {
         isSelectable={false}
         mode={open}
         handleClose={() => handleClose()}
-        selectedSpot={selectedSpot}
+        spot={spot}
       />
     </Box>
   );

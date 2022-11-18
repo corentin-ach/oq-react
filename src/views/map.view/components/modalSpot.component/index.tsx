@@ -4,26 +4,25 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CheckIcon from '@mui/icons-material/Check';
-import { useDispatch, useSelector } from 'react-redux';
+import dayjs from 'dayjs';
 import BottleIcon from '../../../../assets/bottle';
 import RainDropIcon from '../../../../assets/raindrop';
 import SealIcon from '../../../../assets/seal';
 import styles from './styles';
 import { colors } from '../../../../styles/theme';
-import { setVote } from '../../../../features/voteSlice';
 import { Spot } from '../../../../features/getSpotsSlice';
 import CustomModal from '../../../../components/modal.component';
 import CustomList from '../../../../components/list.component';
 import ActionButton from '../../../../components/buttons.component/actionButton.button';
 import SearchBar from '../../../../components/searchbar.component';
-import { RootState } from '../../../../app/store';
+import { setFirestore } from '../../../../firebase/hooks';
 
 interface Props {
     mode: boolean
     handleClose: () => void
-    selectedSpot?: Spot
     spots?: Array<Spot>
     isSelectable: boolean
+    spot: Spot
 }
 
 interface Vote {
@@ -33,39 +32,41 @@ interface Vote {
     plastic: boolean,
     seal: boolean,
     observation: string,
+    date: string
   }
 }
 
 const ModalSpot = (props: Props) => {
   const {
-    mode, handleClose, selectedSpot, spots, isSelectable,
+    mode, handleClose, spots, isSelectable, spot,
   } = props;
-  const { spot } = useSelector((state: RootState) => state.spot);
   const { t } = useTranslation(['translationFR']);
   const [selection, setSelection] = useState({
     water: false,
     plastic: false,
     seal: false,
     observation: '',
+    date: '',
   });
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelection({ ...selection, observation: event.target.value });
   };
   const [quality, setQuality]: any = useState({});
   const [activeStep, setActiveStep] = React.useState(0);
-  const dispatch = useDispatch();
+
   useEffect(() => {
     const vote: Vote = {
-      id: selectedSpot?.id,
+      id: spot?.id,
       quality: {
         water: selection.water,
         plastic: selection.plastic,
         seal: selection.seal,
         observation: selection.observation,
+        date: dayjs(new Date()).format('YYYY-MM-DD'),
       },
     };
     setQuality(vote);
-  }, [selectedSpot, selection]);
+  }, [spot, selection]);
 
   const handleStepNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -147,13 +148,13 @@ const ModalSpot = (props: Props) => {
   const onClose = () => {
     handleClose();
     setSelection({
-      water: false, plastic: false, seal: false, observation: '',
+      water: false, plastic: false, seal: false, observation: '', date: '',
     });
     handleStepReset();
   };
 
   const onSend = () => {
-    dispatch(setVote(quality));
+    setFirestore('spots', quality, spot);
     onClose();
     handleStepReset();
   };
@@ -172,9 +173,9 @@ const ModalSpot = (props: Props) => {
       content={(
         <Box sx={styles.container}>
           <Alert severity="warning">
-            {selectedSpot ? (
+            {spot ? (
               <Typography sx={styles.description}>
-                {t('translation:mapView.dialogSpot.description', { spotName: selectedSpot.name })}
+                {t('translation:mapView.dialogSpot.description', { spotName: spot?.name })}
               </Typography>
             ) : (
               <Typography sx={styles.description}>

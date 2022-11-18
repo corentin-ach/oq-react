@@ -5,17 +5,16 @@ import {
 import { MdChevronRight } from 'react-icons/md';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import Stats from './components/stats.component';
 import { Spot } from '../../features/getSpotsSlice';
 import About from './components/about.component';
-import { RootState } from '../../app/store';
 import InfoSpot from './components/infoSpot.component';
 
 interface Props {
     isOpen: boolean;
     onClose: () => void;
     spots: Array<Spot>;
+    spot: Spot;
     value: string;
     handleChange: any;
     isDark: boolean;
@@ -33,10 +32,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 const ContentView = (props: Props): ReactElement => {
   const {
-    isOpen, onClose, spots, value, handleChange, isDark, showInfoSpot,
+    isOpen, onClose, spots, value, handleChange, isDark, showInfoSpot, spot,
   } = props;
   const { t } = useTranslation(['translation']);
-  const { spot } = useSelector((state: RootState) => state.spot);
 
   return (
     <Drawer
@@ -54,7 +52,7 @@ const ContentView = (props: Props): ReactElement => {
           >
             <Tab label="Oavel" value="1" sx={{ fontWeight: 'bold' }} />
             <Tab label={t('translation:contentView.tab.stats')} value="2" sx={{ fontWeight: 'bold' }} />
-            {spot.id ? <Tab label={spot?.name} value="3" sx={{ fontWeight: 'bold' }} /> : null}
+            {spot ? <Tab label={spot?.name} value="3" sx={{ fontWeight: 'bold' }} /> : null}
           </TabList>
         </DrawerHeader>
         <Box sx={{

@@ -7,10 +7,11 @@ import ModalSpot from '../modalSpot.component';
 
 type Props = {
     spots: Array<Spot>
+    spot: Spot
 }
 
 const ReportButton = (props: Props) => {
-  const { spots } = props;
+  const { spots, spot } = props;
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -37,6 +38,7 @@ const ReportButton = (props: Props) => {
       <ModalSpot
         isSelectable
         spots={spots}
+        spot={spot}
         mode={open}
         handleClose={() => handleClose()}
       />

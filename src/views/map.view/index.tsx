@@ -24,15 +24,16 @@ interface Props {
   loading: boolean;
   openSidebar: () => void;
   showInfoSpot: () => void;
+  spot: Spot;
 }
 
 const MapView = (props: Props): ReactElement => {
   const {
-    isDark, onIntroClick, spots, loading, openSidebar, showInfoSpot,
+    isDark, onIntroClick, spots, loading, openSidebar, showInfoSpot, spot,
   } = props;
   const dispatch = useDispatch();
+  const spotSet = useSelector((state: RootState) => state.spot);
   const [markers, setMarkers]: any = useState({});
-  const { spot } = useSelector((state: RootState) => state.spot);
   const mapRef: any = useRef(null);
   const [popupInfo, setPopupInfo] = useState<any>(null);
 
@@ -96,18 +97,11 @@ const MapView = (props: Props): ReactElement => {
         });
       });
     } else if (feature?.layer.id === 'unclustered-point') {
-      const qjson = JSON.parse(feature.properties.quality);
+      // const qjson = JSON.parse(feature.properties.quality);
+      const selectedSpot = spots.find((s) => s.id === feature.properties.id);
 
       dispatch(setSpot({
-        id: feature.properties.id,
-        coords: [feature?.geometry?.coordinates[1], feature?.geometry?.coordinates[0]],
-        name: feature.properties.name,
-        water: qjson.water,
-        plastic: qjson.plastic,
-        seal: qjson.seal,
-        date: qjson.date,
-        observation: qjson.observation,
-        status: feature.properties.status,
+        id: selectedSpot?.id,
         bySearch: false,
       }));
       setViewport({
@@ -123,16 +117,6 @@ const MapView = (props: Props): ReactElement => {
     } else {
       dispatch(setSpot({
         id: '',
-        coords: [0, 0],
-        name: 'La Milady',
-        quality: {
-          water: false,
-          plastic: false,
-          seal: false,
-          date: '',
-          observation: '',
-        },
-        status: false,
         bySearch: false,
       }));
     }
@@ -140,16 +124,16 @@ const MapView = (props: Props): ReactElement => {
   };
 
   useEffect(() => {
-    if (spot.bySearch) {
+    if (spotSet.spot?.bySearch) {
       setViewport({
-        longitude: spot.coords[0],
-        latitude: spot.coords[1],
+        longitude: spot?.coords[1],
+        latitude: spot?.coords[0],
         zoom: 13,
         transitionDuration: 500,
       });
       setPopupInfo({
-        lngLat: spot.coords,
-        text: spot.name,
+        lngLat: [spot?.coords[1], spot?.coords[0]],
+        text: spot?.name,
       });
     }
   }, [spot]);
@@ -202,12 +186,12 @@ const MapView = (props: Props): ReactElement => {
       <DataCards
         showInfoSpot={() => showInfoSpot()}
         spots={spots}
-        selectedSpot={spot}
+        spot={spot}
         onClick={onIntroClick}
         isDark={isDark}
       />
       {loading ? <CircularLoader /> : null}
-      <ReportButton spots={spots} />
+      <ReportButton spots={spots} spot={spot} />
       <InfoButton openSidebar={openSidebar} />
     </div>
   );

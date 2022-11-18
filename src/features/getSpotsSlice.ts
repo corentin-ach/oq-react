@@ -16,6 +16,7 @@ export type Spot = {
     status: boolean
     bySearch: boolean
     area: number
+    votes?: Array<Quality>
 }
 
 type AllSpot = {

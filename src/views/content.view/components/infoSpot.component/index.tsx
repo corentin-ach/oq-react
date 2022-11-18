@@ -18,7 +18,7 @@ const InfoSpot = (props: Props) => {
     <Box>
       <SpotCard
         showInfoSpot={() => showInfoSpot()}
-        selectedSpot={spot}
+        spot={spot}
         isDark={isDark}
         isExpandedCard
       />

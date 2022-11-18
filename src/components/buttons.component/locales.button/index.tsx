@@ -14,7 +14,7 @@ import EnglishIcon from '../../../assets/english';
 
 const LocalesButton = (): ReactElement => {
   const [modal, setModal] = useState(false);
-  const [language, setLanguage] = useState({ fr: true, en: false });
+  const [language, setLanguage] = useState({ fr: false, en: true });
   const setLocale = (l: any) => {
     i18next
       .changeLanguage(l);
