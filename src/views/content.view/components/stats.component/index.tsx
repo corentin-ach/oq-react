@@ -7,9 +7,9 @@ import { useTranslation } from 'react-i18next';
 import AlertIcon from '../../../../assets/alert';
 import RainDropIcon from '../../../../assets/raindrop';
 import styles from '../styles';
-import { Spot } from '../../../../features/getSpotsSlice';
 import computeStats from '../../../../functions/stats';
 import BorderLinearProgress from '../../../../components/linearProgress.component';
+import { Spot } from '../../../../types';
 
 interface Props {
   spots: Array<Spot>;

@@ -9,13 +9,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GeoJsonProperties } from 'geojson';
 import DataCards from './components/dataCards.component';
 import { key, RootState } from '../../app/store';
-import { Spot } from '../../features/getSpotsSlice';
 import CircularLoader from '../../components/circularLoader.component';
 import { darkMap, lightMap } from '../../styles/theme';
 import { clusterLayer, clusterCountLayer, unclusteredPointLayer } from './components/layers.component';
 import { setSpot } from '../../features/setSpotSlice';
 import ReportButton from './components/reportButton.component';
 import InfoButton from './components/infoButton.component';
+import { Spot } from '../../types';
 
 interface Props {
   isDark: boolean

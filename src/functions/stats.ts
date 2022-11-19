@@ -1,4 +1,4 @@
-import { Spot } from '../features/getSpotsSlice';
+import { Spot } from '../types';
 
 type Stats = {
     numberSpot: number;

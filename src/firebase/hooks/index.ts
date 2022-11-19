@@ -4,8 +4,8 @@ import {
   collection, query, onSnapshot, doc, updateDoc,
 } from 'firebase/firestore';
 import { db } from '../config';
-import { Spot } from '../../features/getSpotsSlice';
 import { computeStatus } from '../../functions/status';
+import { Spot } from '../../types';
 
 export const useGetFirestore = (coll: string) => {
   const [data, setData] = useState<Spot[]>([]);

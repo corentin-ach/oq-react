@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Campaign } from '@mui/icons-material';
 import { Box, Fab } from '@mui/material';
-import { Spot } from '../../../../features/getSpotsSlice';
 import { colors } from '../../../../styles/theme';
 import ModalSpot from '../modalSpot.component';
+import { Spot } from '../../../../types';
 
 type Props = {
     spots: Array<Spot>

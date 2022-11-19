@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import SpotCard from '../spotCard.component';
 import MainCard from '../mainCard.component';
 import styles from './styles';
-import { Spot } from '../../../../features/getSpotsSlice';
+import { Spot } from '../../../../types';
 
 interface Props {
   spot: Spot

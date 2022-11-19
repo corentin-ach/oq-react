@@ -40,7 +40,8 @@
                 "statusSoso": "Moyen",
                 "statusBad": "Mauvais"
             },
-            "time": "Dernière mise à jour le"
+            "time": "Dernière mise à jour le",
+            "knowMore": "Voir plus"
         },
         "header": {
             "searchBar": "Rechercher un spot"
@@ -59,6 +60,10 @@
         "tab": {
             "stats": "Statistiques",
             "publishSpot": "Contribuer"
+        },
+        "infoSpot": {
+            "noComment": "Aucun commentaire",
+            "lastComment": "Dernier commentaire"
         }
     },
     "mobileView": {

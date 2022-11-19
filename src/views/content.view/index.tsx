@@ -6,9 +6,9 @@ import { MdChevronRight } from 'react-icons/md';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { useTranslation } from 'react-i18next';
 import Stats from './components/stats.component';
-import { Spot } from '../../features/getSpotsSlice';
 import About from './components/about.component';
 import InfoSpot from './components/infoSpot.component';
+import { Spot } from '../../types';
 
 interface Props {
     isOpen: boolean;

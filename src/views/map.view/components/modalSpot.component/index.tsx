@@ -10,12 +10,12 @@ import RainDropIcon from '../../../../assets/raindrop';
 import SealIcon from '../../../../assets/seal';
 import styles from './styles';
 import { colors } from '../../../../styles/theme';
-import { Spot } from '../../../../features/getSpotsSlice';
 import CustomModal from '../../../../components/modal.component';
 import CustomList from '../../../../components/list.component';
 import ActionButton from '../../../../components/buttons.component/actionButton.button';
 import SearchBar from '../../../../components/searchbar.component';
 import { setFirestore } from '../../../../firebase/hooks';
+import { Spot } from '../../../../types';
 
 interface Props {
     mode: boolean

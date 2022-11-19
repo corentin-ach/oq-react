@@ -40,7 +40,8 @@
                 "statusSoso": "Not good",
                 "statusBad": "Bad"
             },
-            "time": "Last update on"
+            "time": "Last update on",
+            "knowMore": "Know more"
         },
         "header": {
             "searchBar": "Look for a spot"
@@ -59,6 +60,10 @@
         "tab": {
             "stats": "Statistics",
             "publishSpot": "Contribute"
+        },
+        "infoSpot": {
+            "noComment": "No comment",
+            "lastComment": "Last comment"
         }
     },
     "mobileView": {

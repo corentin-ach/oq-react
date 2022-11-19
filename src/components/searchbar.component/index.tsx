@@ -2,8 +2,8 @@ import { Autocomplete, TextField } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { Spot } from '../../features/getSpotsSlice';
 import { setSpot } from '../../features/setSpotSlice';
+import { Spot } from '../../types';
 
 interface Props {
     spots: Array<Spot>;

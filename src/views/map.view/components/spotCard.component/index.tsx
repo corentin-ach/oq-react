@@ -12,9 +12,9 @@ import RainDropIcon from '../../../../assets/raindrop';
 import SealIcon from '../../../../assets/seal';
 import ModalSpot from '../modalSpot.component';
 import { colors } from '../../../../styles/theme';
-import { Spot } from '../../../../features/getSpotsSlice';
 import { computeStatusName } from '../../../../functions/status';
 import { setFirestore } from '../../../../firebase/hooks';
+import { Spot } from '../../../../types';
 
 interface Props {
   spot: Spot
@@ -163,7 +163,7 @@ const SpotCard = (props: Props): ReactElement => {
         ) : null}
         {isExpandedCard ? null : (
           <Button onClick={() => showInfoSpot()} sx={{ ...styles.button, bgcolor: 'none' }}>
-            <Typography>Know more</Typography>
+            <Typography>{t('translation:mapView.spotCard.knowMore')}</Typography>
           </Button>
         )}
       </Box>
