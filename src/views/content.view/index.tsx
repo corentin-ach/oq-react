@@ -6,15 +6,19 @@ import { MdChevronRight } from 'react-icons/md';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { useTranslation } from 'react-i18next';
 import Stats from './components/stats.component';
-import { Spot } from '../../features/getSpotsSlice';
 import About from './components/about.component';
+import InfoSpot from './components/infoSpot.component';
+import { Spot } from '../../types';
 
 interface Props {
     isOpen: boolean;
     onClose: () => void;
     spots: Array<Spot>;
+    spot: Spot;
     value: string;
     handleChange: any;
+    isDark: boolean;
+    showInfoSpot: () => void;
 }
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -28,7 +32,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 const ContentView = (props: Props): ReactElement => {
   const {
-    isOpen, onClose, spots, value, handleChange,
+    isOpen, onClose, spots, value, handleChange, isDark, showInfoSpot, spot,
   } = props;
   const { t } = useTranslation(['translation']);
 
@@ -48,7 +52,7 @@ const ContentView = (props: Props): ReactElement => {
           >
             <Tab label="Oavel" value="1" sx={{ fontWeight: 'bold' }} />
             <Tab label={t('translation:contentView.tab.stats')} value="2" sx={{ fontWeight: 'bold' }} />
-            <Tab label={t('translation:contentView.tab.publishSpot')} value="3" sx={{ fontWeight: 'bold' }} />
+            {spot ? <Tab label={spot?.name} value="3" sx={{ fontWeight: 'bold' }} /> : null}
           </TabList>
         </DrawerHeader>
         <Box sx={{
@@ -65,7 +69,7 @@ const ContentView = (props: Props): ReactElement => {
             <Stats spots={spots} />
           </TabPanel>
           <TabPanel value="3">
-            <p>test</p>
+            <InfoSpot showInfoSpot={() => showInfoSpot()} spot={spot} isDark={isDark} />
           </TabPanel>
         </Box>
       </TabContext>

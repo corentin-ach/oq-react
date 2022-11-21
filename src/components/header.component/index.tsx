@@ -4,7 +4,7 @@ import {
 import React, { ReactElement } from 'react';
 import HeaderIcon from '../../assets/header';
 import Icon from '../../assets/icon';
-import { Spot } from '../../features/getSpotsSlice';
+import { Spot } from '../../types';
 import LocalesButton from '../buttons.component/locales.button';
 import MainButton from '../buttons.component/mainButton.button';
 import ThemeButton from '../buttons.component/themeButton.button';

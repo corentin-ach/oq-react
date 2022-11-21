@@ -1,15 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import toggleReducer from '../features/themeSlice';
-import spotsReducer from '../features/getSpotsSlice';
 import spotReducer from '../features/setSpotSlice';
-import voteReducer from '../features/voteSlice';
 
 export const store = configureStore({
   reducer: {
     theme: toggleReducer,
-    spots: spotsReducer,
     spot: spotReducer,
-    vote: voteReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

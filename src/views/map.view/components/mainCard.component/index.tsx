@@ -8,8 +8,8 @@ import styles from './styles';
 import HelloIcon from '../../../../assets/hello';
 import BorderLinearProgress from '../../../../components/linearProgress.component';
 import computeStats from '../../../../functions/stats';
-import { Spot } from '../../../../features/getSpotsSlice';
 import { colors } from '../../../../styles/theme';
+import { Spot } from '../../../../types';
 
 interface Props {
   onClick: () => void;

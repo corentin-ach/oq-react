@@ -4,11 +4,9 @@ const styles = {
   mainCard: {
     border: 0,
     borderRadius: 2,
-    padding: 2,
     alignContent: 'flex-start',
     display: 'flex',
     flexDirection: 'column',
-    marginTop: 4,
   },
   spotTitle: {
     color: 'text.primary',

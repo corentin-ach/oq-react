@@ -9,13 +9,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GeoJsonProperties } from 'geojson';
 import DataCards from './components/dataCards.component';
 import { key, RootState } from '../../app/store';
-import { getSpots, Spot } from '../../features/getSpotsSlice';
 import CircularLoader from '../../components/circularLoader.component';
 import { darkMap, lightMap } from '../../styles/theme';
 import { clusterLayer, clusterCountLayer, unclusteredPointLayer } from './components/layers.component';
 import { setSpot } from '../../features/setSpotSlice';
 import ReportButton from './components/reportButton.component';
 import InfoButton from './components/infoButton.component';
+import { Spot } from '../../types';
 
 interface Props {
   isDark: boolean
@@ -23,19 +23,19 @@ interface Props {
   spots: Array<Spot>;
   loading: boolean;
   openSidebar: () => void;
+  showInfoSpot: () => void;
+  spot: Spot;
 }
 
 const MapView = (props: Props): ReactElement => {
   const {
-    isDark, onIntroClick, spots, loading, openSidebar,
+    isDark, onIntroClick, spots, loading, openSidebar, showInfoSpot, spot,
   } = props;
   const dispatch = useDispatch();
+  const spotSet = useSelector((state: RootState) => state.spot);
   const [markers, setMarkers]: any = useState({});
-  const { spot } = useSelector((state: RootState) => state.spot);
   const mapRef: any = useRef(null);
   const [popupInfo, setPopupInfo] = useState<any>(null);
-
-  useEffect(() => { dispatch(getSpots()); }, []);
 
   const geolocateStyle = {
     bottom: 0,
@@ -66,6 +66,7 @@ const MapView = (props: Props): ReactElement => {
           plastic: element.quality.plastic,
           seal: element.quality.seal,
           date: element.quality.date,
+          observation: element.quality.observation,
         },
         status: element.status,
         stringStatus: element.status ? 'true' : 'false',
@@ -96,17 +97,11 @@ const MapView = (props: Props): ReactElement => {
         });
       });
     } else if (feature?.layer.id === 'unclustered-point') {
-      const qjson = JSON.parse(feature.properties.quality);
+      // const qjson = JSON.parse(feature.properties.quality);
+      const selectedSpot = spots.find((s) => s.id === feature.properties.id);
 
       dispatch(setSpot({
-        id: feature.properties.id,
-        coords: [feature?.geometry?.coordinates[1], feature?.geometry?.coordinates[0]],
-        name: feature.properties.name,
-        water: qjson.water,
-        plastic: qjson.plastic,
-        seal: qjson.seal,
-        date: qjson.date,
-        status: feature.properties.status,
+        id: selectedSpot?.id,
         bySearch: false,
       }));
       setViewport({
@@ -122,15 +117,6 @@ const MapView = (props: Props): ReactElement => {
     } else {
       dispatch(setSpot({
         id: '',
-        coords: [0, 0],
-        name: 'La Milady',
-        quality: {
-          water: false,
-          plastic: false,
-          seal: false,
-          date: '',
-        },
-        status: false,
         bySearch: false,
       }));
     }
@@ -138,16 +124,16 @@ const MapView = (props: Props): ReactElement => {
   };
 
   useEffect(() => {
-    if (spot.bySearch) {
+    if (spotSet.spot?.bySearch) {
       setViewport({
-        longitude: spot.coords[0],
-        latitude: spot.coords[1],
+        longitude: spot?.coords[1],
+        latitude: spot?.coords[0],
         zoom: 13,
         transitionDuration: 500,
       });
       setPopupInfo({
-        lngLat: spot.coords,
-        text: spot.name,
+        lngLat: [spot?.coords[1], spot?.coords[0]],
+        text: spot?.name,
       });
     }
   }, [spot]);
@@ -197,9 +183,15 @@ const MapView = (props: Props): ReactElement => {
         </Popup>
         )}
       </ReactMapGL>
-      <DataCards spots={spots} selectedSpot={spot} onClick={onIntroClick} isDark={isDark} />
+      <DataCards
+        showInfoSpot={() => showInfoSpot()}
+        spots={spots}
+        spot={spot}
+        onClick={onIntroClick}
+        isDark={isDark}
+      />
       {loading ? <CircularLoader /> : null}
-      <ReportButton spots={spots} />
+      <ReportButton spots={spots} spot={spot} />
       <InfoButton openSidebar={openSidebar} />
     </div>
   );

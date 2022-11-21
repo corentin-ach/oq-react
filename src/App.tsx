@@ -11,13 +11,14 @@ import { RootState } from './app/store';
 import Header from './components/header.component';
 import ContentView from './views/content.view';
 import MobileView from './views/mobile.view';
+import { useGetFirestore } from './firebase/hooks';
 // @ts-ignore
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 function App() {
   const theme = useSelector((state: RootState) => state.theme.dark);
+  const { spot } = useSelector((state: RootState) => state);
   const [contentView, setContentView] = useState(false);
-  const { spots, loading } = useSelector((state: RootState) => state.spots);
   const [value, setValue] = React.useState('1');
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -40,26 +41,34 @@ function App() {
     height: 700,
   };
 
+  const allSpots = useGetFirestore('spots');
+  const selectedSpot = allSpots.filter((s) => s.id === spot.spot.id)[0];
+
   return (
     <ThemeProvider theme={theme ? darkTheme : lightTheme}>
       { dimensions.width < breakPoint.width || dimensions.height < breakPoint.height
         ? <MobileView theme={theme} />
         : (
           <>
-            <Header spots={spots} theme={theme} onMainButton={() => { setContentView(true); setValue('2'); }} />
+            <Header spots={allSpots} theme={theme} onMainButton={() => { setContentView(true); setValue('1'); }} />
             <MapView
               isDark={theme}
-              onIntroClick={() => { setContentView(true); setValue('2'); }}
               openSidebar={() => { setContentView(true); setValue('1'); }}
-              spots={spots}
-              loading={loading}
+              onIntroClick={() => { setContentView(true); setValue('2'); }}
+              showInfoSpot={() => { setContentView(true); setValue('3'); }}
+              spots={allSpots}
+              loading={allSpots.length === 0}
+              spot={selectedSpot}
             />
             <ContentView
               isOpen={contentView}
               onClose={() => setContentView(false)}
-              spots={spots}
+              showInfoSpot={() => { setContentView(true); setValue('3'); }}
+              spots={allSpots}
               value={value}
               handleChange={handleChange}
+              isDark={theme}
+              spot={selectedSpot}
             />
           </>
         )}

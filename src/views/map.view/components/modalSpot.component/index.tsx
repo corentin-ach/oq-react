@@ -4,26 +4,25 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CheckIcon from '@mui/icons-material/Check';
-import { useDispatch, useSelector } from 'react-redux';
+import dayjs from 'dayjs';
 import BottleIcon from '../../../../assets/bottle';
 import RainDropIcon from '../../../../assets/raindrop';
 import SealIcon from '../../../../assets/seal';
 import styles from './styles';
 import { colors } from '../../../../styles/theme';
-import { setVote } from '../../../../features/voteSlice';
-import { Spot } from '../../../../features/getSpotsSlice';
 import CustomModal from '../../../../components/modal.component';
 import CustomList from '../../../../components/list.component';
 import ActionButton from '../../../../components/buttons.component/actionButton.button';
 import SearchBar from '../../../../components/searchbar.component';
-import { RootState } from '../../../../app/store';
+import { setFirestore } from '../../../../firebase/hooks';
+import { Spot } from '../../../../types';
 
 interface Props {
     mode: boolean
     handleClose: () => void
-    selectedSpot?: Spot
     spots?: Array<Spot>
     isSelectable: boolean
+    spot: Spot
 }
 
 interface Vote {
@@ -32,34 +31,42 @@ interface Vote {
     water: boolean,
     plastic: boolean,
     seal: boolean,
+    observation: string,
+    date: string
   }
 }
 
 const ModalSpot = (props: Props) => {
   const {
-    mode, handleClose, selectedSpot, spots, isSelectable,
+    mode, handleClose, spots, isSelectable, spot,
   } = props;
-  const { spot } = useSelector((state: RootState) => state.spot);
   const { t } = useTranslation(['translationFR']);
   const [selection, setSelection] = useState({
     water: false,
     plastic: false,
     seal: false,
+    observation: '',
+    date: '',
   });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelection({ ...selection, observation: event.target.value });
+  };
   const [quality, setQuality]: any = useState({});
   const [activeStep, setActiveStep] = React.useState(0);
-  const dispatch = useDispatch();
+
   useEffect(() => {
     const vote: Vote = {
-      id: selectedSpot?.id,
+      id: spot?.id,
       quality: {
         water: selection.water,
         plastic: selection.plastic,
         seal: selection.seal,
+        observation: selection.observation,
+        date: dayjs(new Date()).format('YYYY-MM-DD'),
       },
     };
     setQuality(vote);
-  }, [selectedSpot, selection]);
+  }, [spot, selection]);
 
   const handleStepNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -119,13 +126,12 @@ const ModalSpot = (props: Props) => {
       }}
       >
         {selection.water
-          ? <Chip sx={{ color: 'text.primary', m: 0.4 }} color="warning" variant="outlined" icon={<RainDropIcon size={20} />} label={spotData[0].name} /> : null}
+          ? <Chip sx={{ color: 'text.primary', m: 0.4, paddingLeft: 1 }} color="warning" variant="outlined" icon={<RainDropIcon size={20} />} label={spotData[0].name} /> : null}
         {selection.plastic
-          ? <Chip sx={{ color: 'text.primary', m: 0.4 }} color="warning" variant="outlined" icon={<BottleIcon size={20} />} label={spotData[1].name} /> : null}
+          ? <Chip sx={{ color: 'text.primary', m: 0.4, paddingLeft: 1 }} color="warning" variant="outlined" icon={<BottleIcon size={20} />} label={spotData[1].name} /> : null}
         {selection.seal
-          ? <Chip sx={{ color: 'text.primary', m: 0.4 }} color="warning" variant="outlined" icon={<SealIcon size={20} />} label={spotData[2].name} /> : null}
+          ? <Chip sx={{ color: 'text.primary', m: 0.4, paddingLeft: 1 }} color="warning" variant="outlined" icon={<SealIcon size={20} />} label={spotData[2].name} /> : null}
       </Box>
-
     </>
   </Box>,
       action: <CustomList allData={spotData} />,
@@ -134,19 +140,21 @@ const ModalSpot = (props: Props) => {
     {
       step: 2,
       title: <Typography sx={{ fontWeight: 'bold' }}>{t('translation:mapView.dialogSpot.observations')}</Typography>,
-      action: <TextField fullWidth multiline maxRows={3} placeholder="Souhaitez-vous ajouter une note ?" />,
+      action: <TextField onChange={handleChange} value={selection.observation} fullWidth multiline maxRows={3} placeholder="Souhaitez-vous ajouter une note ?" />,
       display: true,
     },
   ];
 
   const onClose = () => {
     handleClose();
-    setSelection({ water: false, plastic: false, seal: false });
+    setSelection({
+      water: false, plastic: false, seal: false, observation: '', date: '',
+    });
     handleStepReset();
   };
 
   const onSend = () => {
-    dispatch(setVote(quality));
+    setFirestore('spots', quality, spot);
     onClose();
     handleStepReset();
   };
@@ -165,9 +173,9 @@ const ModalSpot = (props: Props) => {
       content={(
         <Box sx={styles.container}>
           <Alert severity="warning">
-            {selectedSpot ? (
+            {spot ? (
               <Typography sx={styles.description}>
-                {t('translation:mapView.dialogSpot.description', { spotName: selectedSpot.name })}
+                {t('translation:mapView.dialogSpot.description', { spotName: spot?.name })}
               </Typography>
             ) : (
               <Typography sx={styles.description}>
@@ -185,12 +193,14 @@ const ModalSpot = (props: Props) => {
                   <StepContent>
                     {s.action}
                     <Box>
-                      <ActionButton
-                        fullWidth={false}
-                        onClick={handleStepNext}
-                        title={index === steps.length - 1 ? t('translation:mapView.dialogSpot.finish') : t('translation:mapView.dialogSpot.next')}
-                        isDisabled={false}
-                      />
+                      {index < steps.length - 1 ? (
+                        <ActionButton
+                          fullWidth={false}
+                          onClick={handleStepNext}
+                          title={t('translation:mapView.dialogSpot.next')}
+                          isDisabled={false}
+                        />
+                      ) : null}
                       <ActionButton
                         fullWidth={false}
                         onClick={handleStepBack}
