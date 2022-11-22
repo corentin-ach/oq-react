@@ -6,6 +6,7 @@
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@firebase/firestore": "^3.7.3",
+    "@jest/globals": "^29.3.1",
     "@mui/icons-material": "^5.2.0",
     "@mui/lab": "^5.0.0-alpha.59",
     "@mui/material": "^5.0.4",
@@ -61,9 +62,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "overrides": {
-    "@types/react": "^17.0.30"
   },
   "devDependencies": {
     "@types/google-map-react": "^2.1.3",
