@@ -5,6 +5,7 @@ import {
 import { MdChevronRight } from 'react-icons/md';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { useTranslation } from 'react-i18next';
+import { PieChart } from '@mui/icons-material';
 import Stats from './components/stats.component';
 import About from './components/about.component';
 import InfoSpot from './components/infoSpot.component';
@@ -51,7 +52,7 @@ const ContentView = (props: Props): ReactElement => {
             onChange={handleChange}
           >
             <Tab label="Oavel" value="1" sx={{ fontWeight: 'bold' }} />
-            <Tab label={t('translation:contentView.tab.stats')} value="2" sx={{ fontWeight: 'bold' }} />
+            <Tab icon={<PieChart />} iconPosition="start" label={t('translation:contentView.tab.stats')} value="2" sx={{ fontWeight: 'bold' }} />
             {spot ? <Tab label={spot?.name} value="3" sx={{ fontWeight: 'bold' }} /> : null}
           </TabList>
         </DrawerHeader>
