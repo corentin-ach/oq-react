@@ -5,15 +5,18 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
+import i18next from 'i18next';
 import ActionButton from '../../../../components/buttons.component/actionButton.button';
-import README from '../../../../locales/fr/oavel.md';
+import oavelFR from '../../../../locales/fr/oavelFR.md';
+import oavelEN from '../../../../locales/fr/oavelEN.md';
 import { colors } from '../../../../styles/theme';
 
 const About = () => {
   const [content, setContent] = useState('');
   const { t } = useTranslation();
   useEffect(() => {
-    fetch(README)
+    const l = i18next.language;
+    fetch(l === 'fr' ? oavelFR : oavelEN)
       .then((res) => res.text())
       .then((text) => setContent(text));
   }, []);
