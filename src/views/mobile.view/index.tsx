@@ -17,14 +17,6 @@ const MobileView = (props: Props): ReactElement => {
     <Box sx={styles.mainView}>
       <AppIcon />
       <HeaderIcon isDark={!!theme} size={100} />
-      <Typography
-        variant="h5"
-        fontWeight="bold"
-        marginBottom="20px"
-        sx={styles.title}
-      >
-        {t('translation:contentView.about.title')}
-      </Typography>
       <Typography sx={styles.introText}>
         {t('translation:mobileView.intro')}
       </Typography>

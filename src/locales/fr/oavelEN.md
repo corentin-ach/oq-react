@@ -1,30 +1,30 @@
 ### 🏖️ Concept
 
-Oavel is a participative platform to report pollutions and events for coastline spots. Pour le moment seul le littoral Breton en France y est representé, et le projet est encore au stade de prototype.
+Oavel is a participative platform to report pollutions on all coastline beaches. For the moment, only spots in Bretagne area in France are available. This project is in development.
 
-Avec Oavel vous pouvez être informé sur l'état du littoral, être sensibilisé sur la qualité des spots, des plages, et alerter sur une pollution, qu'elle soit visuelle, formelle, et en temps réel. 
-Auhourd'hui 3 paramètres rentrent en jeu dans la qualité globale d'un spot : la qualité de l'eau, la présence de polluants (plastiques), la présence d'animaux en danger.
+With Oavel, you can be informed about the state of the coast, be made aware of the quality of spots, beaches, and alert about pollution, whether visual, formal, and in real time.
+Today 3 parameters come into play in the overall quality of a spot: the quality of the water, the presence of pollutants (plastics), the presence of animals in danger.
 
-Le site est mis à jour en temps réel. Lorque des alertes sont envoyés alors elles sont traitées par nos algorithmes de fiabilité puis le spot est mis à jour avec son dernier état. 
+The site is updated in real time. When alerts are sent then they are processed by our reliability algorithms and then the spot is updated with its latest status.
 
-### 📢 Motivations
+### 📢 Motivational
 
-Sensible à la qualité de l'eau et de l'environnement, la raison d'être d'Oavel vient principalement d'un désir de protection et de partages. 
-Aujourd'hui trop peu de personnes sont informées sur l'état des plages. Les acteurs politiques et scientifiques ne prennent pas en compte l'aspect temps réel. Il est encore trop difficile d'être bien informé et seules les communautées participatives comme Oavel peuvent combler ce manque. 
+Sensitive to the quality of water and the environment, Oavel's identity comes mainly from a desire to protect and share.
+Today too few people are informed about the state of the beaches. Political and scientific actors do not take into account the real time aspect. It is still too difficult to be well informed and only participatory communities like Oavel can fill this gap.
 
-Oavel permet aussi d'archiver les états des plages au fil du temps. Garder une trace de ce qui se passe est aussi une priorité.
+Oavel also allows you to archive track states over time. Keeping track of what is happening is also a priority.
 
-### 🧭 How this project is built
+### How this project is built
 
-Oavel est un projet qui se veut open source, collaboratif, pédagogique, et évolutif.
+Oavel is a project that aims to be open source, collaborative, educational, and scalable.
 
-Quelques critères ont été exigés dans la conception : 
+A few criteria were required in the design:
 
-- ♻️ Eco-conception numérique : créer un outil numérique à faible impact 
-- 🧑‍🏫 Visée pédagogique : afficher des informations pour sensibiliser, instruire et promouvoir la protection du littoral
-- 🤝 Participatif : permettre à qui le souhaite de contribuer au projet, que ce soit au niveau du code, de la partie scientifique, de la communication ou du contenu
+- ♻️ Digital eco-design: create a low-impact digital tool
+- 🧑‍🏫 Educational aim: display information to raise awareness, educate and promote coastal protection
+- 🤝 Participative: allow anyone who wishes to contribute to the project, whether in terms of code, scientific part, communication or content
 
-D'un point de vu technique, ce projet utilise React en librairie front-end, Material UI pour les composants à l'affichage, et Firebase pour l'hébergement du site et des données. Chaque nouvelle feature est poussé sur Git et une CI a été mise en place. Ce projet est régulièrement testé, notamment via des tests unitaires. 
-Une attention particulière a été réalisée sur l'UI/UX, dans le but de rendre l'application simple et légère pour l'oeil. 
+From a technical point of view, this project uses React as a front-end library, Material UI for display components, and Firebase for site and data hosting. Every new feature is pushed to Git and a CI has been put in place. This project is regularly tested, in particular via unit tests.
+Particular attention has been paid to the UI/UX, with the aim of making the application simple and light on the eye.
 
-Merci pour votre attention envers Oavel et bienvenue !
+Thank you for your attention to Oavel and welcome!
