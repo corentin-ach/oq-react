@@ -27,6 +27,7 @@
         "@typescript-eslint/no-use-before-define": ["error"],
         "no-param-reassign": "off",
         "react/require-default-props": "off",
-        "no-nested-ternary": "off"
+        "no-nested-ternary": "off",
+        "no-unused-vars": "off"
     }
 }

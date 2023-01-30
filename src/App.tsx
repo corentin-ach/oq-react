@@ -47,7 +47,14 @@ function App() {
   return (
     <ThemeProvider theme={theme ? darkTheme : lightTheme}>
       { dimensions.width < breakPoint.width || dimensions.height < breakPoint.height
-        ? <MobileView theme={theme} />
+        ? (
+          <MobileView
+            isDark={theme}
+            spots={allSpots}
+            loading={allSpots.length === 0}
+            spot={selectedSpot}
+          />
+        )
         : (
           <>
             <Header spots={allSpots} theme={theme} onMainButton={() => { setContentView(true); setValue('1'); }} />

@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, {
-  ReactElement, useEffect, useRef, useState,
+  useEffect, useRef, useState,
 } from 'react';
-import ReactMapGL, {
+import Map, {
   Layer, Source, GeolocateControl, Popup,
 } from 'react-map-gl';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,15 +19,15 @@ import { Spot } from '../../types';
 
 interface Props {
   isDark: boolean
-  onIntroClick: () => void;
+  onIntroClick?: () => void;
   spots: Array<Spot>;
   loading: boolean;
-  openSidebar: () => void;
-  showInfoSpot: () => void;
+  openSidebar?: () => void;
+  showInfoSpot?: () => void;
   spot: Spot;
 }
 
-const MapView = (props: Props): ReactElement => {
+function MapView(props: Props) {
   const {
     isDark, onIntroClick, spots, loading, openSidebar, showInfoSpot, spot,
   } = props;
@@ -139,10 +139,10 @@ const MapView = (props: Props): ReactElement => {
   }, [spot]);
 
   return (
-    <div>
-      <ReactMapGL
+    <>
+      <Map
         {...viewport}
-        width="100vw"
+        width="100%"
         height="100vh"
         mapStyle={isDark ? darkMap : lightMap}
         onViewportChange={setViewport}
@@ -182,8 +182,8 @@ const MapView = (props: Props): ReactElement => {
           {popupInfo.text}
         </Popup>
         )}
-      </ReactMapGL>
-      <DataCards
+      </Map>
+      {/* <DataCards
         showInfoSpot={() => showInfoSpot()}
         spots={spots}
         spot={spot}
@@ -192,9 +192,9 @@ const MapView = (props: Props): ReactElement => {
       />
       {loading ? <CircularLoader /> : null}
       <ReportButton spots={spots} spot={spot} />
-      <InfoButton openSidebar={openSidebar} />
-    </div>
+      <InfoButton openSidebar={openSidebar} /> */}
+    </>
   );
-};
+}
 
 export default MapView;
