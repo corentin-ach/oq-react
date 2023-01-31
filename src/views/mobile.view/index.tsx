@@ -7,8 +7,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import { Grid } from '@mui/material';
-import MapView from '../map.view';
 import { Spot } from '../../types';
+import MapContainer from '../../containers/map.container';
 
 type Props = {
   isDark: boolean,
@@ -57,7 +57,7 @@ export default function MobileView(props: Props) {
           },
         }}
       />
-      <MapView isDark={isDark} spots={spots} spot={spot} loading={loading} />
+      <MapContainer isDark={isDark} spots={spots} spot={spot} loading={loading} />
       <SwipeableDrawer
         anchor="bottom"
         open={open}

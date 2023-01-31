@@ -27,7 +27,7 @@ interface Props {
   spot: Spot;
 }
 
-function MapView(props: Props) {
+function MapContainer(props: Props) {
   const {
     isDark, onIntroClick, spots, loading, openSidebar, showInfoSpot, spot,
   } = props;
@@ -197,4 +197,4 @@ function MapView(props: Props) {
   );
 }
 
-export default MapView;
+export default MapContainer;
