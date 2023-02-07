@@ -190,9 +190,7 @@ function MapContainer(props: Props) {
         onClick={onIntroClick}
         isDark={isDark}
       />
-      {loading ? <CircularLoader /> : null}
-      <ReportButton spots={spots} spot={spot} />
-      <InfoButton openSidebar={openSidebar} /> */}
+      {loading ? <CircularLoader /> : null} */}
     </>
   );
 }

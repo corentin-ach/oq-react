@@ -7,11 +7,12 @@ import { Spot } from '../../../../types';
 
 type Props = {
     spots: Array<Spot>
-    spot: Spot
+    spot: Spot,
+    style?: any
 }
 
 const ReportButton = (props: Props) => {
-  const { spots, spot } = props;
+  const { spots, spot, style } = props;
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -23,6 +24,7 @@ const ReportButton = (props: Props) => {
     <Box>
       <Fab
         sx={{
+          ...style,
           bgcolor: colors.badQuality,
           position: 'absolute',
           bottom: 60,

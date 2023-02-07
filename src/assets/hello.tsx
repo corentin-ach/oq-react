@@ -3,13 +3,14 @@ import React from 'react';
 interface Props {
   month: string;
   day: string;
+  size: number;
 }
 
 const HelloIcon = (props: Props) => {
-  const { month, day } = props;
+  const { month, day, size } = props;
   return (
 
-    <svg width="60" height="60" viewBox="0 0 475 512" version="1.1">
+    <svg width={`${size}`} height={`${size}`} viewBox="0 0 475 512" version="1.1">
       <g id="group">
         <path id="Tracé" d="M36.5 -0.5 L37.5 -0.5 37.5 138.5 473.5 138.5 C473.5 92.167 473.5 45.833 473.5 -0.5 L474.5 -0.5 474.5 139.5 C328.5 139.5 182.5 139.5 36.5 139.5 36.5 92.833 36.5 46.167 36.5 -0.5 Z" fill="#ef9fa4" fillOpacity="1" stroke="none" />
       </g>

@@ -3,6 +3,9 @@ import Header from '../../components/header.component';
 import { Spot } from '../../types';
 import MapContainer from '../../containers/map.container';
 import ContentContainer from '../../containers/content.container';
+import ReportButton from '../../containers/map.container/components/reportButton.component';
+import InfoButton from '../../containers/map.container/components/infoButton.component';
+import DataCards from '../../containers/map.container/components/dataCards.component';
 
 interface Props {
     isDark: boolean,
@@ -22,12 +25,18 @@ export default function MainView(props: Props) {
       <Header spots={spots} theme={isDark} onMainButton={() => { setContentView(true); setValue('1'); }} />
       <MapContainer
         isDark={isDark}
-        openSidebar={() => { setContentView(true); setValue('1'); }}
-        onIntroClick={() => { setContentView(true); setValue('2'); }}
-        showInfoSpot={() => { setContentView(true); setValue('3'); }}
         spots={spots}
         loading={spots.length === 0}
         spot={spot}
+      />
+      <ReportButton spots={spots} spot={spot} />
+      <InfoButton openSidebar={() => { setContentView(true); setValue('1'); }} />
+      <DataCards
+        showInfoSpot={() => { setContentView(true); setValue('3'); }}
+        spots={spots}
+        spot={spot}
+        onClick={() => { setContentView(true); setValue('2'); }}
+        isDark={isDark}
       />
       <ContentContainer
         isOpen={contentView}
