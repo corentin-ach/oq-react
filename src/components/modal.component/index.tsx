@@ -2,6 +2,7 @@ import {
   Dialog, DialogContent, DialogTitle, DialogActions, Breakpoint, Button, Typography,
 } from '@mui/material';
 import React, { ReactElement } from 'react';
+import useResponsive from '../../functions/useResponsive';
 import styles from './styles';
 
 type ModalProps = {
@@ -11,7 +12,7 @@ type ModalProps = {
     content: ReactElement;
     onCancelClick: () => void;
     showActions: string;
-    customActions: ReactElement | null
+    customActions: ReactElement | null;
 }
 
 const CustomModal = (props: ModalProps) => {
@@ -24,9 +25,16 @@ const CustomModal = (props: ModalProps) => {
     showActions,
     customActions,
   } = props;
+  const isMobile = useResponsive();
 
   return (
-    <Dialog open={isOpen} maxWidth={size} fullWidth keepMounted>
+    <Dialog
+      open={isOpen}
+      maxWidth={size}
+      fullWidth
+      keepMounted
+      fullScreen={!!isMobile}
+    >
       <DialogTitle sx={styles.container}>
         {header}
       </DialogTitle>

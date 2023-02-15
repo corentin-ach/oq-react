@@ -31,7 +31,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-start',
 }));
 
-const ContentView = (props: Props): ReactElement => {
+export default function ContentContainer(props: Props) {
   const {
     isOpen, onClose, spots, value, handleChange, isDark, showInfoSpot, spot,
   } = props;
@@ -76,6 +76,4 @@ const ContentView = (props: Props): ReactElement => {
       </TabContext>
     </Drawer>
   );
-};
-
-export default ContentView;
+}

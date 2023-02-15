@@ -10,9 +10,10 @@ import BorderLinearProgress from '../../../../components/linearProgress.componen
 import computeStats from '../../../../functions/stats';
 import { colors } from '../../../../styles/theme';
 import { Spot } from '../../../../types';
+import RateCard from '../../../../components/rateCard.component';
 
 interface Props {
-  onClick: () => void;
+  onClick?: () => void;
   isDark: boolean;
   spots: Array<Spot>;
 }
@@ -47,25 +48,7 @@ const MainCard = (props: Props): ReactElement => {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.95 }}
       >
-        <Box
-          width="100%"
-          height="80px"
-          sx={styles.infoCard}
-          onClick={onClick}
-        >
-          <Box sx={styles.helloIcon}>
-            <HelloIcon month={dayjs(currentDate).format('MMM')} day={dayjs(currentDate).format('DD')} />
-          </Box>
-          <Box sx={styles.rate}>
-            <Typography sx={styles.name}>
-              {computeStats(spots).warningRate}
-              %
-              {t('translation:mapView.welcomeCard.rate')}
-              {dayjs(currentDate).format('HH:mm')}
-            </Typography>
-            <BorderLinearProgress height={6} variant="determinate" value={100 - computeStats(spots).warningRate} />
-          </Box>
-        </Box>
+        <RateCard style={{ height: '80px' }} spots={spots} />
       </motion.div>
     </Box>
   );

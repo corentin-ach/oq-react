@@ -4,8 +4,8 @@ import {
   Box, Typography,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import SpotCard from '../../../map.view/components/spotCard.component';
 import { Spot } from '../../../../types';
+import SpotCard from '../../../map.container/components/spotCard.component';
 
 interface Props {
     spot: Spot;
