@@ -11,10 +11,8 @@ import { useEffect } from 'react';
 import { Spot } from '../../types';
 import MapContainer from '../../containers/map.container';
 import ReportButton from '../../containers/map.container/components/reportButton.component';
-import MainCard from '../../containers/map.container/components/mainCard.component';
 import RateCard from '../../components/rateCard.component';
 import SpotCard from '../../containers/map.container/components/spotCard.component';
-import themeSlice from '../../features/themeSlice';
 
 type Props = {
   isDark: boolean,
@@ -102,7 +100,7 @@ export default function MobileView(props: Props) {
             <Typography
               variant="h6"
               sx={{
-                fontWeight: 'bold', color: 'white', paddingLeft: 1, marginBottom: -2,
+                fontWeight: 'bold', marginBottom: -2,
               }}
             >
               Oavel
@@ -113,7 +111,7 @@ export default function MobileView(props: Props) {
         <Box
           sx={{
             px: 2,
-            pb: 2,
+            paddingBottom: 4,
             height: '100%',
             zIndex: 2,
             backgroundColor: 'background.default',
@@ -125,7 +123,7 @@ export default function MobileView(props: Props) {
               isDark={isDark}
               isExpandedCard={false}
             />
-          ) : null}
+          ) : <></>}
         </Box>
       </SwipeableDrawer>
     </Root>

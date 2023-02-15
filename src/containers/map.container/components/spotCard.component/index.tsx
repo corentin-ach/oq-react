@@ -15,6 +15,7 @@ import { colors } from '../../../../styles/theme';
 import { computeStatusName } from '../../../../functions/status';
 import { setFirestore } from '../../../../firebase/hooks';
 import { Spot } from '../../../../types';
+import useResponsive from '../../../../functions/useResponsive';
 
 interface Props {
   spot: Spot
@@ -26,6 +27,7 @@ interface Props {
 
 const SpotCard = (props: Props): ReactElement => {
   const { t } = useTranslation();
+  const isMobile = useResponsive();
   const {
     spot, isDark, isExpandedCard, showInfoSpot, style,
   } = props;
@@ -78,7 +80,7 @@ const SpotCard = (props: Props): ReactElement => {
       width="auto"
       height="auto"
       sx={{
-        ...styles.mainCard, bgcolor: isExpandedCard ? 'background.default' : !isDark ? 'rgba(255, 255, 255, .8)' : 'rgba(59, 59, 59, .70)', backdropFilter: isExpandedCard ? 'none' : 'blur(10px)', padding: isExpandedCard ? 0 : 0,
+        ...styles.mainCard, bgcolor: isExpandedCard ? 'background.default' : !isDark ? 'rgba(255, 255, 255, .8)' : 'rgba(59, 59, 59, .70)', backdropFilter: isExpandedCard ? 'none' : 'blur(10px)', padding: isExpandedCard ? 0 : isMobile ? 0 : 2,
       }}
     >
       <Box sx={styles.headerCard}>

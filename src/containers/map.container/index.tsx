@@ -7,6 +7,7 @@ import Map, {
 } from 'react-map-gl';
 import { useDispatch, useSelector } from 'react-redux';
 import { GeoJsonProperties } from 'geojson';
+import { Typography } from '@mui/material';
 import DataCards from './components/dataCards.component';
 import { key, RootState } from '../../app/store';
 import CircularLoader from '../../components/circularLoader.component';
@@ -179,18 +180,10 @@ function MapContainer(props: Props) {
           onClose={setPopupInfo}
           closeButton={false}
         >
-          {popupInfo.text}
+          <Typography sx={{ color: 'black' }}>{popupInfo.text}</Typography>
         </Popup>
         )}
       </Map>
-      {/* <DataCards
-        showInfoSpot={() => showInfoSpot()}
-        spots={spots}
-        spot={spot}
-        onClick={onIntroClick}
-        isDark={isDark}
-      />
-      {loading ? <CircularLoader /> : null} */}
     </>
   );
 }
