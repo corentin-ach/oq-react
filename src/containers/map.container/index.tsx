@@ -46,7 +46,7 @@ function MapContainer(props: Props) {
   const positionOptions = { enableHighAccuracy: false };
 
   const [viewport, setViewport]: any = useState({
-    latitude: 48.310341,
+    latitude: 48.420341,
     longitude: -3.824453,
     zoom: 7,
   });

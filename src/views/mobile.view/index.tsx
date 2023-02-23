@@ -74,7 +74,7 @@ export default function MobileView(props: Props) {
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
         swipeAreaWidth={drawerBleeding}
-        disableSwipeToOpen={false}
+        disableSwipeToOpen={!spot?.id}
         ModalProps={{
           keepMounted: true,
         }}
@@ -95,7 +95,7 @@ export default function MobileView(props: Props) {
             backgroundColor: 'background.default',
           }}
         >
-          <Puller />
+          {spot?.id ? <Puller /> : null}
           <Grid container sx={{ p: 2, height: '50px' }}>
             <Typography
               variant="h6"
@@ -117,13 +117,11 @@ export default function MobileView(props: Props) {
             backgroundColor: 'background.default',
           }}
         >
-          {spot?.id ? (
-            <SpotCard
-              spot={spot}
-              isDark={isDark}
-              isExpandedCard={false}
-            />
-          ) : <></>}
+          <SpotCard
+            spot={spot}
+            isDark={isDark}
+            isExpandedCard={false}
+          />
         </Box>
       </SwipeableDrawer>
     </Root>
