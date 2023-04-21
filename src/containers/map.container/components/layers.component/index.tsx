@@ -1,3 +1,5 @@
+import { FillLayer } from 'mapbox-gl';
+
 export const clusterLayer: any = {
   id: 'clusters',
   type: 'circle',
@@ -37,5 +39,25 @@ export const unclusteredPointLayer: any = {
   paint: {
     'circle-color': ['match', ['get', 'stringStatus'], 'false', '#65DEAB', 'true', '#F38732', '#5DADEC'],
     'circle-radius': 10,
+  },
+};
+
+export const areaLayer: any = {
+  id: 'data',
+  type: 'fill',
+  source: 'zones',
+  paint: {
+    'fill-color': '#43abad',
+    'fill-opacity': 0.8,
+  },
+};
+
+export const strokeLayer: any = {
+  id: 'stroke-layer',
+  type: 'line',
+  source: 'zones',
+  paint: {
+    'line-color': '#fff',
+    'line-width': 3,
   },
 };
