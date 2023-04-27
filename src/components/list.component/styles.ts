@@ -17,7 +17,9 @@ const styles = {
     margin: 0.7,
   },
   centerFlex: {
-    display: 'flex', justifyContent: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    marginX: 1,
   },
 } as const;
 

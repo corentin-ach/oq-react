@@ -3,20 +3,16 @@ import React, {
   useEffect, useRef, useState,
 } from 'react';
 import Map, {
-  Layer, Source, GeolocateControl, Popup,
+  GeolocateControl, Popup,
 } from 'react-map-gl';
 import { useDispatch, useSelector } from 'react-redux';
-import { GeoJsonProperties } from 'geojson';
 import { Typography } from '@mui/material';
-import DataCards from './components/dataCards.component';
 import { key, RootState } from '../../app/store';
-import CircularLoader from '../../components/circularLoader.component';
 import { darkMap, lightMap } from '../../styles/theme';
 import { clusterLayer, clusterCountLayer, unclusteredPointLayer } from './components/layers.component';
 import { setSpot } from '../../features/setSpotSlice';
-import ReportButton from './components/reportButton.component';
-import InfoButton from './components/infoButton.component';
 import { Spot } from '../../types';
+import SourceMap from './components/source.component';
 
 interface Props {
   isDark: boolean
@@ -34,7 +30,6 @@ function MapContainer(props: Props) {
   } = props;
   const dispatch = useDispatch();
   const spotSet = useSelector((state: RootState) => state.spot);
-  const [markers, setMarkers]: any = useState({});
   const mapRef: any = useRef(null);
   const [popupInfo, setPopupInfo] = useState<any>(null);
 
@@ -46,39 +41,10 @@ function MapContainer(props: Props) {
   const positionOptions = { enableHighAccuracy: false };
 
   const [viewport, setViewport]: any = useState({
-    latitude: 48.310341,
+    latitude: 48.420341,
     longitude: -3.824453,
     zoom: 7,
   });
-
-  const geojson: GeoJsonProperties = {
-    type: 'FeatureCollection',
-    features: [],
-  };
-
-  useEffect(() => {
-    spots.map((element) => geojson.features.push({
-      type: 'Feature',
-      properties: {
-        id: element.id,
-        name: element.name,
-        quality: {
-          water: element.quality.water,
-          plastic: element.quality.plastic,
-          seal: element.quality.seal,
-          date: element.quality.date,
-          observation: element.quality.observation,
-        },
-        status: element.status,
-        stringStatus: element.status ? 'true' : 'false',
-      },
-      geometry: {
-        type: 'Point',
-        coordinates: [element.coords[1], element.coords[0]],
-      },
-    }));
-    setMarkers(geojson);
-  }, [spots]);
 
   const onClick = (event: any) => {
     const feature = event.features[0];
@@ -153,21 +119,7 @@ function MapContainer(props: Props) {
         onClick={onClick}
         mapboxApiAccessToken={`${key}`}
       >
-        <Source
-          id="spots"
-          type="geojson"
-          data={markers}
-          cluster
-          clusterMaxZoom={14}
-          clusterRadius={50}
-          clusterProperties={{
-            status: ['any', ['==', ['get', 'stringStatus'], 'true'], 'true'],
-          }}
-        >
-          <Layer {...clusterLayer} />
-          <Layer {...clusterCountLayer} />
-          <Layer {...unclusteredPointLayer} />
-        </Source>
+        <SourceMap spots={spots} />
         <GeolocateControl
           style={geolocateStyle}
           positionOptions={positionOptions}

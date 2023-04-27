@@ -16,7 +16,7 @@ const useResponsive = (): boolean => {
   }, []);
 
   const breakPoint = {
-    width: 600,
+    width: 400,
     height: 700,
   };
 

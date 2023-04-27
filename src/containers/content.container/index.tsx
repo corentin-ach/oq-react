@@ -6,6 +6,7 @@ import { MdChevronRight } from 'react-icons/md';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { useTranslation } from 'react-i18next';
 import { PieChart } from '@mui/icons-material';
+import Login from './components/login.component';
 import Stats from './components/stats.component';
 import About from './components/about.component';
 import InfoSpot from './components/infoSpot.component';
@@ -51,6 +52,7 @@ export default function ContentContainer(props: Props) {
           <TabList
             onChange={handleChange}
           >
+            <Tab label="Login" value="4" sx={{ fontWeight: 'bold' }} />
             <Tab label="Oavel" value="1" sx={{ fontWeight: 'bold' }} />
             <Tab icon={<PieChart />} iconPosition="start" label={t('translation:contentView.tab.stats')} value="2" sx={{ fontWeight: 'bold' }} />
             {spot ? <Tab label={spot?.name} value="3" sx={{ fontWeight: 'bold' }} /> : null}
@@ -63,6 +65,9 @@ export default function ContentContainer(props: Props) {
           padding: 1,
         }}
         >
+          <TabPanel value="4">
+            <Login />
+          </TabPanel>
           <TabPanel value="1">
             <About />
           </TabPanel>

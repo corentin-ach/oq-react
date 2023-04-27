@@ -13,6 +13,6 @@ export type Spot = {
     id: string
     status: boolean
     bySearch: boolean
-    area: number
+    area: Array<any>
     votes?: Array<Quality>
   }
